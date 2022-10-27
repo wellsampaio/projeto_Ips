@@ -10,10 +10,6 @@ use \Hcode\Model\Order;
 use \Hcode\Model\OrderStatus;
 
 
-
-
-
-
 $app->get('/', function() {
 
 	$products = Product::newProducts();
@@ -36,15 +32,6 @@ $app->get('/about', function() {
 	$page->setTpl("about");
 
 });
-
-$app->get('/about', function() {
-
-	$page = new Page();
-
-	$page->setTpl("about");
-
-});
-
 
 $app->get("/categories/:idcategory", function($idcategory){
 
