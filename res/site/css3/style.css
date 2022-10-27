@@ -1,0 +1,126 @@
+h11 {
+    color:red;
+}
+
+#logo {
+        width:50%;
+        height:50%;
+}
+
+.panel-heading{
+    font-size:150%;
+}
+.top-header{
+  background:#00008B;
+}
+.top-header-left{
+  float:left;
+  width:40%;
+}
+.top-header-center{
+  float: left;
+  width: 20%;
+  text-align: center;
+  margin-top: 0.5em;
+}
+.top-header-right{
+  float:left;
+  width:40%;
+}
+.top-header-left ul{
+  margin:0;
+  padding:0;
+} 
+.top-header-left ul li{
+  display:inline-block;
+  float:left;
+}
+.top-header-left ul li a{
+  color: #FFF;
+  text-decoration: none;
+  font-size: 1.1em;
+  font-weight: 100;
+  margin: 0 1.5em 0 0em;
+  padding: 0.5em 0;
+  display: block;
+}
+.top-header-left ul li a:hover,.top-header-left ul li.active a{
+  color:#000;
+}
+.top-header-center p{
+  color:#FFF;
+  font-size: 1.1em;
+  font-weight: 100;
+  margin:0;
+}
+.top-header-center p span.cart{
+  width: 20px;
+  height: 24px;
+  display: inline-block;
+  background: url(../images/cart.png) no-repeat 0px 0px;
+  vertical-align: sub;
+  margin-right: 0.5em;
+}
+.top-header-center p label{
+  color:#000;
+  font-weight:100;
+  margin-left:0.4em;
+}
+.top-header-right li form{
+  position: relative;
+}
+.top-header-right li form input[type="text"]{
+  border: none;
+  outline: none;
+  position: relative;
+  transition: linear 0.5s all;
+  background: #5c301;
+  padding: 0.6em;
+  color:#FFF;
+}
+.top-header-right li form input[type="submit"]{
+  background: url(../images/search-icon.png) no-repeat 0px 0px;
+  width: 25px;
+  height: 25px;
+  display: inline-block;
+  border: none;
+  outline: none;
+  position: absolute;
+  right: 10px;
+  top: 11px;
+}
+.top-header-right ul li{
+  display:inline-block;
+  float:left;
+}
+.top-header-right ul li a{
+  color: #FFF;
+  text-decoration: none;
+  font-size: 1.1em;
+  font-weight: 100;
+  padding: 0 0.8em;
+  margin: 0.5em 0;
+  display: block;
+  border-right:1px solid #FFF;
+}
+.top-header-right ul li:nth-child(3) a{
+  border-right:none;
+}
+.top-header-right ul li a:hover,.top-header-right ul li.active a{
+  color:#000;
+}
+.main-menu{
+  background: url(../images/nav-bg.png) repeat-x 0px 0px;
+  margin-top: 6em;
+  position: relative;
+  z-index:999;
+} 
+.head-nav ul{
+  padding: 0;
+  width: 85%;
+  margin: 0 auto;
+  position:relative;
+}
+.head-nav ul li{
+  display:inline-block;
+}

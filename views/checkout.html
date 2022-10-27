@@ -1,0 +1,125 @@
+	<div class="content">
+	<div class="main">
+	   <div class="container">
+		  <div class="register">
+		  	  <form action="/checkout" method="post" name="checkout"> 
+				 <div class="register-top-grid">
+
+				 	
+
+									{if="$error != ''"}
+									
+										<h3 style="text-align: center; color: red">{$error}</h3>
+									
+									{/if}
+									
+					<h3>Endereço de Entrega</h3>
+					 <div class="wow fadeInLeft" data-wow-delay="0.4s">
+						<span>Cep<label>*</label></span>
+						<input type="text" value="{$cart.deszipcode}" placeholder="00000-000" id="billing_cep_1" name="zipcode" class="input-text"> 
+						<br><br>
+						<input type="submit" value="Buscar Endereço" id="place_order" formaction="/checkout" formmethod="get">
+					 </div>
+					 <div class="wow fadeInRight" data-wow-delay="0.4s">
+						<span>Endereço<label>*</label></span>
+						<input type="text" value="{$address.desaddress}" placeholder="Logradouro, número e bairro" id="billing_address_1" name="desaddress" class="input-text"> 
+					 </div>
+					 <div class="wow fadeInRight" data-wow-delay="0.4s">
+						<span>Número<label>*</label></span>
+						<input type="text" value="{$address.desnumber}" placeholder="Número" id="billing_address_1" name="desnumber" class="input-text ">
+					 </div>
+					  <div class="wow fadeInRight" data-wow-delay="0.4s">
+						<span>Complemento</span>
+						<input type="text" value="{$address.descomplement}" placeholder="Complemento (opcional)" id="billing_address_2" name="descomplement" class="input-text ">
+					 </div>
+					  <div class="wow fadeInRight" data-wow-delay="0.4s">
+						<span>Bairro<label>*</label></span>
+						<input type="text" value="{$address.desdistrict}" placeholder="Cidade" id="billing_district" name="desdistrict" class="input-text ">
+					 </div>
+					 <div class="wow fadeInRight" data-wow-delay="0.4s">
+						<span>Cidade<label>*</label></span>
+						<input type="text" value="{$address.descity}" placeholder="Cidade" id="billing_city" name="descity" class="input-text ">
+					 </div>
+					 <div class="wow fadeInRight" data-wow-delay="0.4s">
+						<span>Estado<label>*</label></span>
+						<input type="text" id="billing_state" name="desstate" placeholder="Estado" value="{$address.desstate}" class="input-text ">
+					 </div>
+					  <div class="wow fadeInRight" data-wow-delay="0.4s">
+						<span>País<label>*</label></span>
+						<input type="text" id="billing_state" name="descountry" placeholder="País" value="{$address.descountry}" class="input-text ">
+					 </div>
+					 <div class="wow fadeInRight" data-wow-delay="0.4s">
+						 <span>Data de Entrega<label>* </label> <label style="color: red; font-size: 9px"> *Obs: Data Retroativa não será aceita e só será aceita data posterior a 5 dias </label></span>
+						 <input type="date" id="billing_state" name="desdelivery" placeholder="Data de entrega" value="{$address.desdelivery}" class="input-date"> 
+					 </div>
+					 <div class="wow fadeInRight" data-wow-delay="0.4s">
+						 <span>Confirmar Data de Entrega<label>*</label></span>
+						 <input type="date" id="billing_state" name="desconf_delivery" placeholder="Data de entrega" value="{$address.desdelivery}" class="input-date"> 
+					 </div>
+
+
+					
+				
+
+				<h3 id="order_review_heading" style="margin-top:30px;">Detalhes do Pedido</h3>
+										<div id="order_review" style="position: relative;">
+											<table class="shop_table">
+												<thead>
+													<tr>
+														<th class="product-name">Produto</th>
+														<th class="product-total">Total</th>
+													</tr>
+												</thead>
+												<tbody>
+                                                    {loop="$products"}
+													<tr class="cart_item">
+														<td class="product-name">
+															{$value.desproduct} <strong class="product-quantity">× {$value.nrqtd}</strong> 
+														</td>
+														<td class="product-total">
+															<span class="amount">R${function="formatPrice($value.vltotal)"}</span>
+														</td>
+                                                    </tr>
+                                                    {/loop}
+												</tbody>
+												<tfoot>
+													<tr class="cart-subtotal">
+														<th>Subtotal</th>
+														<td><span class="amount">R${function="formatPrice($cart.vlsubtotal)"}</span>
+														</td>
+													</tr>
+													<tr class="shipping">
+														<th>Frete</th>
+														<td>
+															Frete Grátis
+															<input type="hidden" class="shipping_method" value="free_shipping" id="shipping_method_0" data-index="0" name="shipping_method[0]">
+														</td>
+													</tr>
+													<tr class="order-total">
+														<th>Total do Pedido</th>
+														<td><strong><span class="amount">R${function="formatPrice($cart.vltotal)"}</span></strong> </td>
+													</tr>
+												</tfoot>
+
+
+											</table>
+											
+
+
+											 
+				  
+					  <input type="submit" data-value="Place order" value="Continuar" id="place_order" name="woocommerce_checkout_place_order">
+
+
+					   
+				   
+						
+					 
+				    
+				</form>
+				
+		   </div>
+	     </div>
+	    </div>
+		</div>
+	

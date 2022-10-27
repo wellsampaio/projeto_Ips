@@ -1,0 +1,79 @@
+	 <link href="/res/site/css2/bootstrap.css" rel='stylesheet' type='text/css' />
+	 <link rel="stylesheet" href="/res/site/css/bootstrap.min.css">
+	 <link href="/res/site/css2/style.css" rel='stylesheet' type='text/css' />
+	<div class="content">
+	<div class="main">
+	   <div class="container">
+		  <div class="register">
+		  	  <form action="/checkout2" method="post" name="checkout2"> 
+				 <div class="register-top-grid">
+
+				 	
+
+
+									
+					<h3>IPS</h3>
+					 <div class="wow fadeInLeft" data-wow-delay="0.4s">
+						<span>Numero SM<label>*</label></span>
+						<input type="text" value="{$address.NumSM}"  id="billing_cep_1" name="NumSM" class="input-text"> 
+						<br><br>
+						<input type="submit" value="Buscar SM" id="place_order" formaction="/checkout2" formmethod="get" style="background: #000">
+
+					 </div>
+
+					 <div class="wow fadeInRight" data-wow-delay="0.4s">
+						<span>Cliente<label>*</label></span>
+						<input type="text" value="{$address.Cliente}" placeholder="" id="billing_address_1" name="Cliente" class="input-text"> 
+					 </div>
+					 
+					 <div class="wow fadeInRight" data-wow-delay="0.4s">
+						<span>Nome Transportador<label>*</label></span>
+						<input type="text" value="{$address.nomeTransportador}" placeholder="" id="billing_address_1" name="nomeTransportador" class="input-text ">
+					 </div>
+
+					 <div class="wow fadeInRight" data-wow-delay="0.4s">
+						<span>Nome Embarcador<label>*</label></span>
+						<input type="text" value="{$address.nomeEmbarcador}" placeholder="" id="billing_address_1" name="nomeEmbarcador" class="input-text ">
+					 </div>
+
+					 <div class="wow fadeInRight" data-wow-delay="0.4s">
+						<span>Data da viagem<label>*</label></span>
+						<input type="text" value="{$address.dataInicio}" placeholder="" id="billing_address_1" name="dataInicio" class="input-text"> 
+					 </div>
+					 <br><br>	
+					 <h3>Dados do Veiculo</h3>
+					 <div class="wow fadeInLeft" data-wow-delay="0.4s">
+						<span>Placa<label>*</label></span>
+						<input type="text" value="{$address.placa}"  id="billing_cep_1" name="placa" class="input-text"> 
+						
+	
+
+					 </div>
+
+
+					
+				
+
+				
+
+											</table>
+											
+
+
+											 
+				  
+					  <input type="submit" data-value="Place order" value="Continuar" id="place_order" name="woocommerce_checkout_place_order">
+
+
+					   
+				   
+						
+					 
+				    
+				</form>
+				
+		   </div>
+	     </div>
+	    </div>
+		</div>
+	

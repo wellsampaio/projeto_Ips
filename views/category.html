@@ -1,0 +1,49 @@
+    <!-- service -->
+<div class="biseller-info" style="background: #FFE4C4">
+<div class="container" style="background: #FFE4C4">
+<h2 class="new-models">{$category.descategory}</h2>
+           
+            </div>
+
+            <div class="single-product-area" style="background: #FFE4C4">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            {loop="$products"}
+            <div class="col-md-3 col-sm-6">
+                <div class="single-shop-product">
+                    <div class="product-upper">
+                        <a href="/products/{$value.desurl}"><img src="{$value.desphoto}" alt="" style="height:320px; width: 260px;"></a>
+                    </div>
+                    <h2 style="font-size: 14px;"><a href="/products/{$value.desurl}">{$value.desproduct}</a></h2>
+                    <div class="product-carousel-price">
+                        <ins>R${function="formatPrice($value.vlprice)"}</ins>
+                    </div>  
+                    
+                    <div class="product-option-shop">
+                        <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/products/{$value.desurl}">Comprar</a>
+                    </div>                       
+                </div>
+                
+            </div>
+            {/loop}
+            </div>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-pagination text-center">
+                    <nav>
+                        <ul class="pagination">
+                            {loop="$pages"}
+                        <li><a href="{$value.link}">{$value.page}</a></li>
+                        {/loop}
+                        </ul>
+                    </nav>                        
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        </div>  
+
+           
