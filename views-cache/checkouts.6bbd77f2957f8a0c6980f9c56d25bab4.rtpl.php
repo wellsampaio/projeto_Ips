@@ -8,7 +8,47 @@
 
 <!DOCTYPE html>
 <head>
+<script type="text/javascript">
+ async function pesquisarUsuario(registro) {
+    //console.log(registro);
+    //Receber os dados do formulario
+    var cpf = document.querySelector("#cpf" + registro);
 
+    //Recuperar o valor do atributo value
+    var valorCpf = cpf.value;
+    //console.log(valorCpf);
+
+    //Verificar se o usuario digitou 11 numeros
+    if (valorCpf.length == 11) {
+        //Fazer a requisicao para o arquivo "visualizar_usuario.php"
+        const dados = await fetch('visualizar_usuario.php?cpf=' + valorCpf);
+        //Ler os dados
+        const resposta = await dados.json();
+        //console.log(resposta);
+        //Se retornou erro, acessa o IF, senao acessa o ELSE e carrega os dados no formulario
+        if (resposta['erro']) {
+            document.getElementById("msgAlerta" + registro).innerHTML = resposta['msg'];
+        } else {
+            document.getElementById("msgAlerta" + registro).innerHTML = "";
+            document.getElementById("nome" + registro).value = resposta['dados'].nome;
+            document.getElementById("email" + registro).value = resposta['dados'].email;
+            document.getElementById("id" + registro).value = resposta['dados'].id;
+        }
+    }
+}
+
+var controleCampo = 1;
+function adicionarCampo() {
+    controleCampo++;
+    document.getElementById('formulario').insertAdjacentHTML('beforeend', '<div class="form-group" id="campo' + controleCampo + '"><label class="col-md-2 control-label" for="prependedtext">Acionamentos<h11>*</h11></label><div class="col-md-2"><div class="input-group"><input id="acionamento" name="acionamento" placeholder="Tipo de acionamento" class="form-control" type="text" ></div></div><div class="col-md-2"><div class="input-group"><input id="prependedtext" name="data" class="form-control" type="datetime-local" ></div></div> <div class="col-md-1"><div class="input-group"><input id="prependedtext" name="nome" class="form-control" placeholder="Nome" type="text" ></div></div>  <div class="col-md-2"><div class="input-group"> <input id="prependedtext" name="contato" class="form-control" placeholder="Contato" type="text"></div></div><div class="col-md-2"> <div class="input-group"><input id="local" name="local" class="form-control" placeholder="Local" type="text"></div>  </div><input type="hidden" name="id' + controleCampo + '" id="id' + controleCampo + '" /><button type="button" id="' + controleCampo + '" onclick="removerCampo(' + controleCampo + ')"> - </button></div>');
+    document.getElementById("qnt_campo").value = controleCampo;
+}
+
+function removerCampo(idCampo){
+    document.getElementById('campo' + idCampo).remove();
+} 
+
+</script>
 
 
     
@@ -431,13 +471,7 @@
     </div>
     
   </div>
-</div>
-
-
-
-
-
-  
+</div>  
 
 <div class="form-group">
   <label class="col-md-2 control-label" for="prependedtext"></label>
@@ -458,6 +492,45 @@
     
   </div>
 </div>
+
+<hr></hr>
+
+<div class="form-group" id= 'formulario'>
+  <label class="col-md-2 control-label" for="prependedtext">Acionamentos<h11>*</h11></label>
+  <div class="col-md-2">
+    <div class="input-group">
+      <input id="acionamento" name="acionamento" placeholder="Tipo de acionamento" class="form-control" type="text" >
+    </div>
+  </div>
+
+     <div class="col-md-2">
+    <div class="input-group">
+      <input id="prependedtext" name="data" class="form-control" type="datetime-local" >
+    </div >
+  </div>
+  <div class="col-md-1">
+    <div class="input-group">
+      <input id="prependedtext" name="nome" class="form-control" placeholder="Nome" type="text" >
+    </div>
+
+  </div>
+
+  <div class="col-md-2">
+    <div class="input-group">
+      <input id="prependedtext" name="contato" class="form-control" placeholder="Contato" type="text">
+    </div>
+  </div>
+
+   <div class="col-md-2">
+    <div class="input-group">
+      <input id="local" name="local" class="form-control" placeholder="Local" type="text">
+    </div>
+  </div>
+   <button type="button" onclick="adicionarCampo()"> + </button>
+ </div> 
+
+
+<hr></hr>
 
 <div id="newpost">
    <div class="form-group">
@@ -486,7 +559,7 @@
       Sim
     </label>
       </span>
-      <input id="tbateria" name="enc" class="form-control" type="text" placeholder="Data/hora" disabled="false" >
+      <input id="tbateria" name="enc" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" >
       
     </div>
     
@@ -506,7 +579,7 @@
       Sim
     </label>
       </span>
-      <input id="tterminal" name="curso" class="form-control" type="text" placeholder="Data/hora" disabled="false" >
+      <input id="tterminal" name="curso" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" >
       
     </div>
     
@@ -514,6 +587,8 @@
   
   
  </div>
+
+ <br>
  
  <!-- Text input-->
 
@@ -535,7 +610,7 @@
       Sim
     </label>
       </span>
-      <input id="tsinal" name="enc" class="form-control" type="text" placeholder="Data/hora" disabled="false" >
+      <input id="tsinal" name="enc" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" >
       
     </div>
     
@@ -555,7 +630,7 @@
       Sim
     </label>
       </span>
-      <input id="drota" name="rota" class="form-control" type="text" placeholder="Data/hora" disabled="true" >
+      <input id="drota" name="rota" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="true" >
       
     </div>
     
@@ -583,7 +658,7 @@
       Sim
     </label>
       </span>
-      <input id="tpanico" name="enc" class="form-control" type="text" placeholder="Data/hora" disabled="false" >
+      <input id="tpanico" name="enc" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" >
       
     </div>
     
@@ -603,7 +678,7 @@
       Sim
     </label>
       </span>
-      <input id="ttraseira" name="traseira" class="form-control" type="text" placeholder="Data/hora" disabled="false" >
+      <input id="ttraseira" name="traseira" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" >
       
     </div>
     
@@ -631,7 +706,7 @@
       Sim
     </label>
       </span>
-      <input id="tlateral" name="enc" class="form-control" type="text" placeholder="Data/hora" disabled="false">
+      <input id="tlateral" name="enc" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false">
       
     </div>
     
@@ -651,7 +726,7 @@
       Sim
     </label>
       </span>
-      <input id="tbau" name="curso" class="form-control" type="text" placeholder="Data/hora" disabled="false">
+      <input id="tbau" name="curso" class="form-control" type="datetime-local"  placeholder="Data/hora" disabled="false">
       
     </div>
     
@@ -679,7 +754,7 @@
       Sim
     </label>
       </span>
-      <input id="tdesengate" name="desengate" class="form-control" type="text" placeholder="Data/hora" disabled="false" >
+      <input id="tdesengate" name="desengate" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" >
       
     </div>
     
@@ -699,7 +774,7 @@
       Sim
     </label>
       </span>
-      <input id="tspanico" name="spanicos" class="form-control" type="text" placeholder="Data/hora" disabled="false">
+      <input id="tspanico" name="spanicos" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false">
       
     </div>
     
@@ -727,7 +802,7 @@
       Sim
     </label>
       </span>
-      <input id="tmotorista" name="motorista" class="form-control" type="text" placeholder="Data/hora" disabled="false" >
+      <input id="tmotorista" name="motorista" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" >
       
     </div>
     
@@ -747,7 +822,7 @@
       Sim
     </label>
       </span>
-      <input id="tppassageiro" name="curso" class="form-control" type="text" placeholder="Data/hora" disabled="false">
+      <input id="tppassageiro" name="curso" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false">
       
     </div>
     
@@ -775,7 +850,7 @@
       Sim
     </label>
       </span>
-      <input id="tignicao" name="enc" class="form-control" type="text" placeholder="Data/hora" disabled="false">
+      <input id="tignicao" name="enc" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false">
       
     </div>
     
@@ -795,7 +870,7 @@
       Sim
     </label>
       </span>
-      <input id="tpainel" name="tpainel" class="form-control" type="text" placeholder="Data/hora" disabled="false">
+      <input id="tpainel" name="tpainel" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false">
       
     </div>
     
@@ -823,7 +898,7 @@
       Sim
     </label>
       </span>
-      <input id="tgrade" name="tgrade" class="form-control" type="text" placeholder="Data/hora" disabled="false">
+      <input id="tgrade" name="tgrade" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false">
       
     </div>
     
@@ -833,7 +908,9 @@
 
 
  
- 
+
+
+        
  <!-- Text input-->
 
 <div class="form-group">
