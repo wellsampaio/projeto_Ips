@@ -5,6 +5,7 @@ use \Hcode\Model\Product;
 use \Hcode\Model\Category;
 use \Hcode\Model\Cart;
 use \Hcode\Model\Address;
+use \Hcode\Model\Acionamento;
 use \Hcode\Model\User;
 use \Hcode\Model\Order;
 use \Hcode\Model\OrderStatus;
@@ -94,6 +95,7 @@ $app->get("/checkouts", function(){
 
 
 
+
 	if (!isset($_GET['NumSM']))$_GET['NumSM'] = $address->getNumSM();
 
 
@@ -164,7 +166,11 @@ $app->post("/checkouts", function(){
 	$address->setData($_POST);
 
 	$address->save();
+
+	$address->setData($_POST);
 	
+
+	$address->saveAcionamento();
 
 
 	header("Location: /checkouts");

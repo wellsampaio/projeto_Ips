@@ -40,7 +40,7 @@
 var controleCampo = 1;
 function adicionarCampo() {
     controleCampo++;
-    document.getElementById('formulario').insertAdjacentHTML('beforeend', '<div class="form-group" id="campo' + controleCampo + '"><label class="col-md-2 control-label" for="prependedtext">Acionamentos<h11>*</h11></label><div class="col-md-2"><div class="input-group"><input id="acionamento" name="acionamento" placeholder="Tipo de acionamento" class="form-control" type="text" ></div></div><div class="col-md-2"><div class="input-group"><input id="prependedtext" name="data" class="form-control" type="datetime-local" ></div></div> <div class="col-md-1"><div class="input-group"><input id="prependedtext" name="nome" class="form-control" placeholder="Nome" type="text" ></div></div>  <div class="col-md-2"><div class="input-group"> <input id="prependedtext" name="contato" class="form-control" placeholder="Contato" type="text"></div></div><div class="col-md-2"> <div class="input-group"><input id="local" name="local" class="form-control" placeholder="Local" type="text"></div>  </div><input type="hidden" name="id' + controleCampo + '" id="id' + controleCampo + '" /><button type="button" id="' + controleCampo + '" onclick="removerCampo(' + controleCampo + ')"> - </button></div>');
+    document.getElementById('formulario').insertAdjacentHTML('beforeend', '<div class="form-group" id="campo' + controleCampo + '"><label class="col-md-2 control-label" for="prependedtext">Acionamentos<h11>*</h11></label><div class="col-md-2"><div class="input-group"><input id="acionamento" name="acionamento" placeholder="Tipo de acionamento" class="form-control" type="text" ></div></div><div class="col-md-2"><div class="input-group"><input id="prependedtext" name="datah" class="form-control" type="datetime-local" ></div></div> <div class="col-md-1"><div class="input-group"><input id="prependedtext" name="nome" class="form-control" placeholder="Nome" type="text" ></div></div>  <div class="col-md-2"><div class="input-group"> <input id="prependedtext" name="contato" class="form-control" placeholder="Contato" type="text"></div></div><div class="col-md-2"> <div class="input-group"><input id="local" name="local" class="form-control" placeholder="Local" type="text"></div>  </div><input type="hidden" name="id' + controleCampo + '" id="id' + controleCampo + '" /><button type="button" id="' + controleCampo + '" onclick="removerCampo(' + controleCampo + ')"> - </button></div>');
     document.getElementById("qnt_campo").value = controleCampo;
 }
 
@@ -458,7 +458,7 @@ function removerCampo(idCampo){
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Local do sinistro</span>
-      <input id="rua" name="rua" class="form-control" placeholder="" type="text">
+      <input id="rua" name="" class="form-control" placeholder="" type="text">
     </div>
     
   </div>
@@ -467,7 +467,7 @@ function removerCampo(idCampo){
 <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Km/Número</span>
-      <input id="rua" name="rua" class="form-control" placeholder=""  type="text">
+      <input id="rua" name="" class="form-control" placeholder=""  type="text">
     </div>
     
   </div>
@@ -478,7 +478,7 @@ function removerCampo(idCampo){
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Latitude</span>
-      <input id="rua" name="rua" class="form-control" placeholder="" type="text">
+      <input id="rua" name="" class="form-control" placeholder="" type="text">
     </div>
     
   </div>
@@ -487,7 +487,7 @@ function removerCampo(idCampo){
 <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Logintude</span>
-      <input id="rua" name="rua" class="form-control" placeholder="" type="text">
+      <input id="rua" name="" class="form-control" placeholder="" type="datetime-local">
     </div>
     
   </div>
@@ -499,13 +499,13 @@ function removerCampo(idCampo){
   <label class="col-md-2 control-label" for="prependedtext">Acionamentos<h11>*</h11></label>
   <div class="col-md-2">
     <div class="input-group">
-      <input id="acionamento" name="acionamento" placeholder="Tipo de acionamento" class="form-control" type="text" >
+      <input id="acionamento" name="tipo_acionamento" placeholder="Tipo de acionamento" class="form-control" type="text" >
     </div>
   </div>
 
      <div class="col-md-2">
     <div class="input-group">
-      <input id="prependedtext" name="data" class="form-control" type="datetime-local" >
+      <input id="prependedtext" name="datah" class="form-control" type="datetime-local" >
     </div >
   </div>
   <div class="col-md-1">
@@ -527,8 +527,8 @@ function removerCampo(idCampo){
     </div>
   </div>
    <button type="button" onclick="adicionarCampo()"> + </button>
- </div> 
 
+ </div> 
 
 <hr></hr>
 

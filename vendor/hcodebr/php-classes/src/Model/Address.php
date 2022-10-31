@@ -147,6 +147,34 @@ if (count($results) > 0) {
 	}
 
 
+		public function saveAcionamento()
+	{
+
+		$sql = new Sql();
+
+			$results = $sql->select("CALL sp_acionamentos_save(:idacionamento,:tipo_acionamento,:datah,:nome,:contato,:local,:NumSM)",  array(
+		    ':idacionamento'=>$this->getidacionamento(),
+		    ':tipo_acionamento'=>$this->gettipo_acionamento(),
+		    ':datah'=>$this->getdatah(),
+		    ':nome'=>$this->getnome(),
+		    ':contato'=>$this->getcontato(),
+		    ':local'=>$this->getlocal(),
+		    ':NumSM'=>$this->getNumSM()
+		    
+	));
+
+
+
+			if (count($results) > 0) {
+			$this->setData($results[0]);
+		}
+
+	
+
+	}
+
+
+
 	public static function listGerentes()
 	{
 
