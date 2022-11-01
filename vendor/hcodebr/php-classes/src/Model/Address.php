@@ -66,7 +66,7 @@ class Address extends Model {
 		$data = Address::getBuscarViagem($nrviagem);	
 				
 		if(empty($data["viagens"]))
-    		echo "Viagem não encontrada";
+    		Address::setMsgError("Viagem não encontrada");
 
     		else
 
@@ -77,6 +77,8 @@ class Address extends Model {
 			$this->setnomeTransportador($datas['pess_nome_transportador']);
 			$this->setdataInicio($datas['viag_data_cadastro']);
 			$this->setCliente($datas["emba_nome"]);
+			$this->setnomeEmbarcador($datas["emba_nome"]);
+
 			$this->setviagemId($datas["viagemId"]);
 			$this->setNumSM('$nrviagem');
 			$this->setviag_valor_carga($datas["viag_valor_carga"]);
@@ -172,6 +174,36 @@ if (count($results) > 0) {
 	
 
 	}
+
+
+	public function saveClientes()
+	{
+
+		$sql = new Sql();
+
+			$results = $sql->select("CALL sp_clientes_save(:idcliente,:Cliente,:nomeEmbarcador,:nomeTransportador, :seguradora, :gerenteResponsavel, :acionar, :telefone,:NumSM)",  array(
+		    ':idcliente'=>$this->getidcliente(),
+		    ':Cliente'=>$this->getCliente(),
+		    ':nomeEmbarcador'=>$this->getnomeEmbarcador(),
+		    ':nomeTransportador'=>$this->getnomeTransportador(),
+		    ':seguradora'=>$this->getseguradora(),
+		    ':gerenteResponsavel'=>$this->getgerenteResponsavel(),
+		    ':acionar'=>$this->getacionar(),
+		    ':telefone'=>$this->gettelefone(),
+		    ':NumSM'=>$this->getNumSM()
+		    
+	));
+
+
+
+			if (count($results) > 0) {
+			$this->setData($results[0]);
+		}
+
+	
+
+	}
+
 
 
 

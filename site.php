@@ -80,7 +80,27 @@ $app->get("/products/:desurl", function($desurl){
 });
 
 
-$app->get("/checkouts", function(){
+$app->get('/ips/success', function(){
+
+    User::verifyLogin(false);
+ 
+    session_regenerate_id();
+
+    $page = new Page([
+    		'header'=>false,
+    		'footer'=>false
+
+    ]);
+
+    $page->setTpl('ips-success',[
+       
+    ]);
+
+
+
+});
+
+$app->get("/ips", function(){
 
 	User::verifyLogin(false);
 	
@@ -111,9 +131,9 @@ $app->get("/checkouts", function(){
 	if (!$address->getNumSM()) $address->setNumSM('');
 	if (!$address->getdataInicio()) $address->setdataInicio('');
 	if (!$address->getnomeTransportador()) $address->setnomeTransportador('');
+	if (!$address->getnomeEmbarcador()) $address->setnomeEmbarcador('');
 	if (!$address->getdataInicio()) $address->setdataInicio('');
 	if (!$address->getCliente()) $address->setCliente('');
-	if (!$address->getnomeEmbarcador()) $address->setnomeEmbarcador('');
 	if (!$address->getplaca()) $address->setplaca('');
 	if (!$address->getmarca()) $address->setmarca('');
 	if (!$address->getmodelo()) $address->setmodelo('');
@@ -137,7 +157,7 @@ $app->get("/checkouts", function(){
 		'footer'=>false
 	]);
 
-	$page->setTpl("checkouts", [
+	$page->setTpl("ips", [
 		'address'=>$address->getValues(),
 		'error'=>Address::getMsgError(),
 		'gerentes'=>$gerentes,
@@ -146,7 +166,7 @@ $app->get("/checkouts", function(){
 	]);
 });
 
-$app->post("/checkouts", function(){
+$app->post("/ips", function(){
 
 	User::verifyLogin(true);
 
@@ -161,6 +181,14 @@ $app->post("/checkouts", function(){
 	$address = new Address();
 
 
+if (!isset($_POST['gerenteResponsavel']) || $_POST['gerenteResponsavel'] === '') {
+
+		Address::setMsgError("Informe o Gerente responsável.");
+
+		header('Location: /ips');
+		exit;
+	}
+
 	$_POST['idperson'] = $user->getidperson();
 
 	$address->setData($_POST);
@@ -169,11 +197,13 @@ $app->post("/checkouts", function(){
 
 	$address->setData($_POST);
 	
-
 	$address->saveAcionamento();
 
+	$address->setData($_POST);
+	
+	$address->saveClientes();
 
-	header("Location: /checkouts");
+	header("Location: /ips/success");
 	exit;
 
 
@@ -449,7 +479,7 @@ $app->post("/login", function(){
 		exit;
 	}
 
-	header("Location: /checkouts");
+	header("Location: /ips");
 	exit;
 });
 
