@@ -114,7 +114,8 @@ function exibe(i) {
 
 function desabilita(i){
     
-     document.getElementById(i).disabled = true;    
+     document.getElementById(i).disabled = true;
+      document.getElementById('enc_instituicao').value=("");
     }
 function habilita(i)
     {

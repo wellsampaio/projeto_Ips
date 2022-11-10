@@ -3,7 +3,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
     <h1>
-        Pedido N°<?php echo htmlspecialchars( $order["idorder"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+        Pedido N°<?php echo htmlspecialchars( $value["idorder"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
     </h1>
     <ol class="breadcrumb">
         <li><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>

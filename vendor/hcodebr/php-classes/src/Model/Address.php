@@ -142,11 +142,45 @@ class Address extends Model {
 	));
 
 
-if (count($results) > 0) {
+		if (count($results) > 0) {
 			$this->setData($results[0]);
 		}
 
 	}
+
+	public function saveIscas()
+	{
+
+		$sql = new Sql();
+
+			$results = $sql->select("CALL sp_iscas_save(:idiscas, :isca, :tec_isca, :iscaPosicionando, :NumSM)",  array(
+		    ':idiscas'=>$this->getidiscas(),
+		    ':isca'=>$this->getisca(),
+		    ':tec_isca'=>$this->gettec_isca(),
+		    ':iscaPosicionando'=>$this->getiscaPosicionando(),
+		    ':NumSM'=>$this->getNumSM()
+		    
+	));
+
+
+		if (count($results) > 0) {
+			$this->setData($results[0]);
+		}
+
+	}
+
+
+
+
+	public static function checkSmExist($NumSM)
+	{
+		$sql = new Sql();
+		$results = $sql->select("SELECT * FROM tb_clientes WHERE NumSM = :NumSM", [
+			':NumSM'=>$NumSM
+		]);
+		return (count($results) > 0);
+	}
+
 
 
 		public function saveAcionamento()
@@ -205,6 +239,135 @@ if (count($results) > 0) {
 	}
 
 
+		public function saveMotoristas()
+	{
+
+		$sql = new Sql();
+
+			$results = $sql->select("CALL sp_motoristas_save(:idmotorista,:Motorista,:CPF,:Vinculo,:NumSM)",  array(
+		    ':idmotorista'=>$this->getidmotorista(),
+		    ':Motorista'=>$this->getMotorista(),
+		    ':CPF'=>$this->getCPF(),
+		    ':Vinculo'=>$this->getVinculo(),
+		    ':NumSM'=>$this->getNumSM()
+		    
+	));
+
+
+
+			if (count($results) > 0) {
+			$this->setData($results[0]);
+		}
+
+	
+
+	}
+
+
+	public function saveViagens()
+	{
+
+		$sql = new Sql();
+
+			$results = $sql->select("CALL sp_viagens_save(:idviagem, :viagemId, :dataInicio,:Valor,:cidadeOrigem,:cidadeDestino, :Produtos)",  array(
+		    ':idviagem'=>$this->getidviagem(),
+		    ':viagemId'=>$this->getviagemId(),
+		    ':dataInicio'=>$this->getdataInicio(),
+		    ':Valor'=>$this->getValor(),
+		    ':cidadeOrigem'=>$this->getcidadeOrigem(),
+		    ':cidadeDestino'=>$this->getcidadeDestino(),
+		    ':Produtos'=>$this->getProdutos()
+	));
+
+
+
+			if (count($results) > 0) {
+			$this->setData($results[0]);
+		}
+
+	
+
+	}
+
+public function saveSinistros()
+	{
+
+		$sql = new Sql();
+
+			$results = $sql->select("CALL sp_sinistros_save(:idsinistro , :dtComunicado, :dtSinistro, :localSinistro, :latitude, :longitude, :Km, :tipoSinistro, :nomeComunicante, :NumSM, :Descritivo )",  array(
+		    ':idsinistro'=>$this->getidsinistro(),
+		    ':dtComunicado'=>$this->getdtComunicado(),
+		    ':dtSinistro'=>$this->getdtSinistro(),
+		    ':localSinistro'=>$this->getlocalSinistro(),
+		    ':latitude'=>$this->getlatitude(),
+		    ':longitude'=>$this->getlongitude(),
+		    ':Km'=>$this->getKm(),
+		    ':tipoSinistro'=>$this->gettipoSinistro(),
+		    ':nomeComunicante'=>$this->getnomeComunicante(),
+		    ':NumSM'=>$this->getNumSM(),
+		    ':Descritivo'=>$this->getDescritivo()
+	));
+
+
+
+			if (count($results) > 0) {
+			$this->setData($results[0]);
+		}
+
+	
+
+	}
+
+
+	public function saveAlertas()
+	{
+
+		$sql = new Sql();
+
+			$results = $sql->select("CALL sp_alertas_save(:idalerta, :perdaBateria, :dtAlertaBateria, :NumSM, :perdaSinal, :dtPerdaSinal, :btPanico, :dtBtPanico, :portaBauLateral, :dtPortaBauLateral, :desengateCarreta, :dtDesengateCarreta, :portaMotorista, :dtPortaMotorista, :ignicaoDesligada, :dtIgnicaoDesligada, :violacaoGrade, :dtViolacaoGrade, :perdaTerminal, :dtPerdaTerminal, :desvioRota, :dtDesvioRota, :portaBauTraseira, :dtPortaBauTraseira, :arrombamentoBau, :dtArrombamentoBau, :senhaPanico, :dtSenhaPanico, :portaPassageiro, :dtPortaPassageiro, :violacaoPainel, :dtViolacaoPainel)",  array(
+		    ':idalerta'=>$this->getidalerta(),
+		    ':perdaBateria'=>$this->getperdaBateria(),
+		    ':dtAlertaBateria'=>$this->getdtAlertaBateria(),
+		    ':NumSM'=>$this->getNumSM(),
+		    ':perdaSinal'=>$this->getperdaSinal(),
+		    ':dtPerdaSinal'=>$this->getdtPerdaSinal(),
+		    ':btPanico'=>$this->getbtPanico(),
+		    ':dtBtPanico'=>$this->getdtBtPanico(),
+		    ':portaBauLateral'=>$this->getportaBauLateral(),
+		    ':dtPortaBauLateral'=>$this->getdtPortaBauLateral(),
+		    ':desengateCarreta'=>$this->getdesengateCarreta(),
+		    ':dtDesengateCarreta'=>$this->getdtDesengateCarreta(),
+		    ':portaMotorista'=>$this->getportaMotorista(),
+		    ':dtPortaMotorista'=>$this->getdtPortaMotorista(),
+		    ':ignicaoDesligada'=>$this->getignicaoDesligada(),
+		    ':dtIgnicaoDesligada'=>$this->getdtIgnicaoDesligada(),
+		    ':violacaoGrade'=>$this->getviolacaoGrade(),
+		    ':dtViolacaoGrade'=>$this->getdtViolacaoGrade(),
+		    ':perdaTerminal'=>$this->getperdaTerminal(),
+		    ':dtPerdaTerminal'=>$this->getdtPerdaTerminal(),
+		    ':desvioRota'=>$this->getdesvioRota(),
+		    ':dtDesvioRota'=>$this->getdtDesvioRota(),
+		    ':portaBauTraseira'=>$this->getportaBauTraseira(),
+		    ':dtPortaBauTraseira'=>$this->getdtPortaBauTraseira(),
+		    ':arrombamentoBau'=>$this->getarrombamentoBau(),
+		    ':dtArrombamentoBau'=>$this->getdtArrombamentoBau(),
+		    ':senhaPanico'=>$this->getsenhaPanico(),
+		    ':dtSenhaPanico'=>$this->getdtSenhaPanico(),
+		    ':portaPassageiro'=>$this->getportaPassageiro(),
+		    ':dtPortaPassageiro'=>$this->getdtPortaPassageiro(),
+		    ':violacaoPainel'=>$this->getviolacaoPainel(),
+		    ':dtViolacaoPainel'=>$this->getdtViolacaoPainel()
+	));
+
+
+
+			if (count($results) > 0) {
+			$this->setData($results[0]);
+		}
+
+	
+
+	}
 
 
 	public static function listGerentes()

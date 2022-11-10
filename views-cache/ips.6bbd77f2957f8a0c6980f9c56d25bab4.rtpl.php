@@ -8,8 +8,6 @@
 
 <!DOCTYPE html>
 <head>
-  <link href="/res/site/css_load/css.css" rel="stylesheet" type="text/css" media="all" />
-
 <title>Solicitação de Ips</title>
 <script type="text/javascript">
  async function pesquisarUsuario(registro) {
@@ -59,28 +57,18 @@ function removerCampo(idCampo){
 <body>
 
 
-  <!-- início do preloader -->
 
-<!-- fim do preloader --> 
 
 <!-- top-header -->
         <div class="top-header">
-
-            <div id="preloader">
-
-sdaaasdad    <div class="inner">
-       <!-- HTML DA ANIMAÇÃO MUITO LOUCA DO SEU PRELOADER! -->
-       <div class="bolas">
-          <div>gf</div>
-          <div></div>
-          <div></div>                    
-       </div>
-    </div>
-</div>
             <div class="container">
                 <div class="top-header-left">
                      <ul>
                         <!--<li><a href="/profile">Minha Conta</a></li>-->
+                        <li><a href="" target="blank">Contato</a></li>
+                        <li><a href="" target="blank">Contato</a></li>
+                        <li><a href="" target="blank">Contato</a></li>
+                        <li><a href="" target="blank">Contato</a></li>
                         <li><a href="" target="blank">Contato</a></li>
                         <div class="clearfix"> </div>
                     </ul>
@@ -107,10 +95,6 @@ sdaaasdad    <div class="inner">
         <!-- /top-header -->
 <form class="form-horizontal" action="/ips" method="post" name="ips">
 <fieldset>
-    
-    
-<div class="panel panel-primary">
-    <div class="panel-heading">Informativo de Sinistro</div></div>
      <?php if( $error != '' ){ ?>
                   
                     <h3 style="text-align: center; color: red"><?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?></h3>
@@ -119,7 +103,7 @@ sdaaasdad    <div class="inner">
     <div class="panel-body">
 <div class="form-group">
     <div class="form-group">
-  <label class="col-md-2 control-label" for="SM">Buscar SM <h11>*</h11></label>
+  <label class="col-md-2 control-label" for="SM">Solicitação de SM <h11>*</h11></label>
   <div class="col-md-2">
     <input id="cep" name="NumSM" placeholder="Apenas números" class="form-control input-md" value="<?php echo htmlspecialchars( $address["NumSM"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" type="search" required="" >
   </div>
@@ -145,13 +129,7 @@ sdaaasdad    <div class="inner">
 <!-- Prepended text-->
 <div class="form-group">
   <label class="col-md-2 control-label" for="prependedtext">Dados do Cliente</label>
-  <div class="col-md-4">
-    <div class="input-group">
-      <span class="input-group-addon">Cliente</span>
-      <input id="rua" name="Cliente" class="form-control" placeholder="" type="text" value="<?php echo htmlspecialchars( $address["Cliente"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-    </div>
-    
-  </div>
+  
 
   
 <div class="col-md-4">
@@ -161,22 +139,27 @@ sdaaasdad    <div class="inner">
     </div>
     
   </div>
-</div>
 
-<div class="form-group">
-  <label class="col-md-2 control-label" for="prependedtext"></label>
-  <div class="col-md-4">
+<div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Transportador</span>
       <input id="cidade" name="nomeTransportador" class="form-control" placeholder="" readonly="readonly" type="text" value="<?php echo htmlspecialchars( $address["nomeTransportador"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
     </div>
     
   </div>
+
+</div>
+
+<div class="form-group">
+  <label class="col-md-2 control-label" for="prependedtext"></label>
+  
   
 <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Seguradora</span>
-      <select name="seguradora" id="cars" class="form-control">   
+      <select name="seguradora" id="cars" class="form-control" name="seguradora"> 
+
+       <option value=""></option>  
         <?php $counter1=-1;  if( isset($seguradoras) && ( is_array($seguradoras) || $seguradoras instanceof Traversable ) && sizeof($seguradoras) ) foreach( $seguradoras as $key1 => $value1 ){ $counter1++; ?>
           <option value="<?php echo htmlspecialchars( $value1["nomeSeguradora"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["nomeSeguradora"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
         <?php } ?>
@@ -184,13 +167,7 @@ sdaaasdad    <div class="inner">
     </div>
     
   </div>
-</div>
 
-
-<!-- Prepended text-->
-
-<div class="form-group">
-  <label class="col-md-2 control-label" for="prependedtext"></label>
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Gerente Responsável</span>
@@ -204,9 +181,12 @@ sdaaasdad    <div class="inner">
     </div>
     
   </div>
-  
-
 </div>
+
+
+<!-- Prepended text-->
+
+
 <div class="form-group">
   <label class="col-md-2 control-label" for="encaminhamento">Necessidade de acionar <h11>*</h11></label>
   <div class="col-md-4">
@@ -293,7 +273,7 @@ sdaaasdad    <div class="inner">
     <div class="col-md-2">
     <div class="input-group">
       <span class="input-group-addon">Tec. Isca</span>
-      <input id="prependedtext" name="tecnologiaIsca" class="form-control" type="text">
+      <input id="prependedtext" name="tec_isca" class="form-control" type="text">
     </div>
   </div>
 
@@ -305,11 +285,11 @@ sdaaasdad    <div class="inner">
  <label class="col-md-2 control-label" for="radios">Iscas Posicionando<h11>*</h11></label>
   <div class="col-md-4"> 
     <label class="radio-inline" for="radios-0" >
-      <input name="sexo" id="sexo" value="feminino" type="radio">
+      <input name="iscaPosicionando" id="" value="Sim" type="radio">
       Sim
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input name="sexo" id="sexo" value="masculino" type="radio">
+      <input name="iscaPosicionando" id="" value="Não" type="radio" checked="">
       Não
     </label>
   </div>
@@ -323,7 +303,7 @@ sdaaasdad    <div class="inner">
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Nome</span>
-      <input id="rua" name="nome_moto" class="form-control" placeholder="" readonly="readonly" type="text" value="<?php echo htmlspecialchars( $address["nome_moto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+      <input id="rua" name="Motorista" class="form-control" placeholder="" readonly="readonly" type="text" value="<?php echo htmlspecialchars( $address["nome_moto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
     </div>
     
   </div>
@@ -332,7 +312,7 @@ sdaaasdad    <div class="inner">
 <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">CPF</span>
-      <input id="cpf" name="cpf_moto" placeholder="Apenas números" class="form-control input-md" type="text" readonly="readonly" value="<?php echo htmlspecialchars( $address["cpf_moto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+      <input id="cpf" name="CPF" placeholder="Apenas números" class="form-control input-md" type="text" readonly="readonly" value="<?php echo htmlspecialchars( $address["cpf_moto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
     </div>
     
   </div>
@@ -349,7 +329,7 @@ sdaaasdad    <div class="inner">
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Vinculo</span>
-      <input id="rua" name="vinculo_contratual" class="form-control" placeholder="" readonly="readonly" type="text" value="<?php echo htmlspecialchars( $address["vinculo_contratual"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+      <input id="rua" name="Vinculo" class="form-control" placeholder="" readonly="readonly" type="text" value="<?php echo htmlspecialchars( $address["vinculo_contratual"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
     </div>
     
   </div>
@@ -385,7 +365,7 @@ sdaaasdad    <div class="inner">
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Valor</span>
-      <input id="cidade" name="viag_valor_carga" class="form-control" placeholder="" readonly="readonly" type="text" value="<?php echo htmlspecialchars( $address["viag_valor_carga"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+      <input id="cidade" name="Valor" class="form-control" placeholder="" readonly="readonly" type="text" value="<?php echo htmlspecialchars( $address["viag_valor_carga"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
     </div>
     
   </div>
@@ -393,7 +373,7 @@ sdaaasdad    <div class="inner">
 <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Cidade Origem</span>
-      <input id="rua" name="vloc_descricao_o" class="form-control" placeholder="" readonly="readonly" type="text" value="<?php echo htmlspecialchars( $address["vloc_descricao_o"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+      <input id="rua" name="cidadeOrigem" class="form-control" placeholder="" readonly="readonly" type="text" value="<?php echo htmlspecialchars( $address["vloc_descricao_o"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
     </div>
     
   </div>
@@ -406,7 +386,7 @@ sdaaasdad    <div class="inner">
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Cidade Destino</span>
-      <input id="rua" name="vloc_descricao_d" class="form-control" placeholder="" readonly="readonly" type="text" value="<?php echo htmlspecialchars( $address["vloc_descricao_d"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+      <input id="rua" name="cidadeDestino" class="form-control" placeholder="" readonly="readonly" type="text" value="<?php echo htmlspecialchars( $address["vloc_descricao_d"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
     </div>
     
   </div>
@@ -415,7 +395,7 @@ sdaaasdad    <div class="inner">
 <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Produtos</span>
-      <input id="rua" name="rua" class="form-control" placeholder="" type="text">
+      <input id="rua" name="Produtos" class="form-control" placeholder="" type="text">
     </div>
     
   </div>
@@ -434,7 +414,7 @@ sdaaasdad    <div class="inner">
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Data e hora do comunicado</span>
-      <input id="rua" name="rua" class="form-control" placeholder="" type="text">
+      <input id="rua" name="dtComunicado" class="form-control" placeholder="" type="datetime-local">
     </div>
     
   </div>
@@ -443,7 +423,7 @@ sdaaasdad    <div class="inner">
 <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Nome do comunicante</span>
-      <input id="rua" name="rua" class="form-control" placeholder="" type="text">
+      <input id="rua" name="nomeComunicante" class="form-control" placeholder="" type="text">
     </div>
     
   </div>
@@ -454,7 +434,7 @@ sdaaasdad    <div class="inner">
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Data e hora do sinistro</span>
-      <input id="cidade" name="cidade" class="form-control" placeholder=""  type="text">
+      <input id="cidade" name="dtSinistro" class="form-control" placeholder=""  type="datetime-local">
     </div>
     
   </div>
@@ -462,7 +442,7 @@ sdaaasdad    <div class="inner">
 <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Tipo de Sinistro</span>
-      <select name="seguradora" id="cars" class="form-control">   
+      <select name="tipoSinistro" id="cars" class="form-control">   
         <?php $counter1=-1;  if( isset($tiposSinistros) && ( is_array($tiposSinistros) || $tiposSinistros instanceof Traversable ) && sizeof($tiposSinistros) ) foreach( $tiposSinistros as $key1 => $value1 ){ $counter1++; ?>
           <option value="<?php echo htmlspecialchars( $value1["nomeSinistro"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["nomeSinistro"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
         <?php } ?>
@@ -479,7 +459,7 @@ sdaaasdad    <div class="inner">
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Local do sinistro</span>
-      <input id="rua" name="" class="form-control" placeholder="" type="text">
+      <input id="rua" name="localSinistro" class="form-control" placeholder="" type="text">
     </div>
     
   </div>
@@ -488,7 +468,7 @@ sdaaasdad    <div class="inner">
 <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Km/Número</span>
-      <input id="rua" name="" class="form-control" placeholder=""  type="text">
+      <input id="rua" name="Km" class="form-control" placeholder=""  type="text">
     </div>
     
   </div>
@@ -499,7 +479,7 @@ sdaaasdad    <div class="inner">
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Latitude</span>
-      <input id="rua" name="" class="form-control" placeholder="" type="text">
+      <input id="rua" name="latitude" class="form-control" placeholder="" type="text">
     </div>
     
   </div>
@@ -508,7 +488,7 @@ sdaaasdad    <div class="inner">
 <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Logintude</span>
-      <input id="rua" name="" class="form-control" placeholder="" type="text">
+      <input id="rua" name="logintude" class="form-control" placeholder="" type="text">
     </div>
     
   </div>
@@ -572,15 +552,15 @@ sdaaasdad    <div class="inner">
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-0">
-      <input type="radio" name="bateria" id="bateria" value="Nao" checked onclick="desabilita('tbateria')"  >
+      <input type="radio" name="perdaBateria" id="bateria" value="Nao" checked onclick="desabilita('tbateria')"  >
       Não
     </label> 
     <label class="radio-inline" for="radios-0">
-      <input type="radio" name="bateria" id="bateria" value="sim" onclick="habilita('tbateria')">
+      <input type="radio" name="perdaBateria" id="bateria" value="sim" onclick="habilita('tbateria')">
       Sim
     </label>
       </span>
-      <input id="tbateria" name="enc" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" >
+      <input id="tbateria" name="dtAlertaBateria" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" >
       
     </div>
     
@@ -592,15 +572,15 @@ sdaaasdad    <div class="inner">
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-1">
-      <input type="radio" name="terminal" id="terminal" value="Nao" checked onclick="desabilita('tterminal')">
+      <input type="radio" name="perdaTerminal" id="terminal" value="Nao" checked onclick="desabilita('tterminal')">
       Não
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input type="radio" name="terminal" id="terminal" value="sim" onclick="habilita('tterminal')">
+      <input type="radio" name="perdaTerminal" id="terminal" value="sim" onclick="habilita('tterminal')">
       Sim
     </label>
       </span>
-      <input id="tterminal" name="curso" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" >
+      <input id="tterminal" name="dtPerdaTerminal" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" >
       
     </div>
     
@@ -620,15 +600,15 @@ sdaaasdad    <div class="inner">
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-0">
-      <input type="radio" name="sinal" id="sinal" value="Nao" onclick="desabilita('tsinal')" checked>
+      <input type="radio" name="perdaSinal" id="sinal" value="Nao" onclick="desabilita('tsinal')" checked>
       Não
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input type="radio" name="sinal" id="sinal" value="sim" onclick="habilita('tsinal')">
+      <input type="radio" name="perdaSinal" id="sinal" value="sim" onclick="habilita('tsinal')">
       Sim
     </label>
       </span>
-      <input id="tsinal" name="enc" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" >
+      <input id="tsinal" name="dtPerdaSinal" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" >
       
     </div>
     
@@ -640,15 +620,15 @@ sdaaasdad    <div class="inner">
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-0">
-      <input type="radio" name="rota" id="rota" value="Nao" onclick="desabilita('drota')" checked>
+      <input type="radio" name="desvioRota" id="rota" value="Nao" onclick="desabilita('drota')" checked>
       Não
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input type="radio" name="rota" id="rota" value="sim" onclick="habilita('drota')">
+      <input type="radio" name="desvioRota" id="rota" value="sim" onclick="habilita('drota')">
       Sim
     </label>
       </span>
-      <input id="drota" name="rota" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="true" >
+      <input id="drota" name="dtDesvioRota" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="true" >
       
     </div>
     
@@ -668,15 +648,15 @@ sdaaasdad    <div class="inner">
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-0">
-      <input type="radio" name="panico" id="panico" value="Nao" onclick="desabilita('tpanico')" checked>
+      <input type="radio" name="btPanico" id="panico" value="Nao" onclick="desabilita('tpanico')" checked>
       Não
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input type="radio" name="panico" id="panico" value="sim" onclick="habilita('tpanico')">
+      <input type="radio" name="btPanico" id="panico" value="sim" onclick="habilita('tpanico')">
       Sim
     </label>
       </span>
-      <input id="tpanico" name="enc" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" >
+      <input id="tpanico" name="dtBtPanico" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" >
       
     </div>
     
@@ -688,15 +668,15 @@ sdaaasdad    <div class="inner">
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-0">
-      <input type="radio" name="traseira" id="traseira" value="Nao" checked onclick="desabilita('ttraseira')">
+      <input type="radio" name="portaBauTraseira" id="traseira" value="Nao" checked onclick="desabilita('ttraseira')">
       Não
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input type="radio" name="traseira" id="traseira" value="sim" onclick="habilita('ttraseira')" >
+      <input type="radio" name="portaBauTraseira" id="traseira" value="sim" onclick="habilita('ttraseira')" >
       Sim
     </label>
       </span>
-      <input id="ttraseira" name="traseira" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" >
+      <input id="ttraseira" name="dtPortaBauTraseira" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" >
       
     </div>
     
@@ -716,15 +696,15 @@ sdaaasdad    <div class="inner">
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-0">
-      <input type="radio" name="lateral" id="lateral" value="Nao" onclick="desabilita('tlateral')" checked>
+      <input type="radio" name="portaBauLateral" id="lateral" value="Nao" onclick="desabilita('tlateral')" checked>
       Não
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input type="radio" name="lateral" id="lateral" value="sim" onclick="habilita('tlateral')">
+      <input type="radio" name="portaBauLateral" id="lateral" value="sim" onclick="habilita('tlateral')">
       Sim
     </label>
       </span>
-      <input id="tlateral" name="enc" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false">
+      <input id="tlateral" name="dtPortaBauLateral" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false">
       
     </div>
     
@@ -736,15 +716,15 @@ sdaaasdad    <div class="inner">
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-0">
-      <input type="radio" name="bau" id="bau" value="Nao" onclick="desabilita('tbau')" checked>
+      <input type="radio" name="arrombamentoBau" id="bau" value="Nao" onclick="desabilita('tbau')" checked>
       Não
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input type="radio" name="bau" id="bau" value="sim" onclick="habilita('tbau')">
+      <input type="radio" name="arrombamentoBau" id="bau" value="sim" onclick="habilita('tbau')">
       Sim
     </label>
       </span>
-      <input id="tbau" name="curso" class="form-control" type="datetime-local"  placeholder="Data/hora" disabled="false">
+      <input id="tbau" name="dtArrombamentoBau" class="form-control" type="datetime-local"  placeholder="Data/hora" disabled="false">
       
     </div>
     
@@ -764,15 +744,15 @@ sdaaasdad    <div class="inner">
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-0">
-      <input type="radio" name="desengate" id="desengate" value="Nao" onclick="desabilita('tdesengate')" checked>
+      <input type="radio" name="desengateCarreta" id="desengate" value="Nao" onclick="desabilita('tdesengate')" checked>
       Não
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input type="radio" name="desengate" id="desengate" value="sim" onclick="habilita('tdesengate')">
+      <input type="radio" name="desengateCarreta" id="desengate" value="sim" onclick="habilita('tdesengate')">
       Sim
     </label>
       </span>
-      <input id="tdesengate" name="desengate" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" >
+      <input id="tdesengate" name="dtDesengateCarreta" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" >
       
     </div>
     
@@ -784,15 +764,15 @@ sdaaasdad    <div class="inner">
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-0">
-      <input type="radio" name="spanico" id="spanico" value="Nao" checked onclick="desabilita('tspanico')">
+      <input type="radio" name="senhaPanico" id="spanico" value="Nao" checked onclick="desabilita('tspanico')">
       Não
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input type="radio" name="spanico" id="spanico" value="sim">
+      <input type="radio" name="senhaPanico" id="spanico" value="sim" onclick="habilita('tspanico')">
       Sim
     </label>
       </span>
-      <input id="tspanico" name="spanicos" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false">
+      <input id="tspanico" name="dtSenhaPanico" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false">
       
     </div>
     
@@ -812,15 +792,15 @@ sdaaasdad    <div class="inner">
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-0">
-      <input type="radio" name="motorista" id="motorista" value="Nao" onclick="desabilita('tmotorista')" checked>
+      <input type="radio" name="portaMotorista" id="motorista" value="Nao" onclick="desabilita('tmotorista')" checked>
       Não
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input type="radio" name="motorista" id="motorista" value="sim" onclick="habilita('tmotorista')">
+      <input type="radio" name="portaMotorista" id="motorista" value="sim" onclick="habilita('tmotorista')">
       Sim
     </label>
       </span>
-      <input id="tmotorista" name="motorista" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" >
+      <input id="tmotorista" name="dtPortaMotorista" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" >
       
     </div>
     
@@ -832,15 +812,15 @@ sdaaasdad    <div class="inner">
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-0">
-      <input type="radio" name="ppassageiro" id="ppassageiro" value="Nao" checked onclick="desabilita('tppassageiro')">
+      <input type="radio" name="portaPassageiro" id="ppassageiro" value="Nao" checked onclick="desabilita('tppassageiro')">
       Não
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input type="radio" name="ppassageiro" id="ppassageiro" value="sim">
+      <input type="radio" name="portaPassageiro" id="ppassageiro" value="sim" onclick="habilita('tppassageiro')">
       Sim
     </label>
       </span>
-      <input id="tppassageiro" name="curso" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false">
+      <input id="tppassageiro" name="dtPortaPassageiro" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false">
       
     </div>
     
@@ -860,15 +840,15 @@ sdaaasdad    <div class="inner">
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-0">
-      <input type="radio" name="ignicao" id="ignicao" value="Nao" onclick="desabilita('tignicao')" checked>
+      <input type="radio" name="ignicaoDesligada" id="ignicao" value="Nao" onclick="desabilita('tignicao')" checked>
       Não
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input type="radio" name="ignicao" id="ignicao" value="sim" onclick="habilita('tignicao')">
+      <input type="radio" name="ignicaoDesligada" id="ignicao" value="sim" onclick="habilita('tignicao')">
       Sim
     </label>
       </span>
-      <input id="tignicao" name="enc" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false">
+      <input id="tignicao" name="dtIgnicaoDesligada" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false">
       
     </div>
     
@@ -880,15 +860,15 @@ sdaaasdad    <div class="inner">
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-0">
-      <input type="radio" name="painel" id="painel" value="Nao" checked onclick="desabilita('tpainel')">
+      <input type="radio" name="violacaoPainel" id="painel" value="Nao" checked onclick="desabilita('tpainel')">
       Não
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input type="radio" name="painel" id="painel" value="sim">
+      <input type="radio" name="violacaoPainel" id="painel" value="sim" onclick="habilita('tpainel')">
       Sim
     </label>
       </span>
-      <input id="tpainel" name="tpainel" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false">
+      <input id="tpainel" name="dtViolacaoPainel" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false">
       
     </div>
     
@@ -908,15 +888,15 @@ sdaaasdad    <div class="inner">
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-0">
-      <input type="radio" name="grade" id="grade" value="Nao" onclick="desabilita('tgrade')" checked>
+      <input type="radio" name="violacaoGrade" id="grade" value="Nao" onclick="desabilita('tgrade')" checked>
       Não
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input type="radio" name="grade" id="grade" value="sim" onclick="habilita('tgrade')">
+      <input type="radio" name="violacaoGrade" id="grade" value="sim" onclick="habilita('tgrade')">
       Sim
     </label>
       </span>
-      <input id="tgrade" name="tgrade" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false">
+      <input id="tgrade" name="dtViolacaoGrade" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false">
       
     </div>
     
@@ -933,10 +913,10 @@ sdaaasdad    <div class="inner">
 
 <div class="form-group">
   <label class="col-md-2 control-label" for="prependedtext">Descritivo da Ocorrência<h11>*</h11></label>
-  <div class="col-md-4">
+  <div class="col-md-9">
     <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
-      <textarea id="story" name="story"
+      <textarea id="story" name="Descritivo"
           rows="10" cols="100" style=" resize: none" class="form-control">
 </textarea>
     </div>
@@ -960,7 +940,7 @@ sdaaasdad    <div class="inner">
 
 </fieldset>
 </form>
-<script type="text/javascript" src="/res/site/js_load/preloader.js"></script>
+
 </body>
 
 </html>

@@ -181,7 +181,7 @@ $app->post("/ips", function(){
 	$address = new Address();
 
 
-if (!isset($_POST['gerenteResponsavel']) || $_POST['gerenteResponsavel'] === '') {
+	if (!isset($_POST['gerenteResponsavel']) || $_POST['gerenteResponsavel'] === '') {
 
 		Address::setMsgError("Informe o Gerente responsável.");
 
@@ -189,19 +189,39 @@ if (!isset($_POST['gerenteResponsavel']) || $_POST['gerenteResponsavel'] === '')
 		exit;
 	}
 
+
+	if (Address::checkSmExist($_POST['NumSM']) === true) {
+
+		Address::setMsgError("Já existe uma solicitação de Ips para esta SM.");
+		header("Location: /ips");
+		exit;
+	}
+
 	$_POST['idperson'] = $user->getidperson();
 
 	$address->setData($_POST);
-
 	$address->save();
 
 	$address->setData($_POST);
-	
 	$address->saveAcionamento();
 
 	$address->setData($_POST);
-	
 	$address->saveClientes();
+
+	$address->setData($_POST);
+	$address->saveIscas();
+
+	$address->setData($_POST);
+	$address->saveMotoristas();
+
+	$address->setData($_POST);
+	$address->saveViagens();
+
+	$address->setData($_POST);
+	$address->saveSinistros();
+
+	$address->setData($_POST);
+	$address->saveAlertas();
 
 	header("Location: /ips/success");
 	exit;
