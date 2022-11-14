@@ -51,16 +51,6 @@
     }
 }
 
-var controleCampo = 1;
-function adicionarCampo() {
-    controleCampo++;
-    document.getElementById('formulario').insertAdjacentHTML('beforeend', '<div class="form-group" id="campo' + controleCampo + '"><label class="col-md-2 control-label" for="prependedtext">Acionamentos<h11>*</h11></label><div class="col-md-2"><div class="input-group"><input id="acionamento" name="acionamento" placeholder="Tipo de acionamento" class="form-control" type="text" ></div></div><div class="col-md-2"><div class="input-group"><input id="prependedtext" name="datah" class="form-control" type="datetime-local" ></div></div> <div class="col-md-1"><div class="input-group"><input id="prependedtext" name="nome" class="form-control" placeholder="Nome" type="text" ></div></div>  <div class="col-md-2"><div class="input-group"> <input id="prependedtext" name="contato" class="form-control" placeholder="Contato" type="text"></div></div><div class="col-md-2"> <div class="input-group"><input id="local" name="local" class="form-control" placeholder="Local" type="text"></div>  </div><input type="hidden" name="id' + controleCampo + '" id="id' + controleCampo + '" /><button type="button" id="' + controleCampo + '" onclick="removerCampo(' + controleCampo + ')"> - </button></div>');
-    document.getElementById("qnt_campo").value = controleCampo;
-}
-
-function removerCampo(idCampo){
-    document.getElementById('campo' + idCampo).remove();
-} 
 
 </script>
 
@@ -130,11 +120,8 @@ function removerCampo(idCampo){
 
 
 
-     <?php if( $error != '' ){ ?>
-                  
-                    <h3 style="text-align: center; color: red"><?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?></h3>
-                  
-                  <?php } ?>
+   
+
     <div class="panel-body">
 
 
@@ -142,12 +129,9 @@ function removerCampo(idCampo){
     <div class="form-group">
   <label class="col-md-2 control-label" for="SM">Solicitação de SM <h11>*</h11></label>
   <div class="col-md-2">
-    <input id="cep" name="NumSM" placeholder="Apenas números" class="form-control input-md" value="<?php echo htmlspecialchars( $address["NumSM"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" type="search" required="" >
+    <input id="cep" name="" placeholder="Apenas números" class="form-control input-md" value="<?php echo htmlspecialchars( $address["NumSM"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" type="search" required="" >
   </div>
-    <div class="col-md-2">
-      <button type="submit" class="btn btn-primary" formaction="/ips" formmethod="get">Pesquisar</button>
-    </div>
-
+    
 <!--<div class="form-group">   
 <div class="col-md-4 control-label">
     <img id="logo" src="http://blogdoporao.com.br/wp-content/uploads/2016/12/Faculdade-pitagoras.png"/>
@@ -172,7 +156,7 @@ function removerCampo(idCampo){
 <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Embarcador</span>
-      <input id="rua" name="nomeEmbarcador" class="form-control" placeholder="" type="text" value="<?php echo htmlspecialchars( $address["nomeEmbarcador"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+      <input id="rua" name="" class="form-control" placeholder="" type="text" value="<?php echo htmlspecialchars( $address["nomeEmbarcador"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
     </div>
     
   </div>
@@ -180,12 +164,13 @@ function removerCampo(idCampo){
 <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Transportador</span>
-      <input id="cidade" name="nomeTransportador" class="form-control" placeholder="" readonly="readonly" type="text" value="<?php echo htmlspecialchars( $address["nomeTransportador"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+      <input id="cidade" name="" class="form-control" placeholder="" type="text" value="<?php echo htmlspecialchars( $address["nomeTransportador"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
     </div>
     
   </div>
 
 </div>
+
 
 <div class="form-group">
   <label class="col-md-2 control-label" for="prependedtext"></label>
@@ -196,7 +181,7 @@ function removerCampo(idCampo){
       <span class="input-group-addon">Seguradora</span>
       <select name="seguradora" id="cars" class="form-control" name="seguradora"> 
 
-       <option value=""></option>  
+       <option value="<?php echo htmlspecialchars( $address["seguradora"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $address["seguradora"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>  
         <?php $counter1=-1;  if( isset($seguradoras) && ( is_array($seguradoras) || $seguradoras instanceof Traversable ) && sizeof($seguradoras) ) foreach( $seguradoras as $key1 => $value1 ){ $counter1++; ?>
           <option value="<?php echo htmlspecialchars( $value1["nomeSeguradora"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["nomeSeguradora"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
         <?php } ?>
@@ -210,7 +195,7 @@ function removerCampo(idCampo){
       <span class="input-group-addon">Gerente Responsável</span>
 
     <select id="gerente" class="form-control" name="gerenteResponsavel">
-    <option value=""></option>
+    <option value="<?php echo htmlspecialchars( $address["gerenteResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $address["gerenteResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
   <?php $counter1=-1;  if( isset($gerentes) && ( is_array($gerentes) || $gerentes instanceof Traversable ) && sizeof($gerentes) ) foreach( $gerentes as $key1 => $value1 ){ $counter1++; ?>
     <option value="<?php echo htmlspecialchars( $value1["nomeGerente"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["nomeGerente"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
   <?php } ?>
@@ -340,7 +325,7 @@ function removerCampo(idCampo){
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Nome</span>
-      <input id="rua" name="Motorista" class="form-control" placeholder="" readonly="readonly" type="text" value="<?php echo htmlspecialchars( $address["nome_moto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+      <input id="rua" name="Motorista" class="form-control" placeholder="" readonly="readonly" type="text" value="<?php echo htmlspecialchars( $address["Motorista"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
     </div>
     
   </div>
@@ -349,7 +334,7 @@ function removerCampo(idCampo){
 <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">CPF</span>
-      <input id="cpf" name="CPF" placeholder="Apenas números" class="form-control input-md" type="text" readonly="readonly" value="<?php echo htmlspecialchars( $address["cpf_moto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+      <input id="cpf" name="CPF" placeholder="Apenas números" class="form-control input-md" type="text" readonly="readonly" value="<?php echo htmlspecialchars( $address["CPF"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
     </div>
     
   </div>
@@ -366,7 +351,7 @@ function removerCampo(idCampo){
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Vinculo</span>
-      <input id="rua" name="Vinculo" class="form-control" placeholder="" readonly="readonly" type="text" value="<?php echo htmlspecialchars( $address["vinculo_contratual"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+      <input id="rua" name="Vinculo" class="form-control" placeholder="" readonly="readonly" type="text" value="<?php echo htmlspecialchars( $address["Vinculo"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
     </div>
     
   </div>
@@ -402,7 +387,7 @@ function removerCampo(idCampo){
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Valor</span>
-      <input id="cidade" name="Valor" class="form-control" placeholder="" readonly="readonly" type="text" value="<?php echo htmlspecialchars( $address["viag_valor_carga"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+      <input id="cidade" name="Valor" class="form-control" placeholder="" readonly="readonly" type="text" value="<?php echo formatPrice($address["Valor"]); ?>">
     </div>
     
   </div>
@@ -410,7 +395,7 @@ function removerCampo(idCampo){
 <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Cidade Origem</span>
-      <input id="rua" name="cidadeOrigem" class="form-control" placeholder="" readonly="readonly" type="text" value="<?php echo htmlspecialchars( $address["vloc_descricao_o"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+      <input id="rua" name="cidadeOrigem" class="form-control" placeholder="" readonly="readonly" type="text" value="<?php echo htmlspecialchars( $address["cidadeOrigem"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
     </div>
     
   </div>
@@ -423,7 +408,7 @@ function removerCampo(idCampo){
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Cidade Destino</span>
-      <input id="rua" name="cidadeDestino" class="form-control" placeholder="" readonly="readonly" type="text" value="<?php echo htmlspecialchars( $address["vloc_descricao_d"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+      <input id="rua" name="cidadeDestino" class="form-control" placeholder="" readonly="readonly" type="text" value="<?php echo htmlspecialchars( $address["cidadeDestino"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
     </div>
     
   </div>
@@ -432,7 +417,7 @@ function removerCampo(idCampo){
 <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Produtos</span>
-      <input id="rua" name="Produtos" class="form-control" placeholder="" type="text">
+      <input id="rua" name="Produtos" class="form-control" placeholder="" value="<?php echo htmlspecialchars( $address["Produtos"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" type="text">
     </div>
     
   </div>
@@ -451,7 +436,7 @@ function removerCampo(idCampo){
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Data e hora do comunicado</span>
-      <input id="rua" name="dtComunicado" class="form-control" placeholder="" type="datetime-local">
+      <input id="rua" name="dtComunicado" class="form-control" type="datetime-local" value="<?php echo htmlspecialchars( $address["dtComunicado"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="<?php echo htmlspecialchars( $address["dtComunicado"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
     </div>
     
   </div>

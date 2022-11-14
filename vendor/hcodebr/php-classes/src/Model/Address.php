@@ -123,6 +123,8 @@ class Address extends Model {
 	}
 
 
+
+
 	public function save()
 	{
 
@@ -400,6 +402,103 @@ public function saveSinistros()
 	}
 
 
+
+	public static function getPageIps($page = 1, $itemsPerPage = 10)
+	{
+ 		
+ 		$start = ($page - 1) * $itemsPerPage;
+
+ 		$sql = new Sql();
+
+ 		$results = $sql->select("
+			SELECT SQL_CALC_FOUND_ROWS * from tb_sinistros s
+			Join tb_acionamentos a on a.NumSM = s.NumSM
+			Join tb_veiculos v on v.NumSM = a.NumSM
+			Join tb_persons p on p.idperson = v.idperson
+			Join tb_viagens vg on vg.viagemId = v.NumSM
+			Join tb_motoristas m on m.NumSM = vg.viagemId
+			Join tb_iscas i on i.NumSM = m.NumSM
+			Join tb_clientes c on c.NumSM = i.NumSM
+			left Join tb_alertas al on al.NumSM = c.NumSM
+			left Join tb_acionamentos ac on ac.NumSM = al.NumSM
+			LIMIT $start, $itemsPerPage;
+		");
+
+ 		$resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
+
+ 		return [
+			'data'=>$results,
+			'total'=>(int)$resultTotal[0]["nrtotal"],
+			'pages'=>ceil($resultTotal[0]["nrtotal"] / $itemsPerPage)
+		];
+ 	}
+
+
+ 	 	public static function getPageSearchIps($search, $page = 1, $itemsPerPage = 10)
+	{
+ 		
+ 		$start = ($page - 1) * $itemsPerPage;
+
+ 		$sql = new Sql();
+
+ 		$results = $sql->select("
+			SELECT SQL_CALC_FOUND_ROWS * from tb_sinistros s
+			Join tb_acionamentos a on a.NumSM = s.NumSM
+			Join tb_veiculos v on v.NumSM = a.NumSM
+			Join tb_persons p on p.idperson = v.idperson
+			Join tb_viagens vg on vg.viagemId = v.NumSM
+			Join tb_motoristas m on m.NumSM = vg.viagemId
+			Join tb_iscas i on i.NumSM = m.NumSM
+			Join tb_clientes c on c.NumSM = i.NumSM
+			left Join tb_alertas al on al.NumSM = c.NumSM
+			left Join tb_acionamentos ac on ac.NumSM = al.NumSM
+			where s.NumSM LIKE :search
+			ORDER BY s.NumSM
+			LIMIT $start, $itemsPerPage;
+		", [
+			':search'=>'%'.$search.'%'
+		]);
+
+ 		$resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
+ 		
+ 		return [
+			'data'=>$results,
+			'total'=>(int)$resultTotal[0]["nrtotal"],
+			'pages'=>ceil($resultTotal[0]["nrtotal"] / $itemsPerPage)
+		];
+ 	}
+
+
+ 		public function getIps($idNumSm)
+
+	{
+
+		$sql = new Sql();
+
+		$results = $sql->select("SELECT SQL_CALC_FOUND_ROWS 
+			* from tb_sinistros s
+			Join tb_acionamentos a on a.NumSM = s.NumSM
+			Join tb_veiculos v on v.NumSM = a.NumSM
+			Join tb_persons p on p.idperson = v.idperson
+			Join tb_viagens vg on vg.viagemId = v.NumSM
+			Join tb_motoristas m on m.NumSM = vg.viagemId
+			Join tb_iscas i on i.NumSM = m.NumSM
+			Join tb_clientes c on c.NumSM = i.NumSM
+			left Join tb_alertas al on al.NumSM = c.NumSM
+			left Join tb_acionamentos ac on ac.NumSM = al.NumSM
+			where s.NumSM = :idNumSm",[
+			':idNumSm'=>$idNumSm
+
+		]);
+
+		$this->setData($results[0]);
+
+
+	}
+
+
+
+
 	public function loadFromCEP($nrcep)
 	{
 
@@ -417,6 +516,10 @@ public function saveSinistros()
 
 		} 		
 	}
+
+
+
+
 
 	/*public function save()
 	{

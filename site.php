@@ -80,6 +80,9 @@ $app->get("/products/:desurl", function($desurl){
 });
 
 
+
+
+
 $app->get('/ips/success', function(){
 
     User::verifyLogin(false);
@@ -232,6 +235,90 @@ $app->post("/ips", function(){
 });
 
 
+$app->get("/ips/solicitacoes", function(){
+
+	User::verifyLogin(false);
+	$user = User::getFromSession();
+
+	
+
+	$search = (isset($_GET['search'])) ? $_GET['search'] : "";
+
+	$page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
+
+ 	if ($search != '') {
+
+ 		 
+ 		 $pagination = Address::getPageSearchIps($search, $page);
+
+
+ 	} else {
+
+ 		
+ 		$pagination = Address::getPageIps($page);
+
+
+ 	}
+
+ 	$pages = [];
+
+ 	for ($x = 0; $x < $pagination['pages']; $x++)
+	{
+ 		array_push($pages, [
+			'href'=>'/ips/solicitacoes?'.http_build_query([
+				'page'=>$x+1,
+				'search'=>$search
+			]),
+			'text'=>$x+1
+		]);
+ 	}
+
+
+	$products = Product::listAll();
+
+	$page = new Page([
+		'header'=>false,
+		'footer'=>false
+	]);
+
+	$page->setTpl("ipss", [
+		"address"=>$pagination['data'],
+		"search"=>$search,
+		"pages"=>$pages,
+
+
+		
+	]);
+
+});
+
+
+$app->get("/ips/solicitacoes/:idNumSm", function($idNumSm) {
+
+	User::verifyLogin();
+
+	$address = new Address();
+
+	$address->getIps($idNumSm);
+
+	$seguradoras = Address::listSeguradoras();
+
+	$gerentes = Address::listGerentes();
+
+
+	$page = new Page([
+			'header'=>false,
+			'footer'=>false
+	]);
+
+	$page->setTpl("view-ips", [
+		'address'=>$address->getValues(),
+		'seguradoras'=>$seguradoras,
+		'gerentes'=>$gerentes
+
+	]);
+	
+});
 
 
 $app->get("/checkout", function(){

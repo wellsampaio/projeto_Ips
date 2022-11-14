@@ -5,7 +5,20 @@
 
 <script type="text/javascript" src="/res/site/js3/ips.js"></script>
 <link href="/res/site/css3/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/res/site/cssMenu/style.css" rel="stylesheet" type="text/css" media="all" />
 
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+    <link href="http://fonts.googleapis.com/css?family=Arimo:400" rel="stylesheet">
+
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+    <link href="http://fonts.googleapis.com/css?family=Arimo:400" rel="stylesheet">
 <!DOCTYPE html>
 <head>
 <title>Solicitação de Ips</title>
@@ -57,7 +70,25 @@ function removerCampo(idCampo){
 <body>
 
 
+<a class="menu-bar" data-toggle="collapse" href="#menu">
+            <span class="bars"></span>            
+        </a>
+      <div class="collapse menu" id="menu">
+            <ul class="list-inline">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Works</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Works</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>   
+      </div>
 
+        
 
 <!-- top-header -->
         <div class="top-header">
@@ -65,11 +96,10 @@ function removerCampo(idCampo){
                 <div class="top-header-left">
                      <ul>
                         <!--<li><a href="/profile">Minha Conta</a></li>-->
+                        <li><a href="" target="blank">Solicitação de IPS</a></li>
+                        <li><a href="" target="blank">Editar Solicitação de IPS</a></li>
                         <li><a href="" target="blank">Contato</a></li>
-                        <li><a href="" target="blank">Contato</a></li>
-                        <li><a href="" target="blank">Contato</a></li>
-                        <li><a href="" target="blank">Contato</a></li>
-                        <li><a href="" target="blank">Contato</a></li>
+
                         <div class="clearfix"> </div>
                     </ul>
                 </div>
@@ -91,16 +121,23 @@ function removerCampo(idCampo){
             </div>
         </div>
 
+
+
       
         <!-- /top-header -->
 <form class="form-horizontal" action="/ips" method="post" name="ips">
 <fieldset>
+
+
+
      {if="$error != ''"}
                   
                     <h3 style="text-align: center; color: red">{$error}</h3>
                   
                   {/if}
     <div class="panel-body">
+
+
 <div class="form-group">
     <div class="form-group">
   <label class="col-md-2 control-label" for="SM">Solicitação de SM <h11>*</h11></label>
