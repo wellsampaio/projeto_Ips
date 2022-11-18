@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="Content-Language" content="pt-br">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Admin | Casa de Dona Brasilina</title>
+  <title>Solicitações de Ips</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -56,8 +56,10 @@ desired effect
 |---------------------------------------------------------|
 -->
 <body class="hold-transition skin-blue sidebar-mini">
-
+  
 <div class="content-wrapper" style=" margin: 0 auto;">
+
+    
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>

@@ -283,7 +283,6 @@ function removerCampo(idCampo){
 
 
 <hr></hr>
-
 <div class="form-group">
   <label class="col-md-2 control-label" for="prependedtext">Tecnologia Rastreamento<h11>*</h11></label>
   <div class="col-md-2">
@@ -533,6 +532,7 @@ function removerCampo(idCampo){
 
 <hr></hr>
 
+
 <div class="form-group" id= 'formulario'>
   <label class="col-md-2 control-label" for="prependedtext">Acionamentos<h11>*</h11></label>
   <div class="col-md-2">
@@ -589,11 +589,11 @@ function removerCampo(idCampo){
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-0">
-      <input type="radio" name="perdaBateria" id="bateria" value="Nao" checked onclick="desabilita('tbateria')"  >
+      <input type="radio" name="perdaBateria" id="bateria" value="Não" checked onclick="desabilita('tbateria')"  >
       Não
     </label> 
     <label class="radio-inline" for="radios-0">
-      <input type="radio" name="perdaBateria" id="bateria" value="sim" onclick="habilita('tbateria')">
+      <input type="radio" name="perdaBateria" id="bateria" value="Sim" onclick="habilita('tbateria')">
       Sim
     </label>
       </span>
@@ -609,11 +609,11 @@ function removerCampo(idCampo){
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-1">
-      <input type="radio" name="perdaTerminal" id="terminal" value="Nao" checked onclick="desabilita('tterminal')">
+      <input type="radio" name="perdaTerminal" id="terminal" value="Não" checked onclick="desabilita('tterminal')">
       Não
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input type="radio" name="perdaTerminal" id="terminal" value="sim" onclick="habilita('tterminal')">
+      <input type="radio" name="perdaTerminal" id="terminal" value="Sim" onclick="habilita('tterminal')">
       Sim
     </label>
       </span>
@@ -637,11 +637,11 @@ function removerCampo(idCampo){
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-0">
-      <input type="radio" name="perdaSinal" id="sinal" value="Nao" onclick="desabilita('tsinal')" checked>
+      <input type="radio" name="perdaSinal" id="sinal" value="Não" onclick="desabilita('tsinal')" checked>
       Não
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input type="radio" name="perdaSinal" id="sinal" value="sim" onclick="habilita('tsinal')">
+      <input type="radio" name="perdaSinal" id="sinal" value="Sim" onclick="habilita('tsinal')">
       Sim
     </label>
       </span>
@@ -657,11 +657,11 @@ function removerCampo(idCampo){
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-0">
-      <input type="radio" name="desvioRota" id="rota" value="Nao" onclick="desabilita('drota')" checked>
+      <input type="radio" name="desvioRota" id="rota" value="Não" onclick="desabilita('drota')" checked>
       Não
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input type="radio" name="desvioRota" id="rota" value="sim" onclick="habilita('drota')">
+      <input type="radio" name="desvioRota" id="rota" value="Sim" onclick="habilita('drota')">
       Sim
     </label>
       </span>
@@ -685,11 +685,11 @@ function removerCampo(idCampo){
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-0">
-      <input type="radio" name="btPanico" id="panico" value="Nao" onclick="desabilita('tpanico')" checked>
+      <input type="radio" name="btPanico" id="panico" value="Não" onclick="desabilita('tpanico')" checked>
       Não
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input type="radio" name="btPanico" id="panico" value="sim" onclick="habilita('tpanico')">
+      <input type="radio" name="btPanico" id="panico" value="Sim" onclick="habilita('tpanico')">
       Sim
     </label>
       </span>
@@ -705,11 +705,11 @@ function removerCampo(idCampo){
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-0">
-      <input type="radio" name="portaBauTraseira" id="traseira" value="Nao" checked onclick="desabilita('ttraseira')">
+      <input type="radio" name="portaBauTraseira" id="traseira" value="Não" checked onclick="desabilita('ttraseira')">
       Não
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input type="radio" name="portaBauTraseira" id="traseira" value="sim" onclick="habilita('ttraseira')" >
+      <input type="radio" name="portaBauTraseira" id="traseira" value="Sim" onclick="habilita('ttraseira')" >
       Sim
     </label>
       </span>
@@ -733,11 +733,11 @@ function removerCampo(idCampo){
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-0">
-      <input type="radio" name="portaBauLateral" id="lateral" value="Nao" onclick="desabilita('tlateral')" checked>
+      <input type="radio" name="portaBauLateral" id="lateral" value="Não" onclick="desabilita('tlateral')" checked>
       Não
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input type="radio" name="portaBauLateral" id="lateral" value="sim" onclick="habilita('tlateral')">
+      <input type="radio" name="portaBauLateral" id="lateral" value="Sim" onclick="habilita('tlateral')">
       Sim
     </label>
       </span>
@@ -753,11 +753,11 @@ function removerCampo(idCampo){
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-0">
-      <input type="radio" name="arrombamentoBau" id="bau" value="Nao" onclick="desabilita('tbau')" checked>
+      <input type="radio" name="arrombamentoBau" id="bau" value="Não" onclick="desabilita('tbau')" checked>
       Não
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input type="radio" name="arrombamentoBau" id="bau" value="sim" onclick="habilita('tbau')">
+      <input type="radio" name="arrombamentoBau" id="bau" value="Sim" onclick="habilita('tbau')">
       Sim
     </label>
       </span>
@@ -781,11 +781,11 @@ function removerCampo(idCampo){
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-0">
-      <input type="radio" name="desengateCarreta" id="desengate" value="Nao" onclick="desabilita('tdesengate')" checked>
+      <input type="radio" name="desengateCarreta" id="desengate" value="Não" onclick="desabilita('tdesengate')" checked>
       Não
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input type="radio" name="desengateCarreta" id="desengate" value="sim" onclick="habilita('tdesengate')">
+      <input type="radio" name="desengateCarreta" id="desengate" value="Sim" onclick="habilita('tdesengate')">
       Sim
     </label>
       </span>
@@ -801,11 +801,11 @@ function removerCampo(idCampo){
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-0">
-      <input type="radio" name="senhaPanico" id="spanico" value="Nao" checked onclick="desabilita('tspanico')">
+      <input type="radio" name="senhaPanico" id="spanico" value="Não" checked onclick="desabilita('tspanico')">
       Não
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input type="radio" name="senhaPanico" id="spanico" value="sim" onclick="habilita('tspanico')">
+      <input type="radio" name="senhaPanico" id="spanico" value="Sim" onclick="habilita('tspanico')">
       Sim
     </label>
       </span>
@@ -829,11 +829,11 @@ function removerCampo(idCampo){
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-0">
-      <input type="radio" name="portaMotorista" id="motorista" value="Nao" onclick="desabilita('tmotorista')" checked>
+      <input type="radio" name="portaMotorista" id="motorista" value="Não" onclick="desabilita('tmotorista')" checked>
       Não
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input type="radio" name="portaMotorista" id="motorista" value="sim" onclick="habilita('tmotorista')">
+      <input type="radio" name="portaMotorista" id="motorista" value="Sim" onclick="habilita('tmotorista')">
       Sim
     </label>
       </span>
@@ -849,11 +849,11 @@ function removerCampo(idCampo){
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-0">
-      <input type="radio" name="portaPassageiro" id="ppassageiro" value="Nao" checked onclick="desabilita('tppassageiro')">
+      <input type="radio" name="portaPassageiro" id="ppassageiro" value="Não" checked onclick="desabilita('tppassageiro')">
       Não
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input type="radio" name="portaPassageiro" id="ppassageiro" value="sim" onclick="habilita('tppassageiro')">
+      <input type="radio" name="portaPassageiro" id="ppassageiro" value="Sim" onclick="habilita('tppassageiro')">
       Sim
     </label>
       </span>
@@ -877,11 +877,11 @@ function removerCampo(idCampo){
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-0">
-      <input type="radio" name="ignicaoDesligada" id="ignicao" value="Nao" onclick="desabilita('tignicao')" checked>
+      <input type="radio" name="ignicaoDesligada" id="ignicao" value="Não" onclick="desabilita('tignicao')" checked>
       Não
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input type="radio" name="ignicaoDesligada" id="ignicao" value="sim" onclick="habilita('tignicao')">
+      <input type="radio" name="ignicaoDesligada" id="ignicao" value="Sim" onclick="habilita('tignicao')">
       Sim
     </label>
       </span>
@@ -897,11 +897,11 @@ function removerCampo(idCampo){
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-0">
-      <input type="radio" name="violacaoPainel" id="painel" value="Nao" checked onclick="desabilita('tpainel')">
+      <input type="radio" name="violacaoPainel" id="painel" value="Não" checked onclick="desabilita('tpainel')">
       Não
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input type="radio" name="violacaoPainel" id="painel" value="sim" onclick="habilita('tpainel')">
+      <input type="radio" name="violacaoPainel" id="painel" value="Sim" onclick="habilita('tpainel')">
       Sim
     </label>
       </span>
@@ -925,11 +925,11 @@ function removerCampo(idCampo){
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-0">
-      <input type="radio" name="violacaoGrade" id="grade" value="Nao" onclick="desabilita('tgrade')" checked>
+      <input type="radio" name="violacaoGrade" id="grade" value="Não" onclick="desabilita('tgrade')" checked>
       Não
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input type="radio" name="violacaoGrade" id="grade" value="sim" onclick="habilita('tgrade')">
+      <input type="radio" name="violacaoGrade" id="grade" value="Sim" onclick="habilita('tgrade')">
       Sim
     </label>
       </span>

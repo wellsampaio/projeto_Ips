@@ -11,27 +11,7 @@ class Address extends Model {
 
 	const SESSION_ERROR = "AddressError";
 
-	public static function getCEP($nrcep)
-	{
-
-		$nrcep = str_replace("-", "", $nrcep);
-
-		//https://viacep.com.br/ws/01001000/json/
-
-		$ch = curl_init();
-
-		curl_setopt($ch, CURLOPT_URL, "http://viacep.com.br/ws/$nrcep/json/");
-
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-
-		$data = json_decode(curl_exec($ch), true);
-
-		curl_close($ch);
-
-		return $data;
-	}
-
+	
 
 
 	public static function getBuscarViagem($nrviagem)
@@ -327,7 +307,6 @@ public function saveSinistros()
 		$sql = new Sql();
 
 			$results = $sql->select("CALL sp_alertas_save(:idalerta, :perdaBateria, :dtAlertaBateria, :NumSM, :perdaSinal, :dtPerdaSinal, :btPanico, :dtBtPanico, :portaBauLateral, :dtPortaBauLateral, :desengateCarreta, :dtDesengateCarreta, :portaMotorista, :dtPortaMotorista, :ignicaoDesligada, :dtIgnicaoDesligada, :violacaoGrade, :dtViolacaoGrade, :perdaTerminal, :dtPerdaTerminal, :desvioRota, :dtDesvioRota, :portaBauTraseira, :dtPortaBauTraseira, :arrombamentoBau, :dtArrombamentoBau, :senhaPanico, :dtSenhaPanico, :portaPassageiro, :dtPortaPassageiro, :violacaoPainel, :dtViolacaoPainel)",  array(
-		    ':idalerta'=>$this->getidalerta(),
 		    ':perdaBateria'=>$this->getperdaBateria(),
 		    ':dtAlertaBateria'=>$this->getdtAlertaBateria(),
 		    ':NumSM'=>$this->getNumSM(),
@@ -369,6 +348,96 @@ public function saveSinistros()
 
 	
 
+	}
+
+
+		public function updateIps()
+	{
+
+		$sql = new Sql();
+
+
+			$sql->query("UPDATE tb_sinistros s
+			JOIN tb_acionamentos a on a.NumSM = s.NumSM
+			JOIN tb_veiculos v on v.NumSM = a.NumSM
+			Join tb_persons p on p.idperson = v.idperson
+			Join tb_viagens vg on vg.viagemId = v.NumSM
+			Join tb_motoristas m on m.NumSM = vg.viagemId
+			Join tb_iscas i on i.NumSM = m.NumSM
+			Join tb_clientes c on c.NumSM = i.NumSM
+			left Join tb_alertas al on al.NumSM = c.NumSM
+			left Join tb_acionamentos ac on ac.NumSM = al.NumSM
+			set s.dtComunicado = :dtComunicado, s.dtSinistro = :dtSinistro,  s.localSinistro = :localSinistro, s.latitude = :latitude, s.longitude = :longitude, S.Km = :Km, s.tipoSinistro = :tipoSinistro, s.nomeComunicante = :nomeComunicante, s.Descritivo = :Descritivo, a.tipo_acionamento = :tipo_acionamento, a.datah = :datah, a.nome = :nome, a.contato = :contato, a.local = :local, v.marca = :marca, v.modelo = :modelo, v.placa = :placa, v.cor = :cor, v.vtec_descricao = :vtec_descricao, v.term_numero_terminal = :term_numero_terminal, vg.dataInicio = :dataInicio, vg.Valor = :Valor, vg.cidadeOrigem = :cidadeOrigem,
+			vg.cidadeDestino = :cidadeDestino, vg.produtos = :produtos, m.Motorista = :Motorista, m.CPF = :CPF, m.Vinculo = :Vinculo, i.isca = :isca, i.tec_isca = :tec_isca, i.iscaPosicionando = :iscaPosicionando, c.nomeEmbarcador =  :nomeEmbarcador, c.nomeTransportador = :nomeTransportador, c.seguradora = :seguradora, c.gerenteResponsavel = :gerenteResponsavel, c.acionar = :acionar, c.telefone = :telefone, al.perdaBateria = :perdaBateria, al.dtAlertaBateria = :dtAlertaBateria, al.perdaSinal = :perdaSinal, al.dtPerdaSinal = :dtPerdaSinal, al.btpanico = :btpanico, al.dtBtPanico = :dtBtPanico, al.portaBauLateral = :portaBauLateral, al.dtPortaBauLateral = :dtPortaBauLateral, al.desengateCarreta = :desengateCarreta, al.dtDesengateCarreta = :dtDesengateCarreta, al.portaMotorista = :portaMotorista, al.dtPortaMotorista = :dtPortaMotorista, al.ignicaoDesligada = :ignicaoDesligada, al.dtIgnicaoDesligada = :dtIgnicaoDesligada, al.violacaoGrade = :violacaoGrade, al.dtViolacaoGrade = :dtViolacaoGrade, al.perdaTerminal = :perdaTerminal, al.dtPerdaTerminal = :dtPerdaTerminal, al.desvioRota = :desvioRota, al.dtDesvioRota = :dtDesvioRota, al.portaBauTraseira = :portaBauTraseira, al.dtPortaBauTraseira = :dtPortaBauTraseira, al.arrombamentoBau = :arrombamentoBau, al.dtArrombamentoBau = :dtArrombamentoBau, al.senhaPanico = :senhaPanico, al.dtSenhaPanico = :dtSenhaPanico, al.portaPassageiro = :portaPassageiro, al.dtPortaPassageiro = :dtPortaPassageiro, al.violacaoPainel = :violacaoPainel, al.dtViolacaoPainel = :dtViolacaoPainel where s.NumSM = :NumSM", [
+			    ':perdaBateria'=>$this->getperdaBateria(),
+			    ':dtAlertaBateria'=>$this->getdtAlertaBateria(),
+			    ':NumSM'=>$this->getNumSM(),
+			    ':perdaSinal'=>$this->getperdaSinal(),
+			    ':dtPerdaSinal'=>$this->getdtPerdaSinal(),
+			    ':btPanico'=>$this->getbtPanico(),
+			    ':dtBtPanico'=>$this->getdtBtPanico(),
+			    ':portaBauLateral'=>$this->getportaBauLateral(),
+			    ':dtPortaBauLateral'=>$this->getdtPortaBauLateral(),
+			    ':desengateCarreta'=>$this->getdesengateCarreta(),
+			    ':dtDesengateCarreta'=>$this->getdtDesengateCarreta(),
+			    ':portaMotorista'=>$this->getportaMotorista(),
+			    ':dtPortaMotorista'=>$this->getdtPortaMotorista(),
+			    ':ignicaoDesligada'=>$this->getignicaoDesligada(),
+			    ':dtIgnicaoDesligada'=>$this->getdtIgnicaoDesligada(),
+			    ':violacaoGrade'=>$this->getviolacaoGrade(),
+			    ':dtViolacaoGrade'=>$this->getdtViolacaoGrade(),
+			    ':perdaTerminal'=>$this->getperdaTerminal(),
+			    ':dtPerdaTerminal'=>$this->getdtPerdaTerminal(),
+			    ':desvioRota'=>$this->getdesvioRota(),
+			    ':dtDesvioRota'=>$this->getdtDesvioRota(),
+			    ':portaBauTraseira'=>$this->getportaBauTraseira(),
+			    ':dtPortaBauTraseira'=>$this->getdtPortaBauTraseira(),
+			    ':arrombamentoBau'=>$this->getarrombamentoBau(),
+			    ':dtArrombamentoBau'=>$this->getdtArrombamentoBau(),
+			    ':senhaPanico'=>$this->getsenhaPanico(),
+			    ':dtSenhaPanico'=>$this->getdtSenhaPanico(),
+			    ':portaPassageiro'=>$this->getportaPassageiro(),
+			    ':dtPortaPassageiro'=>$this->getdtPortaPassageiro(),
+			    ':violacaoPainel'=>$this->getviolacaoPainel(),
+			    ':dtViolacaoPainel'=>$this->getdtViolacaoPainel(),
+			    ':dtComunicado'=>$this->getdtComunicado(),
+			    ':dtSinistro'=>$this->getdtSinistro(),
+			    ':localSinistro'=>$this->getlocalSinistro(),
+			    ':latitude'=>$this->getlatitude(),
+			    ':longitude'=>$this->getlongitude(),
+			    ':Km'=>$this->getKm(),
+			    ':tipoSinistro'=>$this->gettipoSinistro(),
+			    ':nomeComunicante'=>$this->getnomeComunicante(),
+			    ':Descritivo'=>$this->getDescritivo(),
+			    ':dataInicio'=>$this->getdataInicio(),
+		    	':Valor'=>$this->getValor(),
+		    	':cidadeOrigem'=>$this->getcidadeOrigem(),
+		    	':cidadeDestino'=>$this->getcidadeDestino(),
+		    	':Produtos'=>$this->getProdutos(),
+		    	':Motorista'=>$this->getMotorista(),
+		   		':CPF'=>$this->getCPF(),
+		    	':Vinculo'=>$this->getVinculo(),
+		    	':nomeEmbarcador'=>$this->getnomeEmbarcador(),
+			    ':nomeTransportador'=>$this->getnomeTransportador(),
+			    ':seguradora'=>$this->getseguradora(),
+			    ':gerenteResponsavel'=>$this->getgerenteResponsavel(),
+			    ':acionar'=>$this->getacionar(),
+			    ':telefone'=>$this->gettelefone(),
+			    ':tipo_acionamento'=>$this->gettipo_acionamento(),
+			    ':datah'=>$this->getdatah(),
+			    ':nome'=>$this->getnome(),
+			    ':contato'=>$this->getcontato(),
+			    ':local'=>$this->getlocal(),
+			    ':isca'=>$this->getisca(),
+		    	':tec_isca'=>$this->gettec_isca(),
+		    	':iscaPosicionando'=>$this->getiscaPosicionando(),
+		    	':marca'=>$this->getmarca(),
+			    ':modelo'=>$this->getmodelo(),
+			    ':placa'=>$this->getplaca(),
+			    ':cor'=>$this->getcor(),
+			    ':vtec_descricao'=>$this->getvtec_descricao()
+
+			    			]);
 	}
 
 
@@ -497,59 +566,11 @@ public function saveSinistros()
 	}
 
 
-
-
-	public function loadFromCEP($nrcep)
-	{
-
-		$data = Address::getCEP($nrcep);
-
-		if (isset($data['logradouro']) && $data['logradouro']) {
-
-			$this->setdesaddress($data['logradouro']);
-			$this->setdescomplement($data['complemento']);
-			$this->setdesdistrict($data['bairro']);
-			$this->setdescity($data['localidade']);
-			$this->setdesstate($data['uf']);
-			$this->setdescountry('Brasil');
-			$this->setnrzipcode('$nrcep');
-
-		} 		
-	}
-
-
-
-
-
-	/*public function save()
-	{
-
-		$sql = new Sql();
-
-		$results = $sql->select("CALL sp_addresses_save(:idaddress, :idperson, :desaddress, :desnumber, :descomplement, :descity, :desstate, :descountry, :deszipcode, :desdistrict, :desdelivery)", [
-		    ':idaddress'=>$this->getidaddress(),
-		    ':idperson'=>$this->getidperson(),
-		    ':desaddress'=>$this->getdesaddress(),
-		    ':desnumber'=>$this->getdesnumber(),
-		    ':descomplement'=>$this->getdescomplement(),
-		    ':descity'=>$this->getdescity(),
-		    ':desstate'=>$this->getdesstate(),
-		    ':descountry'=>$this->getdescountry(),
-		    ':deszipcode'=>$this->getdeszipcode(),
-		    ':desdistrict'=>$this->getdesdistrict(),
-		    ':desdelivery'=>$this->getdesdelivery()
-	]);
-
-		if (count($results) > 0) {
-			$this->setData($results[0]);
-		}
-	}*/
-
 	public static function setMsgError($msg)
 	{
 		$_SESSION[Address::SESSION_ERROR] = $msg;
 	}
-	
+
 	public static function getMsgError()
 	{
 		$msg = (isset($_SESSION[Address::SESSION_ERROR])) ? $_SESSION[Address::SESSION_ERROR] : "";

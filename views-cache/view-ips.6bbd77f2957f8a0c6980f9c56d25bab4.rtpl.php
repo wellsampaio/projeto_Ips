@@ -90,7 +90,11 @@
                         <li><a href="" target="blank">Editar Solicitação de IPS</a></li>
                         <li><a href="" target="blank">Contato</a></li>
 
-                        <div class="clearfix"> </div>
+                        <div class="clearfix"> 
+
+
+
+                        </div>
                     </ul>
                 </div>
                 <div class="top-header-center">
@@ -115,7 +119,7 @@
 
       
         <!-- /top-header -->
-<form class="form-horizontal" action="/ips" method="post" name="ips">
+<form class="form-horizontal" action="" method="post" name="ips">
 <fieldset>
 
 
@@ -156,7 +160,7 @@
 <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Embarcador</span>
-      <input id="rua" name="" class="form-control" placeholder="" type="text" value="<?php echo htmlspecialchars( $address["nomeEmbarcador"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+      <input id="rua" name="nomeEmbarcador" class="form-control" placeholder="" type="text" value="<?php echo htmlspecialchars( $address["nomeEmbarcador"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
     </div>
     
   </div>
@@ -164,7 +168,7 @@
 <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Transportador</span>
-      <input id="cidade" name="" class="form-control" placeholder="" type="text" value="<?php echo htmlspecialchars( $address["nomeTransportador"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+      <input id="cidade" name="nomeTransportador" class="form-control" placeholder="" type="text" value="<?php echo htmlspecialchars( $address["nomeTransportador"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
     </div>
     
   </div>
@@ -367,7 +371,7 @@
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Número SM</span>
-      <input id="rua" name="viagemId" class="form-control" placeholder="" readonly="readonly" type="text" value="<?php echo htmlspecialchars( $address["viagemId"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+      <input id="rua" name="" class="form-control" placeholder="" readonly="readonly" type="text" value="<?php echo htmlspecialchars( $address["viagemId"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
     </div>
     
   </div>
@@ -445,7 +449,7 @@
 <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Nome do comunicante</span>
-      <input id="rua" name="nomeComunicante" class="form-control" placeholder="" type="text">
+      <input id="rua" name="nomeComunicante" class="form-control" placeholder="" type="text" value="<?php echo htmlspecialchars( $address["nomeComunicante"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" >
     </div>
     
   </div>
@@ -456,7 +460,7 @@
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Data e hora do sinistro</span>
-      <input id="cidade" name="dtSinistro" class="form-control" placeholder=""  type="datetime-local">
+      <input id="cidade" name="dtSinistro" class="form-control" placeholder=""  type="datetime-local" value="<?php echo htmlspecialchars( $address["dtSinistro"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
     </div>
     
   </div>
@@ -464,7 +468,9 @@
 <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Tipo de Sinistro</span>
-      <select name="tipoSinistro" id="cars" class="form-control">   
+      <select name="tipoSinistro" id="cars" class="form-control">  
+
+       <option value="<?php echo htmlspecialchars( $address["tipoSinistro"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $address["tipoSinistro"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option> 
         <?php $counter1=-1;  if( isset($tiposSinistros) && ( is_array($tiposSinistros) || $tiposSinistros instanceof Traversable ) && sizeof($tiposSinistros) ) foreach( $tiposSinistros as $key1 => $value1 ){ $counter1++; ?>
           <option value="<?php echo htmlspecialchars( $value1["nomeSinistro"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["nomeSinistro"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
         <?php } ?>
@@ -481,7 +487,7 @@
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Local do sinistro</span>
-      <input id="rua" name="localSinistro" class="form-control" placeholder="" type="text">
+      <input id="rua" name="localSinistro" class="form-control" placeholder="" type="text" value="<?php echo htmlspecialchars( $address["localSinistro"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
     </div>
     
   </div>
@@ -490,7 +496,7 @@
 <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Km/Número</span>
-      <input id="rua" name="Km" class="form-control" placeholder=""  type="text">
+      <input id="rua" name="Km" class="form-control" placeholder=""  type="text" value="<?php echo htmlspecialchars( $address["Km"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
     </div>
     
   </div>
@@ -501,7 +507,8 @@
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Latitude</span>
-      <input id="rua" name="latitude" class="form-control" placeholder="" type="text">
+      <input id="rua" name="latitude" class="form-control" placeholder="" type="text"
+      value="<?php echo htmlspecialchars( $address["latitude"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
     </div>
     
   </div>
@@ -509,8 +516,8 @@
   
 <div class="col-md-4">
     <div class="input-group">
-      <span class="input-group-addon">Logintude</span>
-      <input id="rua" name="logintude" class="form-control" placeholder="" type="text">
+      <span class="input-group-addon">Longitude</span>
+      <input id="rua" name="longitude" class="form-control" placeholder="" type="text" value="<?php echo htmlspecialchars( $address["longitude"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
     </div>
     
   </div>
@@ -522,31 +529,33 @@
   <label class="col-md-2 control-label" for="prependedtext">Acionamentos<h11>*</h11></label>
   <div class="col-md-2">
     <div class="input-group">
-      <input id="acionamento" name="tipo_acionamento" placeholder="Tipo de acionamento" class="form-control" type="text" >
+      <input id="acionamento" name="tipo_acionamento" placeholder="Tipo de acionamento" class="form-control" type="text" value="<?php echo htmlspecialchars( $address["tipo_acionamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" >
     </div>
   </div>
 
      <div class="col-md-2">
     <div class="input-group">
-      <input id="prependedtext" name="datah" class="form-control" type="datetime-local" >
+      <input id="prependedtext" name="datah" class="form-control" type="datetime-local" value="<?php echo htmlspecialchars( $address["datah"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
     </div >
   </div>
   <div class="col-md-1">
     <div class="input-group">
-      <input id="prependedtext" name="nome" class="form-control" placeholder="Nome" type="text" >
+      <input id="prependedtext" name="nome" class="form-control" placeholder="Nome" type="text" value="<?php echo htmlspecialchars( $address["nome"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
     </div>
 
   </div>
 
   <div class="col-md-2">
     <div class="input-group">
-      <input id="prependedtext" name="contato" class="form-control" placeholder="Contato" type="text">
+      <input id="prependedtext" name="contato" class="form-control" placeholder="Contato" type="text" value="<?php echo htmlspecialchars( $address["contato"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
     </div>
   </div>
 
    <div class="col-md-2">
     <div class="input-group">
-      <input id="local" name="local" class="form-control" placeholder="Local" type="text">
+      
+      <input id="local" name="local" class="form-control" placeholder="Local" type="text" value="<?php echo htmlspecialchars( $address["local"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+      
     </div>
   </div>
    <button type="button" onclick="adicionarCampo()"> + </button>
@@ -572,17 +581,25 @@
   <label class="col-md-2 control-label" for="encaminhamento">Perda de Bateria<h11>*</h11></label>
   <div class="col-md-4">
     <div class="input-group">
-      <span class="input-group-addon">     
+      <span class="input-group-addon">    
+    
         <label class="radio-inline" for="radios-0">
-      <input type="radio" name="perdaBateria" id="bateria" value="Nao" checked onclick="desabilita('tbateria')"  >
+
+          
+      <input type="radio" name="perdaBateria" id="bateria" value="Não"    <?php if( ($address["perdaBateria"])!='Sim' ){ ?>  checked <?php } ?> onclick="desabilita('tbateria')"  >
       Não
+ 
+    
+
     </label> 
-    <label class="radio-inline" for="radios-0">
-      <input type="radio" name="perdaBateria" id="bateria" value="sim" onclick="habilita('tbateria')">
+    
+         <label class="radio-inline" for="radios-0">
+      <input type="radio" name="perdaBateria" id="bateria" value="Sim" onclick="habilita('tbateria')"  <?php if( ($address["perdaBateria"])=='Sim' ){ ?> checked <?php } ?>>
       Sim
     </label>
+
       </span>
-      <input id="tbateria" name="dtAlertaBateria" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" >
+      <input id="tbateria" name="dtAlertaBateria" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" value="<?php echo htmlspecialchars( $address["dtAlertaBateria"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" >
       
     </div>
     
@@ -594,15 +611,15 @@
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-1">
-      <input type="radio" name="perdaTerminal" id="terminal" value="Nao" checked onclick="desabilita('tterminal')">
+      <input type="radio" name="perdaTerminal" id="terminal" value="Não" <?php if( ($address["perdaTerminal"])!='Sim' ){ ?> checked <?php } ?> onclick="desabilita('tterminal')">
       Não
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input type="radio" name="perdaTerminal" id="terminal" value="sim" onclick="habilita('tterminal')">
+      <input type="radio" name="perdaTerminal" id="terminal" value="Sim" <?php if( ($address["perdaTerminal"])=='Sim' ){ ?> checked <?php } ?>  onclick="habilita('tterminal')">
       Sim
     </label>
       </span>
-      <input id="tterminal" name="dtPerdaTerminal" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" >
+      <input id="tterminal" name="dtPerdaTerminal" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" value="<?php echo htmlspecialchars( $address["dtPerdaTerminal"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
       
     </div>
     
@@ -622,15 +639,15 @@
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-0">
-      <input type="radio" name="perdaSinal" id="sinal" value="Nao" onclick="desabilita('tsinal')" checked>
+      <input type="radio" name="perdaSinal" id="sinal" value="Não" onclick="desabilita('tsinal')" <?php if( ($address["perdaSinal"])!='Sim' ){ ?> checked <?php } ?>>
       Não
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input type="radio" name="perdaSinal" id="sinal" value="sim" onclick="habilita('tsinal')">
+      <input type="radio" name="perdaSinal" id="sinal" value="Sim" onclick="habilita('tsinal')"  <?php if( ($address["perdaSinal"])=='Sim' ){ ?> checked <?php } ?>>
       Sim
     </label>
       </span>
-      <input id="tsinal" name="dtPerdaSinal" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" >
+      <input id="tsinal" name="dtPerdaSinal" class="form-control" type="datetime-local" placeholder="Data/hora"  disabled="false" value="<?php echo htmlspecialchars( $address["dtPerdaSinal"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
       
     </div>
     
@@ -642,15 +659,15 @@
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-0">
-      <input type="radio" name="desvioRota" id="rota" value="Nao" onclick="desabilita('drota')" checked>
+      <input type="radio" name="desvioRota" id="rota" value="Não" onclick="desabilita('drota')" <?php if( ($address["desvioRota"])!='Sim' ){ ?> checked <?php } ?>>
       Não
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input type="radio" name="desvioRota" id="rota" value="sim" onclick="habilita('drota')">
+      <input type="radio" name="desvioRota" id="rota" value="Sim" onclick="habilita('drota')" <?php if( ($address["desvioRota"])=='Sim' ){ ?> checked <?php } ?>>
       Sim
     </label>
       </span>
-      <input id="drota" name="dtDesvioRota" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="true" >
+      <input id="drota" name="dtDesvioRota" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="true" value="<?php echo htmlspecialchars( $address["dtDesvioRota"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
       
     </div>
     
@@ -670,15 +687,15 @@
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-0">
-      <input type="radio" name="btPanico" id="panico" value="Nao" onclick="desabilita('tpanico')" checked>
+      <input type="radio" name="btPanico" id="panico" value="Não" onclick="desabilita('tpanico')" <?php if( ($address["btPanico"])!='Sim' ){ ?> checked <?php } ?>>
       Não
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input type="radio" name="btPanico" id="panico" value="sim" onclick="habilita('tpanico')">
+      <input type="radio" name="btPanico" id="panico" value="Sim" onclick="habilita('tpanico')" <?php if( ($address["btPanico"])=='Sim' ){ ?> checked <?php } ?>>
       Sim
     </label>
       </span>
-      <input id="tpanico" name="dtBtPanico" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" >
+      <input id="tpanico" name="dtBtPanico" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" value="<?php echo htmlspecialchars( $address["dtBtPanico"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" >
       
     </div>
     
@@ -690,15 +707,15 @@
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-0">
-      <input type="radio" name="portaBauTraseira" id="traseira" value="Nao" checked onclick="desabilita('ttraseira')">
+      <input type="radio" name="portaBauTraseira" id="traseira" value="Não" <?php if( ($address["portaBauTraseira"])!='Sim' ){ ?> checked <?php } ?> onclick="desabilita('ttraseira')">
       Não
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input type="radio" name="portaBauTraseira" id="traseira" value="sim" onclick="habilita('ttraseira')" >
+      <input type="radio" name="portaBauTraseira" id="traseira" value="Sim" onclick="habilita('ttraseira')" <?php if( ($address["portaBauTraseira"])=='Sim' ){ ?> checked <?php } ?>>
       Sim
     </label>
       </span>
-      <input id="ttraseira" name="dtPortaBauTraseira" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" >
+      <input id="ttraseira" name="dtPortaBauTraseira" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" value="<?php echo htmlspecialchars( $address["dtPortaBauTraseira"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
       
     </div>
     
@@ -718,15 +735,15 @@
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-0">
-      <input type="radio" name="portaBauLateral" id="lateral" value="Nao" onclick="desabilita('tlateral')" checked>
+      <input type="radio" name="portaBauLateral" id="lateral" value="Não" onclick="desabilita('tlateral')" <?php if( ($address["portaBauLateral"])!='Sim' ){ ?> checked <?php } ?>>
       Não
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input type="radio" name="portaBauLateral" id="lateral" value="sim" onclick="habilita('tlateral')">
+      <input type="radio" name="portaBauLateral" id="lateral" value="Sim" onclick="habilita('tlateral')" <?php if( ($address["portaBauLateral"])=='Sim' ){ ?> checked <?php } ?>>
       Sim
     </label>
       </span>
-      <input id="tlateral" name="dtPortaBauLateral" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false">
+      <input id="tlateral" name="dtPortaBauLateral" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" value="<?php echo htmlspecialchars( $address["dtPortaBauLateral"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
       
     </div>
     
@@ -738,15 +755,15 @@
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-0">
-      <input type="radio" name="arrombamentoBau" id="bau" value="Nao" onclick="desabilita('tbau')" checked>
+      <input type="radio" name="arrombamentoBau" id="bau" value="Não" onclick="desabilita('tbau')" <?php if( ($address["arrombamentoBau"])!='Sim' ){ ?> checked <?php } ?>>
       Não
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input type="radio" name="arrombamentoBau" id="bau" value="sim" onclick="habilita('tbau')">
+      <input type="radio" name="arrombamentoBau" id="bau" value="Sim" onclick="habilita('tbau')" <?php if( ($address["arrombamentoBau"])=='Sim' ){ ?> checked <?php } ?>>
       Sim
     </label>
       </span>
-      <input id="tbau" name="dtArrombamentoBau" class="form-control" type="datetime-local"  placeholder="Data/hora" disabled="false">
+      <input id="tbau" name="dtArrombamentoBau" class="form-control" type="datetime-local"  placeholder="Data/hora" disabled="false" value="<?php echo htmlspecialchars( $address["dtArrombamentoBau"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
       
     </div>
     
@@ -766,15 +783,15 @@
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-0">
-      <input type="radio" name="desengateCarreta" id="desengate" value="Nao" onclick="desabilita('tdesengate')" checked>
+      <input type="radio" name="desengateCarreta" id="desengate" value="Não" onclick="desabilita('tdesengate')" <?php if( ($address["desengateCarreta"])!='Sim' ){ ?> checked <?php } ?>>
       Não
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input type="radio" name="desengateCarreta" id="desengate" value="sim" onclick="habilita('tdesengate')">
+      <input type="radio" name="desengateCarreta" id="desengate" value="Sim" onclick="habilita('tdesengate')" <?php if( ($address["desengateCarreta"])=='Sim' ){ ?> checked <?php } ?>>
       Sim
     </label>
       </span>
-      <input id="tdesengate" name="dtDesengateCarreta" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" >
+      <input id="tdesengate" name="dtDesengateCarreta" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" value="<?php echo htmlspecialchars( $address["dtDesengateCarreta"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
       
     </div>
     
@@ -786,15 +803,15 @@
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-0">
-      <input type="radio" name="senhaPanico" id="spanico" value="Nao" checked onclick="desabilita('tspanico')">
+      <input type="radio" name="senhaPanico" id="spanico" value="Não" <?php if( ($address["senhaPanico"])!='Sim' ){ ?> checked <?php } ?> onclick="desabilita('tspanico')">
       Não
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input type="radio" name="senhaPanico" id="spanico" value="sim" onclick="habilita('tspanico')">
+      <input type="radio" name="senhaPanico" id="spanico" value="Sim" onclick="habilita('tspanico')" <?php if( ($address["senhaPanico"])=='Sim' ){ ?> checked <?php } ?>>
       Sim
     </label>
       </span>
-      <input id="tspanico" name="dtSenhaPanico" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false">
+      <input id="tspanico" name="dtSenhaPanico" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" value="<?php echo htmlspecialchars( $address["dtSenhaPanico"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
       
     </div>
     
@@ -814,15 +831,15 @@
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-0">
-      <input type="radio" name="portaMotorista" id="motorista" value="Nao" onclick="desabilita('tmotorista')" checked>
+      <input type="radio" name="portaMotorista" id="motorista" value="Não" onclick="desabilita('tmotorista')" <?php if( ($address["portaMotorista"])!='Sim' ){ ?> checked <?php } ?>>
       Não
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input type="radio" name="portaMotorista" id="motorista" value="sim" onclick="habilita('tmotorista')">
+      <input type="radio" name="portaMotorista" id="motorista" value="Sim" onclick="habilita('tmotorista')" <?php if( ($address["portaMotorista"])=='Sim' ){ ?> checked <?php } ?>>
       Sim
     </label>
       </span>
-      <input id="tmotorista" name="dtPortaMotorista" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" >
+      <input id="tmotorista" name="dtPortaMotorista" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" value="<?php echo htmlspecialchars( $address["dtPortaMotorista"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
       
     </div>
     
@@ -834,15 +851,15 @@
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-0">
-      <input type="radio" name="portaPassageiro" id="ppassageiro" value="Nao" checked onclick="desabilita('tppassageiro')">
+      <input type="radio" name="portaPassageiro" id="ppassageiro" value="Não" <?php if( ($address["portaPassageiro"])!='Sim' ){ ?> checked <?php } ?> onclick="desabilita('tppassageiro')">
       Não
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input type="radio" name="portaPassageiro" id="ppassageiro" value="sim" onclick="habilita('tppassageiro')">
+      <input type="radio" name="portaPassageiro" id="ppassageiro" value="Sim" onclick="habilita('tppassageiro')" <?php if( ($address["portaPassageiro"])=='Sim' ){ ?> checked <?php } ?>>
       Sim
     </label>
       </span>
-      <input id="tppassageiro" name="dtPortaPassageiro" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false">
+      <input id="tppassageiro" name="dtPortaPassageiro" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" value="<?php echo htmlspecialchars( $address["dtPortaPassageiro"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
       
     </div>
     
@@ -862,15 +879,15 @@
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-0">
-      <input type="radio" name="ignicaoDesligada" id="ignicao" value="Nao" onclick="desabilita('tignicao')" checked>
+      <input type="radio" name="ignicaoDesligada" id="ignicao" value="Não" onclick="desabilita('tignicao')" <?php if( ($address["ignicaoDesligada"])!='Sim' ){ ?> checked <?php } ?>>
       Não
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input type="radio" name="ignicaoDesligada" id="ignicao" value="sim" onclick="habilita('tignicao')">
+      <input type="radio" name="ignicaoDesligada" id="ignicao" value="Sim" onclick="habilita('tignicao')" <?php if( ($address["ignicaoDesligada"])=='Sim' ){ ?> checked <?php } ?>>
       Sim
     </label>
       </span>
-      <input id="tignicao" name="dtIgnicaoDesligada" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false">
+      <input id="tignicao" name="dtIgnicaoDesligada" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" value="<?php echo htmlspecialchars( $address["dtIgnicaoDesligada"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
       
     </div>
     
@@ -882,15 +899,15 @@
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-0">
-      <input type="radio" name="violacaoPainel" id="painel" value="Nao" checked onclick="desabilita('tpainel')">
+      <input type="radio" name="violacaoPainel" id="painel" value="Não" <?php if( ($address["violacaoPainel"])!='Sim' ){ ?> checked <?php } ?> onclick="desabilita('tpainel')">
       Não
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input type="radio" name="violacaoPainel" id="painel" value="sim" onclick="habilita('tpainel')">
+      <input type="radio" name="violacaoPainel" id="painel" value="Sim" onclick="habilita('tpainel')" <?php if( ($address["violacaoPainel"])=='Sim' ){ ?> checked <?php } ?>>
       Sim
     </label>
       </span>
-      <input id="tpainel" name="dtViolacaoPainel" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false">
+      <input id="tpainel" name="dtViolacaoPainel" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" value="<?php echo htmlspecialchars( $address["dtViolacaoPainel"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
       
     </div>
     
@@ -910,15 +927,15 @@
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-0">
-      <input type="radio" name="violacaoGrade" id="grade" value="Nao" onclick="desabilita('tgrade')" checked>
+      <input type="radio" name="violacaoGrade" id="grade" value="Não" onclick="desabilita('tgrade')" <?php if( ($address["violacaoGrade"])!='Sim' ){ ?> checked <?php } ?> >
       Não
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input type="radio" name="violacaoGrade" id="grade" value="sim" onclick="habilita('tgrade')">
+      <input type="radio" name="violacaoGrade" id="grade" value="Sim" onclick="habilita('tgrade')" <?php if( ($address["violacaoGrade"])=='Sim' ){ ?> checked <?php } ?> >
       Sim
     </label>
       </span>
-      <input id="tgrade" name="dtViolacaoGrade" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false">
+      <input id="tgrade" name="dtViolacaoGrade" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" value="<?php echo htmlspecialchars( $address["dtViolacaoGrade"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
       
     </div>
     
@@ -940,7 +957,8 @@
       <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
       <textarea id="story" name="Descritivo"
           rows="10" cols="100" style=" resize: none" class="form-control">
-</textarea>
+        <?php echo htmlspecialchars( $address["Descritivo"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+      </textarea>
     </div>
   </div>
 </div>

@@ -274,7 +274,7 @@ $app->get("/ips/solicitacoes", function(){
  	}
 
 
-	$products = Product::listAll();
+	
 
 	$page = new Page([
 		'header'=>false,
@@ -295,11 +295,13 @@ $app->get("/ips/solicitacoes", function(){
 
 $app->get("/ips/solicitacoes/:idNumSm", function($idNumSm) {
 
-	User::verifyLogin();
+	User::verifyLogin(false);
 
 	$address = new Address();
 
 	$address->getIps($idNumSm);
+
+	$tiposSinistros = Address::listTiposSinistros();
 
 	$seguradoras = Address::listSeguradoras();
 
@@ -314,11 +316,30 @@ $app->get("/ips/solicitacoes/:idNumSm", function($idNumSm) {
 	$page->setTpl("view-ips", [
 		'address'=>$address->getValues(),
 		'seguradoras'=>$seguradoras,
-		'gerentes'=>$gerentes
+		'gerentes'=>$gerentes,
+		'tiposSinistros'=>$tiposSinistros 
 
 	]);
 	
 });
+
+
+$app->post("/ips/solicitacoes/:idNumSm", function($idNumSm) {
+
+	User::verifyLogin(false);
+
+	$address = new Address();
+
+	$address->getIps($idNumSm);
+
+	$address->setData($_POST);
+
+	$address->updateIps();
+
+	header("Location: /ips/solicitacoes");
+	exit;
+});
+
 
 
 $app->get("/checkout", function(){
