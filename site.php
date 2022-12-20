@@ -9,32 +9,32 @@ use \Hcode\Model\Acionamento;
 use \Hcode\Model\User;
 use \Hcode\Model\Order;
 use \Hcode\Model\OrderStatus;
+use \Hcode\Mailer_C;
 
 
 $app->get('/', function() {
 
-	$products = Product::newProducts();
+	$page = new Page([
+		'header'=>false,
+		'footer'=>false
+	]);
 
-	$productsBestSellers = Cart::listBestSellers();
-
-	$page = new Page();
-
-	$page->setTpl("index", [
-		'products'=>Product::checkList($products),
-		'productsBestSellers'=>Product::checkList($productsBestSellers)
-
+	$page->setTpl("login", [
+		'error'=>User::getError(),
+		'errorRegister'=>User::getErrorRegister(),
+		'registerValues'=>(isset($_SESSION['registerValues'])) ? $_SESSION['registerValues'] : ['name'=>'', 'email'=>'', 'phone'=>'']
 	]);
 });
 
-$app->get('/about', function() {
+/*$app->get('/about', function() {
 
 	$page = new Page();
 
 	$page->setTpl("about");
 
-});
+});*/
 
-$app->get("/categories/:idcategory", function($idcategory){
+/*$app->get("/categories/:idcategory", function($idcategory){
 
 	$page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
 
@@ -63,8 +63,8 @@ $app->get("/categories/:idcategory", function($idcategory){
 
 	]);
 
-});
-$app->get("/products/:desurl", function($desurl){
+});*/
+/*$app->get("/products/:desurl", function($desurl){
 
 	$product = new Product();
 
@@ -77,11 +77,7 @@ $app->get("/products/:desurl", function($desurl){
 		'categories'=>$product->getCategories()
 	]);
 	
-});
-
-
-
-
+});*/
 
 $app->get('/ips/success', function(){
 
@@ -98,8 +94,6 @@ $app->get('/ips/success', function(){
     $page->setTpl('ips-success',[
        
     ]);
-
-
 
 });
 
@@ -128,8 +122,6 @@ $app->get("/ips", function(){
 
 		$address->setNumSM($_GET['NumSM']);
 	}
-
-
 
 	if (!$address->getNumSM()) $address->setNumSM('');
 	if (!$address->getdataInicio()) $address->setdataInicio('');
@@ -173,13 +165,7 @@ $app->post("/ips", function(){
 
 	User::verifyLogin(true);
 
-
-
-	
 	$user = User::getFromSession();
-
-
-
 
 	$address = new Address();
 
@@ -201,6 +187,8 @@ $app->post("/ips", function(){
 	}
 
 	$_POST['idperson'] = $user->getidperson();
+
+	$_POST['desperson'] = $user->getdesperson();
 
 	$address->setData($_POST);
 	$address->save();
@@ -225,12 +213,20 @@ $app->post("/ips", function(){
 
 	$address->setData($_POST);
 	$address->saveAlertas();
-
-	header("Location: /ips/success");
-	exit;
-
-
 	
+	$url = $_POST['NumSM'];
+	$link = "http://127.0.0.1/ips/solicitacao/$url";
+   	$mailer_C = new Mailer_C("Nova Solicitacao de Ips", "Ips_Email", array(
+                 "name"=>$_POST['desperson'],
+                 "link"=> $link,
+                 "url"=>$url
+             	)); 
+
+    $mailer_C->send();
+
+    header("Location: /ips/success");
+
+    exit;
 
 });
 
@@ -341,8 +337,40 @@ $app->post("/ips/solicitacoes/:idNumSm", function($idNumSm) {
 });
 
 
+$app->get("/ips/solicitacao/:idNumSm", function($idNumSm) {
 
-$app->get("/checkout", function(){
+	
+
+	$address = new Address();
+
+	$address->getIps($idNumSm);
+
+	$tiposSinistros = Address::listTiposSinistros();
+
+	$seguradoras = Address::listSeguradoras();
+
+	$gerentes = Address::listGerentes();
+
+
+	$page = new Page([
+			'header'=>false,
+			'footer'=>false
+	]);
+
+	$page->setTpl("view-ips-down", [
+		'address'=>$address->getValues(),
+		'seguradoras'=>$seguradoras,
+		'gerentes'=>$gerentes,
+		'tiposSinistros'=>$tiposSinistros 
+
+	]);
+	
+});
+
+
+
+
+/*$app->get("/checkout", function(){
 
 	User::verifyLogin(false);
 	
@@ -384,7 +412,7 @@ $app->get("/checkout", function(){
 		'error'=>Address::getMsgError()
 
 	]);
-});
+});*/
 
 /*$app->post("/checkout", function(){
 
@@ -746,7 +774,10 @@ $app->get("/forgot/reset", function(){
 
 	$user = User::validForgotDecrypt($_GET["code"]);
 
-	$page = new Page();
+	$page = new Page([
+		'header'=>false,
+		'footer'=>false
+	]);
 
 	$page->setTpl("forgot-reset", array(
 		"name"=>$user["desperson"],
@@ -778,7 +809,7 @@ $app->post("/forgot/reset", function(){
 
 });
 
-$app->get("/profile", function(){
+/*$app->get("/profile", function(){
 
 	User::verifyLogin(false);
 
@@ -792,9 +823,9 @@ $app->get("/profile", function(){
 		'profileError'=>User::getError()
 	]);
 
-});
+});*/
 
-$app->post("/profile", function(){
+/*$app->post("/profile", function(){
 
 	User::verifyLogin(false);
 
@@ -838,9 +869,9 @@ $app->post("/profile", function(){
 	header("Location: /profile");
 	exit;
 
-});
+});*/
 
-$app->get("/order/:idorder", function($idorder) {
+/*$app->get("/order/:idorder", function($idorder) {
 
 	User::verifyLogin(false);
 
@@ -854,9 +885,9 @@ $app->get("/order/:idorder", function($idorder) {
 		'order'=>$order->getValues()
 	]);
 
-});
+});*/
 
-$app->get("/boleto/:idorder", function($idorder){
+/*$app->get("/boleto/:idorder", function($idorder){
 
 	User::verifyLogin(false);
 
@@ -926,9 +957,9 @@ $app->get("/boleto/:idorder", function($idorder){
 	require_once($path . "funcoes_itau.php");
 	require_once($path . "layout_itau.php");
 
-});
+});*/
 
-$app->get("/profile/orders", function(){
+/*$app->get("/profile/orders", function(){
 	
 	User::verifyLogin(false);
 
@@ -940,9 +971,9 @@ $app->get("/profile/orders", function(){
 		'orders'=>$user->getOrders()
 	]);
 
-});
+});*/
 
-$app->get("/profile/orders/:idorder", function($idorder){
+/*$app->get("/profile/orders/:idorder", function($idorder){
 
 	User::verifyLogin(false);
 
@@ -965,7 +996,7 @@ $app->get("/profile/orders/:idorder", function($idorder){
 	]);
 
 
-});
+});*/
 
 $app->get("/profile/change-password", function(){
 

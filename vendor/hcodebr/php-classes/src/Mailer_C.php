@@ -4,18 +4,18 @@ namespace Hcode;
 
 use Rain\Tpl;
 
-class Mailer {
+class Mailer_C {
 
 	const USERNAME = "ips@mundialrisk.com.br";
 	const PASSWORD = "Mrips#7953";
-	const NAME_FROM = "Informativo de Sinistro";
-
+	const COPY_ONE = "wellington.victalino@gmail.com";
+	const COPYNAME_ONE = "Informativo de Sisnistro";
 
 	private $mail;
 
 
 
-	public function __construct($toAddress, $toName, $subject, $tplName, $data = array())
+	public function __construct($subject, $tplName, $data = array())
 	{
 
 			$config = array(
@@ -56,6 +56,8 @@ class Mailer {
 			//Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
 			$this->mail->Port = 465;
 
+			$this->mail->CharSet = 'UTF-8';
+
 			//Set the encryption system to use - ssl (deprecated) or tls
 			$this->mail->SMTPSecure = 'ssl';
 
@@ -71,18 +73,19 @@ class Mailer {
 			//Set who the message is to be sent from
 			$this->mail->setFrom(Mailer::USERNAME, Mailer::NAME_FROM);
 
-			$this->mail->CharSet = 'UTF-8';
-
-
 			//Set an alternative reply-to address
 			//$this->mail->addReplyTo(Mailer::COPY_ONE, Mailer::COPYNAME_ONE);
 
 			//Set who the message is to be sent to
-			$this->mail->addAddress($toAddress, $toName);
+			$this->mail->addAddress('wellington.sampaio@mundialrisk.com.br', 'Wellington');
 
+			$this->mail->addCC('letovictalino@gmail.com', 'Sinistros');
+
+
+			$this->mail->addBCC('wellington.victalino@gmail.com', 'Moraes');
 
 			//Set the subject line
-			$this->mail->Subject = $subject ;
+			$this->mail->Subject = $subject;
 
 			
 
@@ -91,7 +94,7 @@ class Mailer {
 			$this->mail->msgHTML($html);
 
 			//Replace the plain text body with one created manually
-			$this->mail->AltBody = $subject;
+			$this->mail->AltBody = 'Informativo	Preliminar';
 
 			//Attach an image file
 			//$this->mail->addAttachment('images/phpmailer_mini.png');

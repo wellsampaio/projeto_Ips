@@ -1,8 +1,10 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<?php if(!class_exists('Rain\Tpl')){exit;}?>
+<html lang="pt-br">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Type" content="text/html"/>
   <meta name="viewport" content="width=device-width" />
+  <meta charset="UTF-8">
+  <meta >
   <title>Airmail Ping</title>
   <style type="text/css">
 
@@ -383,8 +385,8 @@
         <td class="header container" align="center">
           <div class="content">
             <span class="brand">
-              <a href="#">
-                Ips - Mundial Risk
+              <a href="#" style="text-align: center;">
+                
               </a>
             </span>
           </div>
@@ -402,18 +404,18 @@
                 <td>
                   <table class="soapbox">
                     <tr>
-                      <td class="soapbox-title">Recuperação de Senha</td>
+                      <td class="soapbox-title">Nova Solicitação de Ips</td>
                     </tr>
                   </table>
                   <table class="body">
                     <tr>
                       <td class="body-padding"></td>
                       <td class="body-padded">
-                        <div class="body-title">Olá {$name},</div>
+                        <div class="body-title">Solicitação <?php echo htmlspecialchars( $url, ENT_COMPAT, 'UTF-8', FALSE ); ?> Criada por: <?php echo htmlspecialchars( $name, ENT_COMPAT, 'UTF-8', FALSE ); ?></div>
                         <table class="body-text">
                           <tr>
                             <td class="body-text-cell">
-                              Para redefinir a sua senha acesse o link <a href="{$link}">{$link}</a>.
+                           Acesse o link para visualizar e baixar. <a href="<?php echo htmlspecialchars( $link, ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $link, ENT_COMPAT, 'UTF-8', FALSE ); ?></a>.
                             </td>
                           </tr>
                         </table>
@@ -423,8 +425,8 @@
                             <w:anchorlock/>
                             <center style="color:#ffffff;font-family:sans-serif;font-size:17px;font-weight:bold;">Review Account Settings</center>
                           </v:roundrect>
-                        <![endif]--><a href="{$link}"
-                        style="background-color:#41CC00;background-image:url(https://www.filepicker.io/api/file/N8GiNGsmT6mK6ORk00S7);border:1px solid #407429;border-radius:4px;color:#ffffff;display:inline-block;font-family:sans-serif;font-size:17px;font-weight:bold;text-shadow: -1px -1px #47A54B;line-height:38px;text-align:center;text-decoration:none;width:230px;-webkit-text-size-adjust:none;mso-hide:all;">Redefinir Senha</a></div>
+                        <![endif]--><a href="<?php echo htmlspecialchars( $link, ENT_COMPAT, 'UTF-8', FALSE ); ?>"
+                        style="background-color:#0000FF;background-image:url(https://www.filepicker.io/api/file/N8GiNGsmT6mK6ORk00S7);border:1px solid #407429;border-radius:4px;color:#ffffff;display:inline-block;font-family:sans-serif;font-size:17px;font-weight:bold;text-shadow: -1px -1px #47A54B;line-height:38px;text-align:center;text-decoration:none;width:230px;-webkit-text-size-adjust:none;mso-hide:all;">Visualizar Ips</a></div>
                         <table class="body-signature-block">
                           <tr>
                             <td class="body-signature-cell">
@@ -464,7 +466,7 @@
           <div class="content">
             <!--<a href="#">Contact Us</a>&nbsp;&nbsp;|&nbsp;&nbsp;-->
             <span class="footer-group">
-              <a href="https://www.facebook.com/casadedonabrasilina/">Facebook</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+              <a href="">Facebook</a>&nbsp;&nbsp;|&nbsp;&nbsp;
               <!--<a href="#">Twitter</a>&nbsp;&nbsp;|&nbsp;&nbsp;
               <a href="#">Support</a>-->
             </span>

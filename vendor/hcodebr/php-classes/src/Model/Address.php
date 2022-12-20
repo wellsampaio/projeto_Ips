@@ -170,22 +170,38 @@ class Address extends Model {
 
 		$sql = new Sql();
 
-			$results = $sql->select("CALL sp_acionamentos_save(:idacionamento,:tipo_acionamento,:datah,:nome,:contato,:local,:NumSM)",  array(
+
+			$results = $sql->select("CALL sp_acionamentos_save(:idacionamento,:tipo_acionamento,:datah,:nome,:contato,:local,:NumSM, :descricao, :acionamento2, :datah2, :nome2, :contato2, :local2, :descricao2, :acionamento3, :datah3, :nome3, :contato3, :local3, :descricao3, :acionamento4, :datah4, :nome4, :contato4, :local4, :descricao4)",  array(
 		    ':idacionamento'=>$this->getidacionamento(),
 		    ':tipo_acionamento'=>$this->gettipo_acionamento(),
 		    ':datah'=>$this->getdatah(),
 		    ':nome'=>$this->getnome(),
 		    ':contato'=>$this->getcontato(),
 		    ':local'=>$this->getlocal(),
-		    ':NumSM'=>$this->getNumSM()
+		    ':NumSM'=>$this->getNumSM(),
+		    ':descricao'=>$this->getdescricao(),
+		    ':acionamento2'=>$this->getacionamento2(),
+		    ':datah2'=>$this->getdatah2(),
+		    ':nome2'=>$this->getnome2(),
+		    ':contato2'=>$this->getcontato2(),
+		    ':local2'=>$this->getlocal2(),
+		    ':descricao2'=>$this->getdescricao2(),
+		    ':acionamento3'=>$this->getacionamento3(),
+		    ':datah3'=>$this->getdatah3(),
+		    ':nome3'=>$this->getnome3(),
+		    ':contato3'=>$this->getcontato3(),
+		    ':local3'=>$this->getlocal3(),
+		    ':descricao3'=>$this->getdescricao3(),
+		    ':acionamento4'=>$this->getacionamento4(),
+		    ':datah4'=>$this->getdatah4(),
+		    ':nome4'=>$this->getnome4(),
+		    ':contato4'=>$this->getcontato4(),
+		    ':local4'=>$this->getlocal4(),
+		    ':descricao4'=>$this->getdescricao4()
 		    
 	));
 
 
-
-			if (count($results) > 0) {
-			$this->setData($results[0]);
-		}
 
 	
 
@@ -197,7 +213,7 @@ class Address extends Model {
 
 		$sql = new Sql();
 
-			$results = $sql->select("CALL sp_clientes_save(:idcliente,:Cliente,:nomeEmbarcador,:nomeTransportador, :seguradora, :gerenteResponsavel, :acionar, :telefone,:NumSM)",  array(
+			$results = $sql->select("CALL sp_clientes_save(:idcliente,:Cliente,:nomeEmbarcador,:nomeTransportador, :seguradora, :gerenteResponsavel, :acionar, :telefone,:NumSM,:Protocolo)",  array(
 		    ':idcliente'=>$this->getidcliente(),
 		    ':Cliente'=>$this->getCliente(),
 		    ':nomeEmbarcador'=>$this->getnomeEmbarcador(),
@@ -206,7 +222,8 @@ class Address extends Model {
 		    ':gerenteResponsavel'=>$this->getgerenteResponsavel(),
 		    ':acionar'=>$this->getacionar(),
 		    ':telefone'=>$this->gettelefone(),
-		    ':NumSM'=>$this->getNumSM()
+		    ':NumSM'=>$this->getNumSM(),
+		    ':Protocolo'=>$this->getProtocolo()
 		    
 	));
 
@@ -306,7 +323,8 @@ public function saveSinistros()
 
 		$sql = new Sql();
 
-			$results = $sql->select("CALL sp_alertas_save(:idalerta, :perdaBateria, :dtAlertaBateria, :NumSM, :perdaSinal, :dtPerdaSinal, :btPanico, :dtBtPanico, :portaBauLateral, :dtPortaBauLateral, :desengateCarreta, :dtDesengateCarreta, :portaMotorista, :dtPortaMotorista, :ignicaoDesligada, :dtIgnicaoDesligada, :violacaoGrade, :dtViolacaoGrade, :perdaTerminal, :dtPerdaTerminal, :desvioRota, :dtDesvioRota, :portaBauTraseira, :dtPortaBauTraseira, :arrombamentoBau, :dtArrombamentoBau, :senhaPanico, :dtSenhaPanico, :portaPassageiro, :dtPortaPassageiro, :violacaoPainel, :dtViolacaoPainel)",  array(
+			$results = $sql->select("CALL sp_alertas_save(:idalerta,:perdaBateria, :dtAlertaBateria, :NumSM, :perdaSinal, :dtPerdaSinal, :btPanico, :dtBtPanico, :portaBauLateral, :dtPortaBauLateral, :desengateCarreta, :dtDesengateCarreta, :portaMotorista, :dtPortaMotorista, :ignicaoDesligada, :dtIgnicaoDesligada, :violacaoGrade, :dtViolacaoGrade, :perdaTerminal, :dtPerdaTerminal, :desvioRota, :dtDesvioRota, :portaBauTraseira, :dtPortaBauTraseira, :arrombamentoBau, :dtArrombamentoBau, :senhaPanico, :dtSenhaPanico, :portaPassageiro, :dtPortaPassageiro, :violacaoPainel, :dtViolacaoPainel)",  array(
+		    ':idalerta'=>$this->getidalerta(),
 		    ':perdaBateria'=>$this->getperdaBateria(),
 		    ':dtAlertaBateria'=>$this->getdtAlertaBateria(),
 		    ':NumSM'=>$this->getNumSM(),
@@ -357,7 +375,7 @@ public function saveSinistros()
 		$sql = new Sql();
 
 
-			$sql->query("UPDATE tb_sinistros s
+		 $sql->query("UPDATE tb_sinistros s
 			JOIN tb_acionamentos a on a.NumSM = s.NumSM
 			JOIN tb_veiculos v on v.NumSM = a.NumSM
 			Join tb_persons p on p.idperson = v.idperson
@@ -367,18 +385,75 @@ public function saveSinistros()
 			Join tb_clientes c on c.NumSM = i.NumSM
 			left Join tb_alertas al on al.NumSM = c.NumSM
 			left Join tb_acionamentos ac on ac.NumSM = al.NumSM
-			set s.dtComunicado = :dtComunicado, s.dtSinistro = :dtSinistro,  s.localSinistro = :localSinistro, s.latitude = :latitude, s.longitude = :longitude, S.Km = :Km, s.tipoSinistro = :tipoSinistro, s.nomeComunicante = :nomeComunicante, s.Descritivo = :Descritivo, a.tipo_acionamento = :tipo_acionamento, a.datah = :datah, a.nome = :nome, a.contato = :contato, a.local = :local, v.marca = :marca, v.modelo = :modelo, v.placa = :placa, v.cor = :cor, v.vtec_descricao = :vtec_descricao, v.term_numero_terminal = :term_numero_terminal, vg.dataInicio = :dataInicio, vg.Valor = :Valor, vg.cidadeOrigem = :cidadeOrigem,
-			vg.cidadeDestino = :cidadeDestino, vg.produtos = :produtos, m.Motorista = :Motorista, m.CPF = :CPF, m.Vinculo = :Vinculo, i.isca = :isca, i.tec_isca = :tec_isca, i.iscaPosicionando = :iscaPosicionando, c.nomeEmbarcador =  :nomeEmbarcador, c.nomeTransportador = :nomeTransportador, c.seguradora = :seguradora, c.gerenteResponsavel = :gerenteResponsavel, c.acionar = :acionar, c.telefone = :telefone, al.perdaBateria = :perdaBateria, al.dtAlertaBateria = :dtAlertaBateria, al.perdaSinal = :perdaSinal, al.dtPerdaSinal = :dtPerdaSinal, al.btpanico = :btpanico, al.dtBtPanico = :dtBtPanico, al.portaBauLateral = :portaBauLateral, al.dtPortaBauLateral = :dtPortaBauLateral, al.desengateCarreta = :desengateCarreta, al.dtDesengateCarreta = :dtDesengateCarreta, al.portaMotorista = :portaMotorista, al.dtPortaMotorista = :dtPortaMotorista, al.ignicaoDesligada = :ignicaoDesligada, al.dtIgnicaoDesligada = :dtIgnicaoDesligada, al.violacaoGrade = :violacaoGrade, al.dtViolacaoGrade = :dtViolacaoGrade, al.perdaTerminal = :perdaTerminal, al.dtPerdaTerminal = :dtPerdaTerminal, al.desvioRota = :desvioRota, al.dtDesvioRota = :dtDesvioRota, al.portaBauTraseira = :portaBauTraseira, al.dtPortaBauTraseira = :dtPortaBauTraseira, al.arrombamentoBau = :arrombamentoBau, al.dtArrombamentoBau = :dtArrombamentoBau, al.senhaPanico = :senhaPanico, al.dtSenhaPanico = :dtSenhaPanico, al.portaPassageiro = :portaPassageiro, al.dtPortaPassageiro = :dtPortaPassageiro, al.violacaoPainel = :violacaoPainel, al.dtViolacaoPainel = :dtViolacaoPainel where s.NumSM = :NumSM", [
+			set s.dtComunicado = :dtComunicado, s.dtSinistro = :dtSinistro,  s.localSinistro = :localSinistro, s.latitude = :latitude, s.longitude = :longitude, S.Km = :Km, s.tipoSinistro = :tipoSinistro, s.nomeComunicante = :nomeComunicante, s.Descritivo = :Descritivo, a.tipo_acionamento = :tipo_acionamento, a.datah = :datah, a.nome = :nome, a.contato = :contato, a.local = :local, a.descricao = :descricao, a.acionamento2 = :acionamento2, a.datah2 = :datah2, a.nome2 = :nome2, a.contato2 = :contato2, a.local2 = :local2, a.descricao2 = :descricao2, a.acionamento3 = :acionamento3, a.datah3 = :datah3, a.nome3 = :nome3, a.contato3 = :contato3, a.local3 = :local3, a.descricao3 = :descricao3, a.acionamento4 = :acionamento4, a.datah4 = :datah4, a.nome4 = :nome4, a.contato4 = :contato4, a.local4 = :local4, a.descricao4 = :descricao4,  v.marca = :marca, v.modelo = :modelo, v.placa = :placa, v.cor = :cor, v.vtec_descricao = :vtec_descricao, v.term_numero_terminal = :term_numero_terminal, vg.dataInicio = :dataInicio, vg.Valor = :Valor, vg.cidadeOrigem = :cidadeOrigem,
+			vg.cidadeDestino = :cidadeDestino, vg.Produtos = :Produtos, m.Motorista = :Motorista, m.CPF = :CPF, m.Vinculo = :Vinculo, i.isca = :isca, i.tec_isca = :tec_isca, i.iscaPosicionando = :iscaPosicionando, c.nomeEmbarcador =  :nomeEmbarcador, c.nomeTransportador = :nomeTransportador, c.seguradora = :seguradora, c.gerenteResponsavel = :gerenteResponsavel, c.acionar = :acionar, c.telefone = :telefone, c.Protocolo = :Protocolo, al.perdaBateria = :perdaBateria, al.dtAlertaBateria = :dtAlertaBateria, al.perdaSinal = :perdaSinal, al.dtPerdaSinal = :dtPerdaSinal, al.btpanico = :btPanico, al.dtBtPanico = :dtBtPanico, al.portaBauLateral = :portaBauLateral, al.dtPortaBauLateral = :dtPortaBauLateral, al.desengateCarreta = :desengateCarreta, al.dtDesengateCarreta = :dtDesengateCarreta, al.portaMotorista = :portaMotorista, al.dtPortaMotorista = :dtPortaMotorista, al.ignicaoDesligada = :ignicaoDesligada, al.dtIgnicaoDesligada = :dtIgnicaoDesligada, al.violacaoGrade = :violacaoGrade, al.dtViolacaoGrade = :dtViolacaoGrade, al.perdaTerminal = :perdaTerminal, al.dtPerdaTerminal = :dtPerdaTerminal, al.desvioRota = :desvioRota, al.dtDesvioRota = :dtDesvioRota, al.portaBauTraseira = :portaBauTraseira, al.dtPortaBauTraseira = :dtPortaBauTraseira, al.arrombamentoBau = :arrombamentoBau, al.dtArrombamentoBau = :dtArrombamentoBau, al.senhaPanico = :senhaPanico, al.dtSenhaPanico = :dtSenhaPanico, al.portaPassageiro = :portaPassageiro, al.dtPortaPassageiro = :dtPortaPassageiro, al.violacaoPainel = :violacaoPainel, al.dtViolacaoPainel = :dtViolacaoPainel where s.NumSM = :NumSM", [
+			    
+				':dtComunicado'=>$this->getdtComunicado(),
+			    ':dtSinistro'=>$this->getdtSinistro(),
+			    ':localSinistro'=>$this->getlocalSinistro(),
+			    ':latitude'=>$this->getlatitude(),
+			    ':longitude'=>$this->getlongitude(),
+			    ':Km'=>$this->getKm(),
+			    ':tipoSinistro'=>$this->gettipoSinistro(),
+			    ':nomeComunicante'=>$this->getnomeComunicante(),
+			    ':Descritivo'=>$this->getDescritivo(),
+			    ':tipo_acionamento'=>$this->gettipo_acionamento(),
+			    ':datah'=>$this->getdatah(),
+			    ':nome'=>$this->getnome(),
+			    ':contato'=>$this->getcontato(),
+			    ':local'=>$this->getlocal(),
+			    ':descricao'=>$this->getdescricao(),
+		    	':acionamento2'=>$this->getacionamento2(),
+		    	':datah2'=>$this->getdatah2(),
+		    	':nome2'=>$this->getnome2(),
+		    	':contato2'=>$this->getcontato2(),
+		    	':local2'=>$this->getlocal2(),
+		    	':descricao2'=>$this->getdescricao2(),
+		    	':acionamento3'=>$this->getacionamento3(),
+		    	':datah3'=>$this->getdatah3(),
+		    	':nome3'=>$this->getnome3(),
+		    	':contato3'=>$this->getcontato3(),
+		    	':local3'=>$this->getlocal3(),
+		    	':descricao3'=>$this->getdescricao3(),
+		    	':acionamento4'=>$this->getacionamento4(),
+		    	':datah4'=>$this->getdatah4(),
+		    	':nome4'=>$this->getnome4(),
+		    	':contato4'=>$this->getcontato4(),
+		    	':local4'=>$this->getlocal4(),
+		    	':descricao4'=>$this->getdescricao4(),		
+			    ':marca'=>$this->getmarca(),
+			    ':modelo'=>$this->getmodelo(),
+			    ':placa'=>$this->getplaca(),
+			    ':cor'=>$this->getcor(),
+			    ':vtec_descricao'=>$this->getvtec_descricao(),
+			    ':term_numero_terminal'=>$this->getterm_numero_terminal(),
+			    ':dataInicio'=>$this->getdataInicio(),
+		    	':Valor'=>$this->getValor(),
+		    	':cidadeOrigem'=>$this->getcidadeOrigem(),
+		    	':cidadeDestino'=>$this->getcidadeDestino(),
+		    	':Produtos'=>$this->getProdutos(),
+		    	':Motorista'=>$this->getMotorista(),
+		   		':CPF'=>$this->getCPF(),
+		    	':Vinculo'=>$this->getVinculo(),
+		    	':isca'=>$this->getisca(),
+		    	':tec_isca'=>$this->gettec_isca(),
+		    	':iscaPosicionando'=>$this->getiscaPosicionando(),
+		    	':nomeEmbarcador'=>$this->getnomeEmbarcador(),
+			    ':nomeTransportador'=>$this->getnomeTransportador(),
+			    ':seguradora'=>$this->getseguradora(),
+			    ':gerenteResponsavel'=>$this->getgerenteResponsavel(),
+			    ':acionar'=>$this->getacionar(),
+			    ':telefone'=>$this->gettelefone(),
+			    ':Protocolo'=>$this->getProtocolo(),
 			    ':perdaBateria'=>$this->getperdaBateria(),
 			    ':dtAlertaBateria'=>$this->getdtAlertaBateria(),
-			    ':NumSM'=>$this->getNumSM(),
 			    ':perdaSinal'=>$this->getperdaSinal(),
 			    ':dtPerdaSinal'=>$this->getdtPerdaSinal(),
 			    ':btPanico'=>$this->getbtPanico(),
 			    ':dtBtPanico'=>$this->getdtBtPanico(),
 			    ':portaBauLateral'=>$this->getportaBauLateral(),
 			    ':dtPortaBauLateral'=>$this->getdtPortaBauLateral(),
-			    ':desengateCarreta'=>$this->getdesengateCarreta(),
+ 			    ':desengateCarreta'=>$this->getdesengateCarreta(),
 			    ':dtDesengateCarreta'=>$this->getdtDesengateCarreta(),
 			    ':portaMotorista'=>$this->getportaMotorista(),
 			    ':dtPortaMotorista'=>$this->getdtPortaMotorista(),
@@ -396,48 +471,17 @@ public function saveSinistros()
 			    ':dtArrombamentoBau'=>$this->getdtArrombamentoBau(),
 			    ':senhaPanico'=>$this->getsenhaPanico(),
 			    ':dtSenhaPanico'=>$this->getdtSenhaPanico(),
-			    ':portaPassageiro'=>$this->getportaPassageiro(),
+  			    ':portaPassageiro'=>$this->getportaPassageiro(),
 			    ':dtPortaPassageiro'=>$this->getdtPortaPassageiro(),
 			    ':violacaoPainel'=>$this->getviolacaoPainel(),
 			    ':dtViolacaoPainel'=>$this->getdtViolacaoPainel(),
-			    ':dtComunicado'=>$this->getdtComunicado(),
-			    ':dtSinistro'=>$this->getdtSinistro(),
-			    ':localSinistro'=>$this->getlocalSinistro(),
-			    ':latitude'=>$this->getlatitude(),
-			    ':longitude'=>$this->getlongitude(),
-			    ':Km'=>$this->getKm(),
-			    ':tipoSinistro'=>$this->gettipoSinistro(),
-			    ':nomeComunicante'=>$this->getnomeComunicante(),
-			    ':Descritivo'=>$this->getDescritivo(),
-			    ':dataInicio'=>$this->getdataInicio(),
-		    	':Valor'=>$this->getValor(),
-		    	':cidadeOrigem'=>$this->getcidadeOrigem(),
-		    	':cidadeDestino'=>$this->getcidadeDestino(),
-		    	':Produtos'=>$this->getProdutos(),
-		    	':Motorista'=>$this->getMotorista(),
-		   		':CPF'=>$this->getCPF(),
-		    	':Vinculo'=>$this->getVinculo(),
-		    	':nomeEmbarcador'=>$this->getnomeEmbarcador(),
-			    ':nomeTransportador'=>$this->getnomeTransportador(),
-			    ':seguradora'=>$this->getseguradora(),
-			    ':gerenteResponsavel'=>$this->getgerenteResponsavel(),
-			    ':acionar'=>$this->getacionar(),
-			    ':telefone'=>$this->gettelefone(),
-			    ':tipo_acionamento'=>$this->gettipo_acionamento(),
-			    ':datah'=>$this->getdatah(),
-			    ':nome'=>$this->getnome(),
-			    ':contato'=>$this->getcontato(),
-			    ':local'=>$this->getlocal(),
-			    ':isca'=>$this->getisca(),
-		    	':tec_isca'=>$this->gettec_isca(),
-		    	':iscaPosicionando'=>$this->getiscaPosicionando(),
-		    	':marca'=>$this->getmarca(),
-			    ':modelo'=>$this->getmodelo(),
-			    ':placa'=>$this->getplaca(),
-			    ':cor'=>$this->getcor(),
-			    ':vtec_descricao'=>$this->getvtec_descricao()
+			    ':NumSM'=>$this->getNumSM()
+		    	
 
-			    			]);
+
+			]);
+	
+
 	}
 
 

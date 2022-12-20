@@ -235,13 +235,13 @@ class User extends Model {
 
              if ($inadmin === true) {
                  $link = 
-"https://www.casadedonabrasilina.com.br/admin/forgot/reset?code=$result";
+"http://127.0.0.1/admin/forgot/reset?code=$result";
              } else {
                  $link = 
-"https://www.casadedonabrasilina.com.br/forgot/reset?code=$result";
+"http://127.0.0.1/forgot/reset?code=$result";
              } 
 
-             $mailer = new Mailer($data['desemail'], $data['desperson'], "Redefinir senha da Confeitaria Casa de Dona Brasilina", "forgot", array(
+             $mailer = new Mailer($data['desemail'], $data['desperson'], "Redefinir senha", "forgot", array(
                  "name"=>$data['desperson'],
                  "link"=>$link
              )); 
@@ -394,12 +394,6 @@ class User extends Model {
 		return $results;
 
 	}
-
-
-	
-
-
-
 
 
 	public static function getPage($page = 1, $itemsPerPage = 10)

@@ -2,9 +2,10 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
-
+<link rel="icon" type="image/png" href="/res/site/images/01_LOGO ORIGINAL.png" />
 <script type="text/javascript" src="/res/site/js3/ips.js"></script>
 <link href="/res/site/css3/style.css" rel="stylesheet" type="text/css" media="all" />
+  <meta name="viewport" content="width=device-width" />
 
 
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -20,7 +21,7 @@
     <link href="http://fonts.googleapis.com/css?family=Arimo:400" rel="stylesheet">
 <!DOCTYPE html>
 <head>
-<title>Solicitação de Ips</title>
+<title>Solicitação de Ips {$address.NumSM}</title>
 <script type="text/javascript">
  async function pesquisarUsuario(registro) {
     //console.log(registro);
@@ -50,63 +51,41 @@
     }
 }
 
-var controleCampo = 1;
-function adicionarCampo() {
-    controleCampo++;
-    document.getElementById('formulario').insertAdjacentHTML('beforeend', '<div class="form-group" id="campo' + controleCampo + '"><label class="col-md-2 control-label" for="prependedtext">Acionamentos<h11>*</h11></label><div class="col-md-2"><div class="input-group"><input id="acionamento" name="acionamento'+ controleCampo + '" placeholder="Tipo de acionamento" class="form-control" type="text" ></div></div><div class="col-md-2" style="margin-left: -50px"><div class="input-group"><input id="prependedtext" name="datah'+ controleCampo + '" class="form-control" type="datetime-local" ></div></div> <div class="col-md-1" style="margin-left: -55px"><div class="input-group"><input id="prependedtext" name="nome'+ controleCampo + '" class="form-control" placeholder="Nome" type="text" ></div></div>  <div class="col-md-2" style="margin-left: -20px"><div class="input-group"> <input id="prependedtext" name="contato'+ controleCampo + '" class="form-control" placeholder="Contato" type="text"></div></div><div class="col-md-2" style="margin-left: -50px"> <div class="input-group"><input id="local" name="local'+ controleCampo + '" class="form-control" placeholder="Local" type="text"></div>  </div><div class="col-md-2" style="margin-left: -55px"> <div class="input-group"><input id="descricao" name="descricao'+ controleCampo + '" class="form-control" placeholder="Descrição do acionamento" type="text"></div>  </div><input type="hidden" name="id' + controleCampo + '" id="id' + controleCampo + '" /><button type="button" id="' + controleCampo + '" onclick="removerCampo(' + controleCampo + ')"> - </button></div>');
-    document.getElementById("qnt_campo").value = controleCampo;
-}
-
-function removerCampo(idCampo){
-    document.getElementById('campo' + idCampo).remove();
-} 
 
 </script>
 
 
     
 </head>
-<body>
-
-
-
-
-        
+<body >       
 
 <!-- top-header -->
-                <div class="top-header">
-            <div class="container">
-                <div class="top-header-left">
-                     <ul>
-                        <!--<li><a href="/profile">Minha Conta</a></li>-->
-                        <li><a href="/ips" target="blank">Solicitar Ips</a></li>
-                        <li><a href="/ips/solicitacoes" target="blank">Solicitações</a></li>
-                        <li><a href="" >Contato</a></li>
+  <div id="imprime">
+        <div class="top-header">
+            <div class="Container">
 
-                        <div class="clearfix"> </div>
-                    </ul>
-                </div>
                 <div class="top-header-center">
                     
                 </div>
                 <div class="top-header-right">
-                    <ul>
-                        {if="checkLogin(false)"}
-                            <li><a href=""><i class="fa fa-user"></i> {function="getUserName()"}</a></li>
-                            <li><a href="/logout"><i class="fa fa-close"></i> Sair</a></li>
-                            {else}
-                            <li><a href="/login"><i class="fa fa-lock"></i> Login</a></li>
-                            <li><a href=""><i class="fa fa-lock"></i> Criar Conta</a></li>
-                            {/if}
+                    <ul style="margin-left: -400px">
+                        <li class="hidden-print"><a href="/ips/solicitacoes"><i class="fa fa-lock"></i> Voltar</a></li>
+
+                       
+                            <li><a href=""><i class="fa fa-user"></i> Criado Por: {$address.desperson}</a></li>
+                           
+                            
+                          
+                            
                     </ul>
                 </div>
-                <div class="clearfix"> </div>
+                <div class="clearfix"> 
+                </div>
             </div>
+
         </div>
 
 
-
-      
         <!-- /top-header -->
 <form class="form-horizontal" action="" method="post" name="ips">
 <fieldset>
@@ -117,13 +96,21 @@ function removerCampo(idCampo){
 
     <div class="panel-body">
 
-
-<div class="form-group">
+      <div class="form-group" style="margin: 2px; margin-left: 1000px;">
+    <img src="https://tomticket-assets.s3.amazonaws.com/logotipo-empresa/51702.png">
+  </div>
+<div >
     <div class="form-group">
   <label class="col-md-2 control-label" for="SM">Solicitação de SM <h11>*</h11></label>
   <div class="col-md-2">
-    <input id="cep" name="NumSM" placeholder="Apenas números" class="form-control input-md" value="{$address.NumSM}" type="search" required="" >
+    <input id="cep" name="NumSM" placeholder="Apenas números" class="form-control input-md" value="{$address.NumSM}" type="search" required="" disabled="false">
   </div>
+
+      <div class="col-md-2" id="print">
+      <button type="button" onclick="window.print()" class="hidden-print">Gerar Ips</button>
+    </div>
+
+
     
 <!--<div class="form-group">   
 <div class="col-md-4 control-label">
@@ -149,7 +136,7 @@ function removerCampo(idCampo){
 <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Embarcador</span>
-      <input id="rua" name="nomeEmbarcador" class="form-control" placeholder="" type="text" value="{$address.nomeEmbarcador}">
+      <input id="rua" name="nomeEmbarcador" class="form-control" placeholder="" type="text" value="{$address.nomeEmbarcador}" disabled="false">
     </div>
     
   </div>
@@ -157,7 +144,7 @@ function removerCampo(idCampo){
 <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Transportador</span>
-      <input id="cidade" name="nomeTransportador" class="form-control" placeholder="" type="text" value="{$address.nomeTransportador}">
+      <input id="cidade" name="nomeTransportador" class="form-control" placeholder="" type="text" value="{$address.nomeTransportador}" disabled="false">
     </div>
     
   </div>
@@ -171,8 +158,8 @@ function removerCampo(idCampo){
   
 <div class="col-md-4">
     <div class="input-group">
-      <span class="input-group-addon">Seguradora <h11>*</h11></span>
-      <select name="seguradora" id="cars" class="form-control" name="seguradora"> 
+      <span class="input-group-addon">Seguradora</span>
+      <select name="seguradora" id="cars" class="form-control" name="seguradora" disabled="false"> 
 
        <option value="{$address.seguradora}">{$address.seguradora}</option>  
         {loop="$seguradoras"}
@@ -185,9 +172,9 @@ function removerCampo(idCampo){
 
   <div class="col-md-4">
     <div class="input-group">
-      <span class="input-group-addon">Gerente Responsável <h11>*</h11></span>
+      <span class="input-group-addon">Gerente Responsável</span>
 
-    <select id="gerente" class="form-control" name="gerenteResponsavel">
+    <select id="gerente" class="form-control" name="gerenteResponsavel" disabled="false">
     <option value="{$address.gerenteResponsavel}">{$address.gerenteResponsavel}</option>
   {loop="$gerentes"}
     <option value="{$value.nomeGerente}">{$value.nomeGerente}</option>
@@ -203,7 +190,7 @@ function removerCampo(idCampo){
 
 
 <div class="form-group">
-  <label class="col-md-2 control-label" for="encaminhamento">Acionar Seguradora </label>
+  <label class="col-md-2 control-label" for="encaminhamento">Acionar Seguradora <h11>*</h11></label>
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">     
@@ -223,7 +210,7 @@ function removerCampo(idCampo){
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Protocolo</span>
-      <input id="enc_instituicao"  name="Protocolo" class="form-control" placeholder=""  type="text" value="{$address.Protocolo}">
+      <input id="enc_instituicao"  name="Protocolo" class="form-control" placeholder=""  type="text" value="{$address.Protocolo}" disabled="false">
     </div>
     
   </div>
@@ -234,7 +221,7 @@ function removerCampo(idCampo){
 <hr></hr>
 <!-- Prepended text-->
 <div class="form-group">
-  <label class="col-md-2 control-label" for="prependedtext">Dados do Veiculo</label>
+  <label class="col-md-2 control-label" for="prependedtext">Dados do Veiculo<h11>*</h11></label>
   <div class="col-md-2">
     <div class="input-group">
       <span class="input-group-addon">Placa</span>
@@ -269,7 +256,7 @@ function removerCampo(idCampo){
 <hr></hr>
 
 <div class="form-group">
-  <label class="col-md-2 control-label" for="prependedtext">Tecnologia Rastreamento</label>
+  <label class="col-md-2 control-label" for="prependedtext">Tecnologia Rastreamento<h11>*</h11></label>
   <div class="col-md-2">
     <div class="input-group">
       <span class="input-group-addon">Nome</span>
@@ -287,14 +274,14 @@ function removerCampo(idCampo){
    <div class="col-md-2">
     <div class="input-group">
       <span class="input-group-addon">Isca</span>
-      <input id="prependedtext" name="isca" class="form-control" placeholder="" type="text" value="{$address.isca}">
+      <input id="prependedtext" name="isca" class="form-control" placeholder="" type="text" value="{$address.isca}" disabled="false">
     </div>
   </div>
 
     <div class="col-md-2">
     <div class="input-group">
       <span class="input-group-addon">Tec. Isca</span>
-      <input id="prependedtext" name="tec_isca" class="form-control" type="text">
+      <input id="prependedtext" name="tec_isca" class="form-control" type="text" disabled="false">
     </div>
   </div>
 
@@ -303,14 +290,15 @@ function removerCampo(idCampo){
 
 
 <div class="form-group">
- <label class="col-md-2 control-label" for="radios">Iscas Posicionando</label>
+ <label class="col-md-2 control-label" for="radios">Iscas Posicionando<h11>*</h11></label>
   <div class="col-md-4"> 
     <label class="radio-inline" for="radios-0" >
-      <input name="iscaPosicionando" id="" value="Sim" type="radio">
+
+      <input name="iscaPosicionando" disabled="false" id="" value="Sim" type="radio">
       Sim
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input name="iscaPosicionando" id="" value="Não" type="radio" checked="">
+      <input name="iscaPosicionando" id="" value="Não" type="radio" checked="" disabled="false">
       Não
     </label>
   </div>
@@ -416,7 +404,7 @@ function removerCampo(idCampo){
 <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Produtos</span>
-      <input id="rua" name="Produtos" class="form-control" placeholder="" value="{$address.Produtos}" type="text">
+      <input id="rua" name="Produtos" class="form-control" placeholder="" value="{$address.Produtos}" type="text" disabled="false">
     </div>
     
   </div>
@@ -435,7 +423,7 @@ function removerCampo(idCampo){
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Data e hora do comunicado</span>
-      <input id="rua" name="dtComunicado" class="form-control" type="datetime-local" value="{$address.dtComunicado}" placeholder="{$address.dtComunicado}">
+      <input id="rua" name="dtComunicado" class="form-control" type="datetime-local" value="{$address.dtComunicado}" placeholder="{$address.dtComunicado}" disabled="false">
     </div>
     
   </div>
@@ -444,7 +432,7 @@ function removerCampo(idCampo){
 <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Nome do comunicante</span>
-      <input id="rua" name="nomeComunicante" class="form-control" placeholder="" type="text" value="{$address.nomeComunicante}" >
+      <input id="rua" name="nomeComunicante" class="form-control" placeholder="" type="text" value="{$address.nomeComunicante}" disabled="false">
     </div>
     
   </div>
@@ -455,7 +443,7 @@ function removerCampo(idCampo){
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Data e hora do sinistro</span>
-      <input id="cidade" name="dtSinistro" class="form-control" placeholder=""  type="datetime-local" value="{$address.dtSinistro}">
+      <input id="cidade" name="dtSinistro" class="form-control" placeholder=""  type="datetime-local" value="{$address.dtSinistro}" disabled="false">
     </div>
     
   </div>
@@ -463,11 +451,11 @@ function removerCampo(idCampo){
 <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Tipo de Sinistro</span>
-      <select name="tipoSinistro" id="cars" class="form-control">  
+      <select name="tipoSinistro" id="cars" class="form-control" disabled="false">  
 
        <option value="{$address.tipoSinistro}">{$address.tipoSinistro}</option> 
         {loop="$tiposSinistros"}
-          <option value="{$value.nomeSinistro}">{$value.nomeSinistro}</option>
+          <option value="{$value.nomeSinistro}" >{$value.nomeSinistro}</option>
         {/loop}
   </select>
     </div>
@@ -482,7 +470,7 @@ function removerCampo(idCampo){
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Local do sinistro</span>
-      <input id="rua" name="localSinistro" class="form-control" placeholder="" type="text" value="{$address.localSinistro}">
+      <input id="rua" name="localSinistro" class="form-control" placeholder="" type="text" value="{$address.localSinistro}" disabled="false">
     </div>
     
   </div>
@@ -491,7 +479,7 @@ function removerCampo(idCampo){
 <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Km/Número</span>
-      <input id="rua" name="Km" class="form-control" placeholder=""  type="text" value="{$address.Km}">
+      <input id="rua" name="Km" class="form-control" placeholder=""  type="text" value="{$address.Km}" disabled="false">
     </div>
     
   </div>
@@ -503,7 +491,7 @@ function removerCampo(idCampo){
     <div class="input-group">
       <span class="input-group-addon">Latitude</span>
       <input id="rua" name="latitude" class="form-control" placeholder="" type="text"
-      value="{$address.latitude}">
+      value="{$address.latitude}" disabled="false">
     </div>
     
   </div>
@@ -512,7 +500,7 @@ function removerCampo(idCampo){
 <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Longitude</span>
-      <input id="rua" name="longitude" class="form-control" placeholder="" type="text" value="{$address.longitude}">
+      <input id="rua" name="longitude" class="form-control" placeholder="" type="text" value="{$address.longitude}" disabled="false">
     </div>
     
   </div>
@@ -521,177 +509,183 @@ function removerCampo(idCampo){
 <hr></hr>
 
 <div class="form-group" id= "formulario">
-  <label class="col-md-2 control-label" for="prependedtext">Acionamentos</label>
+  <label class="col-md-2 control-label" for="prependedtext">Acionamentos<h11>*</h11></label>
   <div class="col-md-2">
+
     <div class="input-group">
-      <input id="acionamento" name="tipo_acionamento" placeholder="Tipo de acionamento" class="form-control" type="text" value="{$address.tipo_acionamento}" >
+      <input id="acionamento" name="tipo_acionamento" placeholder="Tipo de acionamento" class="form-control" type="text" value="{$address.tipo_acionamento}" disabled="false">
     </div>
   </div>
 
-     <div class="col-md-2" style="margin-left: -50px">
+     <div class="col-md-2" style="margin-left: -50px;">
     <div class="input-group">
-      <input id="prependedtext" name="datah" class="form-control" type="datetime-local" value="{$address.datah}">
+      <input id="prependedtext" name="datah" class="form-control" type="datetime-local" value="{$address.datah}" disabled="false">
     </div >
   </div>
-  <div class="col-md-1" style="margin-left: -55px">
+  <div class="col-md-1" style="margin-left: -58px">
     <div class="input-group">
-      <input id="prependedtext" name="nome" class="form-control" placeholder="Nome" type="text" value="{$address.nome}">
+      <input id="prependedtext" name="nome" class="form-control" placeholder="Nome" type="text" value="{$address.nome}" disabled="false">
     </div>
 
   </div>
 
-  <div class="col-md-2" style="margin-left: -20px">
+  <div class="col-md-2" style="margin-left: -27px">
     <div class="input-group">
-      <input id="prependedtext" name="contato" class="form-control" placeholder="Contato" type="text" value="{$address.contato}">
+      <input id="prependedtext" name="contato" class="form-control" placeholder="Contato" type="text" value="{$address.contato}" disabled="false">
     </div>
   </div>
 
    <div class="col-md-2" style="margin-left: -50px">
     <div class="input-group">
       
-      <input id="local" name="local" class="form-control" placeholder="Local" type="text" value="{$address.local}">
+      <input id="local" name="local" class="form-control" placeholder="Local" type="text" value="{$address.local}" disabled="false">
       
     </div>
   </div>
 
   <div class="col-md-2" style="margin-left: -50px">
-    <div class="input-group">
-      <input id="descricao" name="descricao" class="form-control" placeholder="Descrição do Acionamento" type="text" value="{$address.descricao}">
+    <div class="input-group" style="width: 330px">
+      <input id="descricao" name="descricao" class="form-control" placeholder="Descrição do Acionamento" type="text" value="{$address.descricao}" disabled="false" >
     </div>
   </div>
 
 
  </div> 
 
+    {if="($address.acionamento2)!=''"}
 
  <div class="form-group" id= "formulario">
-  <label class="col-md-2 control-label" for="prependedtext">Acionamentos</label>
+  <label class="col-md-2 control-label" for="prependedtext">Acionamentos<h11>*</h11></label>
   <div class="col-md-2">
     <div class="input-group">
-      <input id="acionamento" name="acionamento2" placeholder="Tipo de acionamento" class="form-control" type="text" value="{$address.acionamento2}" >
+      <input id="acionamento" name="acionamento2" placeholder="Tipo de acionamento" class="form-control" type="text" value="{$address.acionamento2}" disabled="false" >
     </div>
   </div>
 
      <div class="col-md-2" style="margin-left: -50px">
     <div class="input-group">
-      <input id="prependedtext" name="datah2" class="form-control" type="datetime-local" value="{$address.datah2}">
+      <input id="prependedtext" name="datah2" class="form-control" type="datetime-local" value="{$address.datah2}" disabled="false">
     </div >
   </div>
-  <div class="col-md-1" style="margin-left: -55px">
+  <div class="col-md-1" style="margin-left: -58px">
     <div class="input-group">
-      <input id="prependedtext" name="nome2" class="form-control" placeholder="Nome" type="text" value="{$address.nome2}">
+      <input id="prependedtext" name="nome2" class="form-control" placeholder="Nome" type="text" value="{$address.nome2}" disabled="false">
     </div>
 
   </div>
 
-  <div class="col-md-2" style="margin-left: -20px">
+  <div class="col-md-2" style="margin-left: -27px">
     <div class="input-group">
-      <input id="prependedtext" name="contato2" class="form-control" placeholder="Contato" type="text" value="{$address.contato2}">
+      <input id="prependedtext" name="contato2" class="form-control" placeholder="Contato" type="text" value="{$address.contato2}" disabled="false">
     </div>
   </div>
 
    <div class="col-md-2" style="margin-left: -50px">
     <div class="input-group">
       
-      <input id="local" name="local2" class="form-control" placeholder="Local" type="text" value="{$address.local2}">
+      <input id="local" name="local2" class="form-control" placeholder="Local" type="text" value="{$address.local2}" disabled="false">
       
     </div>
   </div>
 
   <div class="col-md-2" style="margin-left: -50px">
-    <div class="input-group">
-      <input id="descricao" name="descricao2" class="form-control" placeholder="Descrição do Acionamento" type="text" value="{$address.descricao2}">
+    <div class="input-group" style="width: 330px">
+      <input id="descricao" name="descricao2" class="form-control" placeholder="Descrição do Acionamento" type="text" value="{$address.descricao2}" disabled="false">
     </div>
   </div>
 
 
  </div> 
+{/if}
 
-
+    {if="($address.acionamento3)!=''"}
 
  <div class="form-group" id= "formulario">
-  <label class="col-md-2 control-label" for="prependedtext">Acionamentos</label>
+  <label class="col-md-2 control-label" for="prependedtext">Acionamentos<h11>*</h11></label>
   <div class="col-md-2">
     <div class="input-group">
-      <input id="acionamento" name="acionamento3" placeholder="Tipo de acionamento" class="form-control" type="text" value="{$address.acionamento3}" >
+      <input id="acionamento" name="acionamento3" placeholder="Tipo de acionamento" class="form-control" type="text" value="{$address.acionamento3}" disabled="false">
     </div>
   </div>
 
      <div class="col-md-2" style="margin-left: -50px">
     <div class="input-group">
-      <input id="prependedtext" name="datah3" class="form-control" type="datetime-local" value="{$address.datah3}">
+      <input id="prependedtext" name="datah3" class="form-control" type="datetime-local" value="{$address.datah3}" disabled="false">
     </div >
   </div>
-  <div class="col-md-1" style="margin-left: -55px">
+  <div class="col-md-1" style="margin-left: -58px">
     <div class="input-group">
-      <input id="prependedtext" name="nome3" class="form-control" placeholder="Nome" type="text" value="{$address.nome3}">
+      <input id="prependedtext" name="nome3" class="form-control" placeholder="Nome" type="text" value="{$address.nome3}" disabled="false">
     </div>
 
   </div>
 
-  <div class="col-md-2" style="margin-left: -20px">
+  <div class="col-md-2" style="margin-left: -27px">
     <div class="input-group">
-      <input id="prependedtext" name="contato3" class="form-control" placeholder="Contato" type="text" value="{$address.contato3}">
+      <input id="prependedtext" name="contato3" class="form-control" placeholder="Contato" type="text" value="{$address.contato3}" disabled="false">
     </div>
   </div>
 
    <div class="col-md-2" style="margin-left: -50px">
     <div class="input-group">
       
-      <input id="local" name="local3" class="form-control" placeholder="Local" type="text" value="{$address.local3}">
+      <input id="local" name="local3" class="form-control" placeholder="Local" type="text" value="{$address.local3}" disabled="false">
       
     </div>
   </div>
 <div class="col-md-2" style="margin-left: -50px">
-    <div class="input-group">
-      <input id="descricao"  class="form-control" placeholder="Descrição do Acionamento" type="text" value="{$address.descricao3}" name="descricao3">
+    <div class="input-group" style="width: 330px">
+      <input id="descricao"  class="form-control" placeholder="Descrição do Acionamento" type="text" value="{$address.descricao3}" name="descricao3" disabled="false">
     </div>
   </div>
 
  </div> 
+ {/if}
 
 
+    {if="($address.acionamento4)!=''"}
 
  <div class="form-group" id= "formulario" >
-  <label class="col-md-2 control-label" for="prependedtext">Acionamentos</label>
+  <label class="col-md-2 control-label" for="prependedtext">Acionamentos<h11>*</h11></label>
   <div class="col-md-2">
     <div class="input-group">
-      <input id="acionamento" name="acionamento4" placeholder="Tipo de acionamento" class="form-control" type="text" value="{$address.acionamento4}" >
+      <input id="acionamento" name="acionamento4" placeholder="Tipo de acionamento" class="form-control" type="text" value="{$address.acionamento4}" disabled="false" >
     </div>
   </div>
 
      <div class="col-md-2" style="margin-left: -50px">
     <div class="input-group">
-      <input id="prependedtext" name="datah4" class="form-control" type="datetime-local" value="{$address.datah4}">
+      <input id="prependedtext" name="datah4" class="form-control" type="datetime-local" value="{$address.datah4}" disabled="false">
     </div >
   </div>
-  <div class="col-md-1" style="margin-left: -55px">
+  <div class="col-md-1" style="margin-left: -58px">
     <div class="input-group">
-      <input id="prependedtext" name="nome4" class="form-control" placeholder="Nome" type="text" value="{$address.nome4}">
+      <input id="prependedtext" name="nome4" class="form-control" placeholder="Nome" type="text" value="{$address.nome4}" disabled="false">
     </div>
 
   </div>
 
-  <div class="col-md-2" style="margin-left: -20px">
+  <div class="col-md-2" style="margin-left: -27px">
     <div class="input-group">
-      <input id="prependedtext" name="contato4" class="form-control" placeholder="Contato" type="text" value="{$address.contato4}">
+      <input id="prependedtext" name="contato4" class="form-control" placeholder="Contato" type="text" value="{$address.contato4}" disabled="false">
     </div>
   </div>
 
    <div class="col-md-2" style="margin-left: -50px">
     <div class="input-group">
       
-      <input id="local" name="local4" class="form-control" placeholder="Local" type="text" value="{$address.local4}">
+      <input id="local" name="local4" class="form-control" placeholder="Local" type="text" value="{$address.local4}" disabled="false">
       
     </div>
   </div>
   <div class="col-md-2" style="margin-left: -50px">
-    <div class="input-group">
-      <input id="descricao" name="descricao4" class="form-control" placeholder="Descrição do Acionamento" type="text" value="{$address.descricao4}">
+    <div class="input-group" style="width: 330px">
+      <input id="descricao" name="descricao4" class="form-control" placeholder="Descrição do Acionamento" type="text" value="{$address.descricao4}" disabled="false">
     </div>
   </div>
 
  </div> 
+{/if}
 
 <hr></hr>
 
@@ -709,17 +703,17 @@ function removerCampo(idCampo){
 
 
 <div class="form-group">
-  <label class="col-md-2 control-label" for="encaminhamento">Perda de Bateria</label>
+  <label class="col-md-2 control-label" for="encaminhamento">Perda de Bateria<h11>*</h11></label>
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">    
     
         <label class="radio-inline" for="radios-0">
 
-          
+          {if="($address.perdaBateria)!='Sim'"}
       <input type="radio" name="perdaBateria" id="bateria" value="Não"    {if="($address.perdaBateria)!='Sim'"}  checked {/if} onclick="desabilita('tbateria')"  >
       Não
- 
+ {else}
     
 
     </label> 
@@ -728,6 +722,7 @@ function removerCampo(idCampo){
       <input type="radio" name="perdaBateria" id="bateria" value="Sim" onclick="habilita('tbateria')"  {if="($address.perdaBateria)=='Sim'"} checked {/if}>
       Sim
     </label>
+    {/if}
 
       </span>
       <input id="tbateria" name="dtAlertaBateria" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" value="{$address.dtAlertaBateria}" >
@@ -736,19 +731,21 @@ function removerCampo(idCampo){
     
   </div>
   
-  
-   <label class="col-md-1 control-label" for="encaminhamento">Perda de Terminal</label>
+   {if="($address.perdaTerminal)!='Sim'"}
+   <label class="col-md-1 control-label" for="encaminhamento">Perda de Terminal<h11>*</h11></label>
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-1">
       <input type="radio" name="perdaTerminal" id="terminal" value="Não" {if="($address.perdaTerminal)!='Sim'"} checked {/if} onclick="desabilita('tterminal')">
       Não
-    </label> 
+    </label>
+    {else} 
     <label class="radio-inline" for="radios-1">
       <input type="radio" name="perdaTerminal" id="terminal" value="Sim" {if="($address.perdaTerminal)=='Sim'"} checked {/if}  onclick="habilita('tterminal')">
       Sim
     </label>
+    {/if}
       </span>
       <input id="tterminal" name="dtPerdaTerminal" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" value="{$address.dtPerdaTerminal}">
       
@@ -765,18 +762,22 @@ function removerCampo(idCampo){
 
 
 <div class="form-group">
-  <label class="col-md-2 control-label" for="encaminhamento">Perda de Sinal</label>
+
+  <label class="col-md-2 control-label" for="encaminhamento">Perda de Sinal <h11>*</h11></label>
   <div class="col-md-4">
     <div class="input-group">
-      <span class="input-group-addon">     
+      <span class="input-group-addon">
+         {if="($address.perdaSinal)!='Sim'"}     
         <label class="radio-inline" for="radios-0">
       <input type="radio" name="perdaSinal" id="sinal" value="Não" onclick="desabilita('tsinal')" {if="($address.perdaSinal)!='Sim'"} checked {/if}>
       Não
     </label> 
+    {else}
     <label class="radio-inline" for="radios-1">
       <input type="radio" name="perdaSinal" id="sinal" value="Sim" onclick="habilita('tsinal')"  {if="($address.perdaSinal)=='Sim'"} checked {/if}>
       Sim
     </label>
+    {/if}
       </span>
       <input id="tsinal" name="dtPerdaSinal" class="form-control" type="datetime-local" placeholder="Data/hora"  disabled="false" value="{$address.dtPerdaSinal}">
       
@@ -785,18 +786,21 @@ function removerCampo(idCampo){
   </div>
   
   
-   <label class="col-md-1 control-label" for="encaminhamento">Desvio de rota</label>
+   <label class="col-md-1 control-label" for="encaminhamento">Desvio de rota<h11>*</h11></label>
   <div class="col-md-4">
     <div class="input-group">
-      <span class="input-group-addon">     
+      <span class="input-group-addon"> 
+      {if="($address.desvioRota)!='Sim'"}    
         <label class="radio-inline" for="radios-0">
       <input type="radio" name="desvioRota" id="rota" value="Não" onclick="desabilita('drota')" {if="($address.desvioRota)!='Sim'"} checked {/if}>
       Não
     </label> 
+    {else}
     <label class="radio-inline" for="radios-1">
       <input type="radio" name="desvioRota" id="rota" value="Sim" onclick="habilita('drota')" {if="($address.desvioRota)=='Sim'"} checked {/if}>
       Sim
     </label>
+    {/if}
       </span>
       <input id="drota" name="dtDesvioRota" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="true" value="{$address.dtDesvioRota}">
       
@@ -813,18 +817,21 @@ function removerCampo(idCampo){
 
 
 <div class="form-group">
-  <label class="col-md-2 control-label" for="encaminhamento">Botão de Pânico</label>
+  <label class="col-md-2 control-label" for="encaminhamento">Botão de Pânico <h11>*</h11></label>
   <div class="col-md-4">
     <div class="input-group">
-      <span class="input-group-addon">     
+      <span class="input-group-addon">  
+      {if="($address.btPanico)!='Sim'"}   
         <label class="radio-inline" for="radios-0">
       <input type="radio" name="btPanico" id="panico" value="Não" onclick="desabilita('tpanico')" {if="($address.btPanico)!='Sim'"} checked {/if}>
       Não
     </label> 
+      {else}
     <label class="radio-inline" for="radios-1">
       <input type="radio" name="btPanico" id="panico" value="Sim" onclick="habilita('tpanico')" {if="($address.btPanico)=='Sim'"} checked {/if}>
       Sim
     </label>
+     {/if}
       </span>
       <input id="tpanico" name="dtBtPanico" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" value="{$address.dtBtPanico}" >
       
@@ -833,18 +840,21 @@ function removerCampo(idCampo){
   </div>
   
   
-   <label class="col-md-1 control-label" for="encaminhamento">Porta Baú Traseira</label>
+   <label class="col-md-1 control-label" for="encaminhamento">Porta Baú Traseira<h11>*</h11></label>
   <div class="col-md-4">
     <div class="input-group">
-      <span class="input-group-addon">     
+      <span class="input-group-addon">    
+       {if="($address.portaBauTraseira)!='Sim'"} 
         <label class="radio-inline" for="radios-0">
       <input type="radio" name="portaBauTraseira" id="traseira" value="Não" {if="($address.portaBauTraseira)!='Sim'"} checked {/if} onclick="desabilita('ttraseira')">
       Não
-    </label> 
+    </label>
+    {else} 
     <label class="radio-inline" for="radios-1">
       <input type="radio" name="portaBauTraseira" id="traseira" value="Sim" onclick="habilita('ttraseira')" {if="($address.portaBauTraseira)=='Sim'"} checked {/if}>
       Sim
     </label>
+    {/if}
       </span>
       <input id="ttraseira" name="dtPortaBauTraseira" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" value="{$address.dtPortaBauTraseira}">
       
@@ -861,18 +871,21 @@ function removerCampo(idCampo){
 
 
 <div class="form-group">
-  <label class="col-md-2 control-label" for="encaminhamento">Porta Baú Lateral</label>
+  <label class="col-md-2 control-label" for="encaminhamento">Porta Baú Lateral <h11>*</h11></label>
   <div class="col-md-4">
     <div class="input-group">
-      <span class="input-group-addon">     
+      <span class="input-group-addon"> 
+        {if="($address.portaBauLateral)!='Sim'"} 
         <label class="radio-inline" for="radios-0">
       <input type="radio" name="portaBauLateral" id="lateral" value="Não" onclick="desabilita('tlateral')" {if="($address.portaBauLateral)!='Sim'"} checked {/if}>
       Não
-    </label> 
+    </label>
+    {else}
     <label class="radio-inline" for="radios-1">
       <input type="radio" name="portaBauLateral" id="lateral" value="Sim" onclick="habilita('tlateral')" {if="($address.portaBauLateral)=='Sim'"} checked {/if}>
       Sim
     </label>
+    {/if}
       </span>
       <input id="tlateral" name="dtPortaBauLateral" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" value="{$address.dtPortaBauLateral}">
       
@@ -881,18 +894,21 @@ function removerCampo(idCampo){
   </div>
   
   
-   <label class="col-md-1 control-label" for="encaminhamento">Arrombamento de baú</label>
+   <label class="col-md-1 control-label" for="encaminhamento">Arrombamento de baú <h11>*</h11></label>
   <div class="col-md-4">
     <div class="input-group">
-      <span class="input-group-addon">     
+      <span class="input-group-addon">
+      {if="($address.portaBauLateral)!='Sim'"}      
         <label class="radio-inline" for="radios-0">
       <input type="radio" name="arrombamentoBau" id="bau" value="Não" onclick="desabilita('tbau')" {if="($address.arrombamentoBau)!='Sim'"} checked {/if}>
       Não
     </label> 
+    {else}
     <label class="radio-inline" for="radios-1">
       <input type="radio" name="arrombamentoBau" id="bau" value="Sim" onclick="habilita('tbau')" {if="($address.arrombamentoBau)=='Sim'"} checked {/if}>
       Sim
     </label>
+    {/if}
       </span>
       <input id="tbau" name="dtArrombamentoBau" class="form-control" type="datetime-local"  placeholder="Data/hora" disabled="false" value="{$address.dtArrombamentoBau}">
       
@@ -909,18 +925,21 @@ function removerCampo(idCampo){
 
 
 <div class="form-group">
-  <label class="col-md-2 control-label" for="encaminhamento">Desengate de Carreta</label>
+  <label class="col-md-2 control-label" for="encaminhamento">Desengate de Carreta <h11>*</h11></label>
   <div class="col-md-4">
     <div class="input-group">
-      <span class="input-group-addon">     
+      <span class="input-group-addon">    
+      {if="($address.desengateCarreta)!='Sim'"}  
         <label class="radio-inline" for="radios-0">
       <input type="radio" name="desengateCarreta" id="desengate" value="Não" onclick="desabilita('tdesengate')" {if="($address.desengateCarreta)!='Sim'"} checked {/if}>
       Não
-    </label> 
+    </label>
+    {else} 
     <label class="radio-inline" for="radios-1">
       <input type="radio" name="desengateCarreta" id="desengate" value="Sim" onclick="habilita('tdesengate')" {if="($address.desengateCarreta)=='Sim'"} checked {/if}>
       Sim
     </label>
+    {/if}
       </span>
       <input id="tdesengate" name="dtDesengateCarreta" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" value="{$address.dtDesengateCarreta}">
       
@@ -929,18 +948,21 @@ function removerCampo(idCampo){
   </div>
   
   
-   <label class="col-md-1 control-label" for="encaminhamento">Senha de Pânico</label>
+   <label class="col-md-1 control-label" for="encaminhamento">Senha de Pânico<h11>*</h11></label>
   <div class="col-md-4">
     <div class="input-group">
-      <span class="input-group-addon">     
+      <span class="input-group-addon">    
+      {if="($address.senhaPanico)!='Sim'"}     
         <label class="radio-inline" for="radios-0">
       <input type="radio" name="senhaPanico" id="spanico" value="Não" {if="($address.senhaPanico)!='Sim'"} checked {/if} onclick="desabilita('tspanico')">
       Não
     </label> 
+    {else}
     <label class="radio-inline" for="radios-1">
       <input type="radio" name="senhaPanico" id="spanico" value="Sim" onclick="habilita('tspanico')" {if="($address.senhaPanico)=='Sim'"} checked {/if}>
       Sim
     </label>
+    {/if}
       </span>
       <input id="tspanico" name="dtSenhaPanico" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" value="{$address.dtSenhaPanico}">
       
@@ -957,18 +979,22 @@ function removerCampo(idCampo){
 
 
 <div class="form-group">
-  <label class="col-md-2 control-label" for="encaminhamento">Porta Motorista </label>
+  <label class="col-md-2 control-label" for="encaminhamento">Porta Motorista <h11>*</h11></label>
   <div class="col-md-4">
     <div class="input-group">
-      <span class="input-group-addon">     
+      <span class="input-group-addon"> 
+   {if="($address.portaMotorista)!='Sim'"}     
+    
         <label class="radio-inline" for="radios-0">
       <input type="radio" name="portaMotorista" id="motorista" value="Não" onclick="desabilita('tmotorista')" {if="($address.portaMotorista)!='Sim'"} checked {/if}>
       Não
     </label> 
+    {else}
     <label class="radio-inline" for="radios-1">
       <input type="radio" name="portaMotorista" id="motorista" value="Sim" onclick="habilita('tmotorista')" {if="($address.portaMotorista)=='Sim'"} checked {/if}>
       Sim
     </label>
+    {/if}
       </span>
       <input id="tmotorista" name="dtPortaMotorista" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" value="{$address.dtPortaMotorista}">
       
@@ -976,19 +1002,22 @@ function removerCampo(idCampo){
     
   </div>
   
-   
-   <label class="col-md-1 control-label" for="encaminhamento">Porta do Passageiro</label>
+  
+   <label class="col-md-1 control-label" for="encaminhamento">Porta do Passageiro<h11>*</h11></label>
   <div class="col-md-4">
     <div class="input-group">
-      <span class="input-group-addon">     
+      <span class="input-group-addon">
+     {if="($address.portaPassageiro)!='Sim'"}        
         <label class="radio-inline" for="radios-0">
       <input type="radio" name="portaPassageiro" id="ppassageiro" value="Não" {if="($address.portaPassageiro)!='Sim'"} checked {/if} onclick="desabilita('tppassageiro')">
       Não
     </label> 
+    {else}
     <label class="radio-inline" for="radios-1">
       <input type="radio" name="portaPassageiro" id="ppassageiro" value="Sim" onclick="habilita('tppassageiro')" {if="($address.portaPassageiro)=='Sim'"} checked {/if}>
       Sim
     </label>
+    {/if}
       </span>
       <input id="tppassageiro" name="dtPortaPassageiro" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" value="{$address.dtPortaPassageiro}">
       
@@ -1005,18 +1034,21 @@ function removerCampo(idCampo){
 
 
 <div class="form-group">
-  <label class="col-md-2 control-label" for="encaminhamento">Ignição Desligada</label>
+  <label class="col-md-2 control-label" for="encaminhamento">Ignição Desligada <h11>*</h11></label>
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">     
+        {if="($address.ignicaoDesligada)!='Sim'"}        
         <label class="radio-inline" for="radios-0">
       <input type="radio" name="ignicaoDesligada" id="ignicao" value="Não" onclick="desabilita('tignicao')" {if="($address.ignicaoDesligada)!='Sim'"} checked {/if}>
       Não
     </label> 
+    {else}
     <label class="radio-inline" for="radios-1">
       <input type="radio" name="ignicaoDesligada" id="ignicao" value="Sim" onclick="habilita('tignicao')" {if="($address.ignicaoDesligada)=='Sim'"} checked {/if}>
       Sim
     </label>
+    {/if}
       </span>
       <input id="tignicao" name="dtIgnicaoDesligada" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" value="{$address.dtIgnicaoDesligada}">
       
@@ -1025,18 +1057,21 @@ function removerCampo(idCampo){
   </div>
   
   
-   <label class="col-md-1 control-label" for="encaminhamento">Violação de Painel</label>
+   <label class="col-md-1 control-label" for="encaminhamento">Violação de Painel<h11>*</h11></label>
   <div class="col-md-4">
     <div class="input-group">
-      <span class="input-group-addon">     
+      <span class="input-group-addon"> 
+      {if="($address.violacaoPainel)!='Sim'"}        
         <label class="radio-inline" for="radios-0">
       <input type="radio" name="violacaoPainel" id="painel" value="Não" {if="($address.violacaoPainel)!='Sim'"} checked {/if} onclick="desabilita('tpainel')">
       Não
-    </label> 
+    </label>
+    {else}
     <label class="radio-inline" for="radios-1">
       <input type="radio" name="violacaoPainel" id="painel" value="Sim" onclick="habilita('tpainel')" {if="($address.violacaoPainel)=='Sim'"} checked {/if}>
       Sim
     </label>
+    {/if}
       </span>
       <input id="tpainel" name="dtViolacaoPainel" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" value="{$address.dtViolacaoPainel}">
       
@@ -1052,22 +1087,24 @@ function removerCampo(idCampo){
  <!-- Prepended text-->
 
 
-<div class="form-group">
-  <label class="col-md-2 control-label" for="encaminhamento">Violação de Grade</label>
+<div class="form-group">      
+  <label class="col-md-2 control-label" for="encaminhamento">Violação de Grade <h11>*</h11></label>
   <div class="col-md-4">
     <div class="input-group">
-      <span class="input-group-addon">     
+      <span class="input-group-addon">    
+      {if="($address.violacaoGrade)!='Sim'"}   
         <label class="radio-inline" for="radios-0">
       <input type="radio" name="violacaoGrade" id="grade" value="Não" onclick="desabilita('tgrade')" {if="($address.violacaoGrade)!='Sim'"} checked {/if} >
       Não
     </label> 
+    {else}
     <label class="radio-inline" for="radios-1">
       <input type="radio" name="violacaoGrade" id="grade" value="Sim" onclick="habilita('tgrade')" {if="($address.violacaoGrade)=='Sim'"} checked {/if} >
       Sim
     </label>
+    {/if}
       </span>
       <input id="tgrade" name="dtViolacaoGrade" class="form-control" type="datetime-local" placeholder="Data/hora" disabled="false" value="{$address.dtViolacaoGrade}">
-      
     </div>
     
   </div>
@@ -1082,29 +1119,21 @@ function removerCampo(idCampo){
  <!-- Text input-->
 
 <div class="form-group">
-  <label class="col-md-2 control-label" for="prependedtext">Descritivo da Ocorrência</label>
+  <label class="col-md-2 control-label" for="prependedtext">Descritivo da Ocorrência<h11>*</h11></label>
   <div class="col-md-9">
     <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
-      <textarea id="story" name="Descritivo"
+      <textarea id="story" name="Descritivo" disabled="false"
           rows="10" cols="100" style=" resize: none" class="form-control">
         {$address.Descritivo}
       </textarea>
     </div>
   </div>
 </div>
- 
- 
 
 <!-- Button (Double) -->
-<div class="form-group">
-  <label class="col-md-2 control-label" for="Cadastrar"></label>
-  <div class="col-md-8">
-    <button id="Cadastrar" name="Cadastrar" class="btn btn-success" type="Submit">Atualizar</button>
-    
-  </div>
-</div>
 
+</div>
 </div>
 </div>
 

@@ -4,8 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Login</title>
-  <link rel="icon" type="image/png" href="/res/site/images/logo2.fw.png" />
-  <!-- Tell the browser to be responsive to screen width -->
+<link rel="icon" type="image/png" href="/res/site/images/01_LOGO ORIGINAL.png" />  <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
   <link rel="stylesheet" href="/res/admin/bootstrap/css/bootstrap.min.css">
@@ -25,19 +24,26 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
-</head>
-<body class="hold-transition login-page">
 
-<div class="login-box">              
+  <style type="text/css">
+    
+    body {
+  background-image: url("/res/site/images/3409297.jpg");
+}
+  </style>
+</head>
+<body >
+
+<div class="login-box" style="background-color: #fff">              
                
                
             
-  <div class="login-logo" >
-    <a href="" style="color: ##000000"><b style="color: #000000">Admin</b><b style="color: #000000"> Confeitaria</b></a>
+  <div class="login-logo" style="background-color: #fff">
+    <a href="" style="color: ##000000"><b style="color: #000000"> <img src="https://mundialgr.mundialrisk.com.br/trafeguswebnovo/public/img/logo/mundial_menu.png" alt="Mundial Risk"> </b></a>
   </div>
   <!-- /.login-logo -->
-  <div class="login-box-body">
-    <p class="login-box-msg">Entre para iniciar a sua sessão</p>
+  <div class="login-box-body" style="background-color: #0a1b3d">
+    <p class="login-box-msg" style="color: #fff">Entre para iniciar a sua sessão</p>
     <form action="/admin/login" method="post">
       <div class="form-group has-feedback">
         <input type="text" class="form-control" placeholder="Login" name="login">
@@ -50,9 +56,7 @@
       <div class="row">
         <div class="col-xs-8">
           <div class="checkbox icheck">
-            <label>
-              <input type="checkbox"> Lembrar - me
-            </label>
+
           </div>
         </div>
         <!-- /.col -->

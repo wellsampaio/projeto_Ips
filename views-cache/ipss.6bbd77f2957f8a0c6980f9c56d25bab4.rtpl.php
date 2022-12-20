@@ -1,7 +1,7 @@
 <?php if(!class_exists('Rain\Tpl')){exit;}?><!-- Content Wrapper. Contains page content -->
 <html>
 <head>
-  <link rel="icon" type="image/png" href="/res/site/images/logo2.fw.png" />
+  <link rel="icon" type="image/png" href="/res/site/images/01_LOGO ORIGINAL.png" />
   <meta charset="utf-8">
   <meta http-equiv="Content-Language" content="pt-br">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="/res/admin/dist/css/AdminLTE.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="/res/admin/dist/css/AdminLTE.min.css">
-
+<link href="/res/site/css3/style.css" rel="stylesheet" type="text/css" media="all" />
   <link rel="stylesheet" href="/res/admin/dist/css/skins/_all-skins.min.css">
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
         page. However, you can choose any other skin. Make sure you
@@ -57,6 +57,41 @@ desired effect
 -->
 <body class="hold-transition skin-blue sidebar-mini">
   
+<!-- top-header -->
+        <div class="top-header">
+            <div class="container">
+                <div class="top-header-left">
+                     <ul>
+                        <!--<li><a href="/profile">Minha Conta</a></li>-->
+                        <li><a href="/ips" target="blank">Solicitar Ips</a></li>
+                        <li><a href="/ips/solicitacoes" target="blank">Editar Solicitação de IPS</a></li>
+                        <li><a href="" >Contato</a></li>
+                        
+                        <div class="clearfix"> </div>
+                    </ul>
+                </div>
+                <div class="top-header-center">
+                    
+                </div>
+                <div class="top-header-right">
+                    <ul>
+                        <?php if( checkLogin(false) ){ ?>
+                            <li><a href=""><i class="fa fa-user"></i> <?php echo getUserName(); ?></a></li>
+                            <li><a href="/logout"><i class="fa fa-close"></i> Sair</a></li>
+                            <?php }else{ ?>
+                            <li><a href="/login"><i class="fa fa-lock"></i> Login</a></li>
+                            <li><a href="/login"><i class="fa fa-lock"></i> Criar Conta</a></li>
+                            <?php } ?>
+                    </ul>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+
+
+
+      
+        <!-- /top-header -->
 <div class="content-wrapper" style=" margin: 0 auto;">
 
     
@@ -66,11 +101,10 @@ desired effect
     Solicitações Ips
   </h1>
   <ol class="breadcrumb">
-    <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li class="active"><a href="/admin/products">Produtos</a></li>
+    <li><a href="/ips"><i class="fa fa-dashboard"></i> Solicitar Ips</a></li>
+    <li class="active"><a href="">Ips</a></li>
   </ol>
 </section>
-
 <!-- Main content -->
 <section class="content">
 
@@ -97,7 +131,7 @@ desired effect
                <thead>
                   <tr>
                     <th style="width: 10px">SM</th>
-                    <th>Embarcador</th>
+                   
                     <th>Transportador</th>
                     <!--<th>Recheio</th>-->
                     <th>Tipo Sinistro</th>
@@ -111,7 +145,6 @@ desired effect
                   <?php $counter1=-1;  if( isset($address) && ( is_array($address) || $address instanceof Traversable ) && sizeof($address) ) foreach( $address as $key1 => $value1 ){ $counter1++; ?>
                   <tr>
                     <td><?php echo htmlspecialchars( $value1["NumSM"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                    <td><?php echo htmlspecialchars( $value1["nomeEmbarcador"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                     <td><?php echo htmlspecialchars( $value1["nomeTransportador"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                     <td><?php echo htmlspecialchars( $value1["tipoSinistro"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                     <td>R$ <?php echo formatPrice($value1["Valor"]); ?></td>
@@ -119,8 +152,8 @@ desired effect
                     <td><?php echo htmlspecialchars( $value1["dtSinistro"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                     <td><?php echo htmlspecialchars( $value1["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                     <td>
-                      <a href="/ips/solicitacoes/<?php echo htmlspecialchars( $value1["NumSM"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</a>
-                      <a href="/admin/products//delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
+                       <a href="/ips/solicitacao/<?php echo htmlspecialchars( $value1["NumSM"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-default btn-xs"><i class="fa fa-eye"></i> Ver detalhes</a>
+                       <a href="/ips/solicitacoes/<?php echo htmlspecialchars( $value1["NumSM"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</a>
                     </td>
                   </tr>
                   <?php } ?>
@@ -139,7 +172,7 @@ desired effect
   	</div>
   </div>
 
-  Produtos Cadastrado: 
+
 
 </section>
 <!-- /.content -->

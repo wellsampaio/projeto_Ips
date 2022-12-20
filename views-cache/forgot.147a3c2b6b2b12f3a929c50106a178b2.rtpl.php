@@ -384,7 +384,7 @@
           <div class="content">
             <span class="brand">
               <a href="#">
-                Confeitaria Casa de Dona Brasilina
+                Ips - Mundial Risk
               </a>
             </span>
           </div>
@@ -429,7 +429,7 @@
                           <tr>
                             <td class="body-signature-cell">
                               <p>Obrigado!</p>
-                              <p class="body-signature"><img src="https://www.casadedonabrasilina.com.br/res/site/images/logo_email.fw.png" alt="Confeitaria Casa de Dona Brasilina"></p>
+                              <p class="body-signature"><img src="https://mundialgr.mundialrisk.com.br/trafeguswebnovo/public/img/logo/mundial_menu.png" alt="Mundial Risk"></p>
                             </td>
                           </tr>
                         </table>

@@ -2,10 +2,15 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
-
+<link rel="icon" type="image/png" href="/res/site/images/01_LOGO ORIGINAL.png" />
 <script type="text/javascript" src="/res/site/js3/ips.js"></script>
+
+<script type="text/javascript" src="/res/site/js/loading.js"></script>
+
 <link href="/res/site/css3/style.css" rel="stylesheet" type="text/css" media="all" />
-<link href="/res/site/cssMenu/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/res/site/css/loading.min.css" rel="stylesheet" type="text/css" media="all" />
+
+
 
 
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -54,7 +59,7 @@
 var controleCampo = 1;
 function adicionarCampo() {
     controleCampo++;
-    document.getElementById('formulario').insertAdjacentHTML('beforeend', '<div class="form-group" id="campo' + controleCampo + '"><label class="col-md-2 control-label" for="prependedtext">Acionamentos<h11>*</h11></label><div class="col-md-2"><div class="input-group"><input id="acionamento" name="acionamento" placeholder="Tipo de acionamento" class="form-control" type="text" ></div></div><div class="col-md-2"><div class="input-group"><input id="prependedtext" name="datah" class="form-control" type="datetime-local" ></div></div> <div class="col-md-1"><div class="input-group"><input id="prependedtext" name="nome" class="form-control" placeholder="Nome" type="text" ></div></div>  <div class="col-md-2"><div class="input-group"> <input id="prependedtext" name="contato" class="form-control" placeholder="Contato" type="text"></div></div><div class="col-md-2"> <div class="input-group"><input id="local" name="local" class="form-control" placeholder="Local" type="text"></div>  </div><input type="hidden" name="id' + controleCampo + '" id="id' + controleCampo + '" /><button type="button" id="' + controleCampo + '" onclick="removerCampo(' + controleCampo + ')"> - </button></div>');
+    document.getElementById('formulario').insertAdjacentHTML('beforeend', '<div class="form-group" id="campo' + controleCampo + '"><label class="col-md-2 control-label" for="prependedtext">Acionamentos</label><div class="col-md-2"><div class="input-group"><input id="acionamento" name="acionamento'+ controleCampo + '" placeholder="Tipo de acionamento" class="form-control" type="text" ></div></div><div class="col-md-2" style="margin-left: -50px"><div class="input-group"><input id="prependedtext" name="datah'+ controleCampo + '" class="form-control" type="datetime-local" ></div></div> <div class="col-md-1" style="margin-left: -55px"><div class="input-group"><input id="prependedtext" name="nome'+ controleCampo + '" class="form-control" placeholder="Nome" type="text" ></div></div>  <div class="col-md-2" style="margin-left: -20px"><div class="input-group"> <input id="prependedtext" name="contato'+ controleCampo + '" class="form-control" placeholder="Contato" type="text"></div></div><div class="col-md-2" style="margin-left: -50px"> <div class="input-group"><input id="local" name="local'+ controleCampo + '" class="form-control" placeholder="Local" type="text"></div>  </div><div class="col-md-2" style="margin-left: -55px"> <div class="input-group"><input id="descricao" name="descricao'+ controleCampo + '" class="form-control" placeholder="Descrição do acionamento" type="text"></div>  </div><input type="hidden" name="id' + controleCampo + '" id="id' + controleCampo + '" /><button type="button" id="' + controleCampo + '" onclick="removerCampo(' + controleCampo + ')"> - </button></div>');
     document.getElementById("qnt_campo").value = controleCampo;
 }
 
@@ -67,26 +72,12 @@ function removerCampo(idCampo){
 
     
 </head>
-<body>
+<body class="centralize">
 
+<div class="loading" id="loading" >
+<img src="/res/site/images/01_LOGO ORIGINAL.png" class="ld ld-ring ld-spin">
 
-<a class="menu-bar" data-toggle="collapse" href="#menu">
-            <span class="bars"></span>            
-        </a>
-      <div class="collapse menu" id="menu">
-            <ul class="list-inline">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Works</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Works</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>   
-      </div>
+  </div>  
 
         
 
@@ -96,9 +87,9 @@ function removerCampo(idCampo){
                 <div class="top-header-left">
                      <ul>
                         <!--<li><a href="/profile">Minha Conta</a></li>-->
-                        <li><a href="" target="blank">Solicitação de IPS</a></li>
-                        <li><a href="" target="blank">Editar Solicitação de IPS</a></li>
-                        <li><a href="" target="blank">Contato</a></li>
+                        <li><a href="/ips/solicitacoes" target="blank">Solicitações</a></li>
+                        <li><a href="/ips/solicitacoes" target="blank">Editar Solicitação de IPS</a></li>
+                        <li><a href="" >Contato</a></li>
 
                         <div class="clearfix"> </div>
                     </ul>
@@ -109,7 +100,7 @@ function removerCampo(idCampo){
                 <div class="top-header-right">
                     <ul>
                         {if="checkLogin(false)"}
-                            <li><a href="/profile"><i class="fa fa-user"></i> {function="getUserName()"}</a></li>
+                            <li><a href=""><i class="fa fa-user"></i> {function="getUserName()"}</a></li>
                             <li><a href="/logout"><i class="fa fa-close"></i> Sair</a></li>
                             {else}
                             <li><a href="/login"><i class="fa fa-lock"></i> Login</a></li>
@@ -142,11 +133,13 @@ function removerCampo(idCampo){
     <div class="form-group">
   <label class="col-md-2 control-label" for="SM">Solicitação de SM <h11>*</h11></label>
   <div class="col-md-2">
-    <input id="cep" name="NumSM" placeholder="Apenas números" class="form-control input-md" value="{$address.NumSM}" type="search" required="" >
+    <input id="NumSM" name="NumSM" placeholder="Apenas números" class="form-control input-md" value="{$address.NumSM}" type="search" required="" >
   </div>
     <div class="col-md-2">
-      <button type="submit" class="btn btn-primary" formaction="/ips" formmethod="get">Pesquisar</button>
+      <button type="submit" class="btn btn-primary" formaction="/ips" formmethod="get" onclick="login()">Pesquisar</button>
     </div>
+
+  
 
 <!--<div class="form-group">   
 <div class="col-md-4 control-label">
@@ -193,7 +186,7 @@ function removerCampo(idCampo){
   
 <div class="col-md-4">
     <div class="input-group">
-      <span class="input-group-addon">Seguradora</span>
+      <span class="input-group-addon">Seguradora<h11> *</h11></span>
       <select name="seguradora" id="cars" class="form-control" name="seguradora"> 
 
        <option value=""></option>  
@@ -207,7 +200,7 @@ function removerCampo(idCampo){
 
   <div class="col-md-4">
     <div class="input-group">
-      <span class="input-group-addon">Gerente Responsável</span>
+      <span class="input-group-addon">Gerente Responsável<h11> *</h11></span>
 
     <select id="gerente" class="form-control" name="gerenteResponsavel">
     <option value=""></option>
@@ -225,7 +218,7 @@ function removerCampo(idCampo){
 
 
 <div class="form-group">
-  <label class="col-md-2 control-label" for="encaminhamento">Necessidade de acionar <h11>*</h11></label>
+  <label class="col-md-2 control-label" for="encaminhamento">Acionar Seguradora </label>
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">     
@@ -243,6 +236,14 @@ function removerCampo(idCampo){
     </div>
     
   </div>
+
+  <div class="col-md-4">
+    <div class="input-group">
+      <span class="input-group-addon">Protocolo</span>
+      <input id="enc_instituicao"  name="Protocolo" class="form-control" placeholder=""  type="text">
+    </div>
+    
+  </div>
   </div>
 
 <!-- Text input-->
@@ -250,7 +251,7 @@ function removerCampo(idCampo){
 <hr></hr>
 <!-- Prepended text-->
 <div class="form-group">
-  <label class="col-md-2 control-label" for="prependedtext">Dados do Veiculo<h11>*</h11></label>
+  <label class="col-md-2 control-label" for="prependedtext">Dados do Veiculo</label>
   <div class="col-md-2">
     <div class="input-group">
       <span class="input-group-addon">Placa</span>
@@ -284,7 +285,7 @@ function removerCampo(idCampo){
 
 <hr></hr>
 <div class="form-group">
-  <label class="col-md-2 control-label" for="prependedtext">Tecnologia Rastreamento<h11>*</h11></label>
+  <label class="col-md-2 control-label" for="prependedtext">Tecnologia Rastreamento</label>
   <div class="col-md-2">
     <div class="input-group">
       <span class="input-group-addon">Nome</span>
@@ -318,7 +319,7 @@ function removerCampo(idCampo){
 
 
 <div class="form-group">
- <label class="col-md-2 control-label" for="radios">Iscas Posicionando<h11>*</h11></label>
+ <label class="col-md-2 control-label" for="radios">Iscas Posicionando</label>
   <div class="col-md-4"> 
     <label class="radio-inline" for="radios-0" >
       <input name="iscaPosicionando" id="" value="Sim" type="radio">
@@ -437,12 +438,6 @@ function removerCampo(idCampo){
   </div>
 </div>
 
-
-  
-
-
-
-
 <hr></hr>
 <!-- Prepended text-->
 <div class="form-group">
@@ -451,8 +446,7 @@ function removerCampo(idCampo){
     <div class="input-group">
       <span class="input-group-addon">Data e hora do comunicado</span>
       <input id="rua" name="dtComunicado" class="form-control" placeholder="" type="datetime-local">
-    </div>
-    
+    </div>  
   </div>
 
   
@@ -534,37 +528,43 @@ function removerCampo(idCampo){
 
 
 <div class="form-group" id= 'formulario'>
-  <label class="col-md-2 control-label" for="prependedtext">Acionamentos<h11>*</h11></label>
+  <label class="col-md-2 control-label" for="prependedtext">Acionamentos</label>
   <div class="col-md-2">
     <div class="input-group">
       <input id="acionamento" name="tipo_acionamento" placeholder="Tipo de acionamento" class="form-control" type="text" >
     </div>
   </div>
 
-     <div class="col-md-2">
+     <div class="col-md-2" style="margin-left: -50px">
     <div class="input-group">
       <input id="prependedtext" name="datah" class="form-control" type="datetime-local" >
     </div >
   </div>
-  <div class="col-md-1">
+  <div class="col-md-1" style="margin-left: -55px">
     <div class="input-group">
       <input id="prependedtext" name="nome" class="form-control" placeholder="Nome" type="text" >
     </div>
 
   </div>
 
-  <div class="col-md-2">
+  <div class="col-md-2" style="margin-left: -20px">
     <div class="input-group">
       <input id="prependedtext" name="contato" class="form-control" placeholder="Contato" type="text">
     </div>
   </div>
 
-   <div class="col-md-2">
+   <div class="col-md-2" style="margin-left: -50px">
     <div class="input-group">
       <input id="local" name="local" class="form-control" placeholder="Local" type="text">
     </div>
   </div>
-   <button type="button" onclick="adicionarCampo()"> + </button>
+
+  <div class="col-md-2" style="margin-left: -50px">
+    <div class="input-group">
+      <input id="descricao" name="descricao" class="form-control" placeholder="Descrição do Acionamento" type="text">
+    </div>
+  </div>
+   <button type="button" onclick="adicionarCampo()" id="qtd" name="qtd"> + </button>
 
  </div> 
 
@@ -584,7 +584,7 @@ function removerCampo(idCampo){
 
 
 <div class="form-group">
-  <label class="col-md-2 control-label" for="encaminhamento">Perda de Bateria<h11>*</h11></label>
+  <label class="col-md-2 control-label" for="encaminhamento">Perda de Bateria</label>
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">     
@@ -604,7 +604,7 @@ function removerCampo(idCampo){
   </div>
   
   
-   <label class="col-md-1 control-label" for="encaminhamento">Perda de Terminal<h11>*</h11></label>
+   <label class="col-md-1 control-label" for="encaminhamento">Perda de Terminal</label>
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">     
@@ -632,7 +632,7 @@ function removerCampo(idCampo){
 
 
 <div class="form-group">
-  <label class="col-md-2 control-label" for="encaminhamento">Perda de Sinal <h11>*</h11></label>
+  <label class="col-md-2 control-label" for="encaminhamento">Perda de Sinal</label>
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">     
@@ -652,7 +652,7 @@ function removerCampo(idCampo){
   </div>
   
   
-   <label class="col-md-1 control-label" for="encaminhamento">Desvio de rota<h11>*</h11></label>
+   <label class="col-md-1 control-label" for="encaminhamento">Desvio de rota</label>
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">     
@@ -680,7 +680,7 @@ function removerCampo(idCampo){
 
 
 <div class="form-group">
-  <label class="col-md-2 control-label" for="encaminhamento">Botão de Pânico <h11>*</h11></label>
+  <label class="col-md-2 control-label" for="encaminhamento">Botão de Pânico </label>
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">     
@@ -700,7 +700,7 @@ function removerCampo(idCampo){
   </div>
   
   
-   <label class="col-md-1 control-label" for="encaminhamento">Porta Baú Traseira<h11>*</h11></label>
+   <label class="col-md-1 control-label" for="encaminhamento">Porta Baú Traseira</label>
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">     
@@ -728,7 +728,7 @@ function removerCampo(idCampo){
 
 
 <div class="form-group">
-  <label class="col-md-2 control-label" for="encaminhamento">Porta Baú Lateral <h11>*</h11></label>
+  <label class="col-md-2 control-label" for="encaminhamento">Porta Baú Lateral </label>
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">     
@@ -748,7 +748,7 @@ function removerCampo(idCampo){
   </div>
   
   
-   <label class="col-md-1 control-label" for="encaminhamento">Arrombamento de baú <h11>*</h11></label>
+   <label class="col-md-1 control-label" for="encaminhamento">Arrombamento de baú </label>
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">     
@@ -776,7 +776,7 @@ function removerCampo(idCampo){
 
 
 <div class="form-group">
-  <label class="col-md-2 control-label" for="encaminhamento">Desengate de Carreta <h11>*</h11></label>
+  <label class="col-md-2 control-label" for="encaminhamento">Desengate de Carreta</label>
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">     
@@ -796,7 +796,7 @@ function removerCampo(idCampo){
   </div>
   
   
-   <label class="col-md-1 control-label" for="encaminhamento">Senha de Pânico<h11>*</h11></label>
+   <label class="col-md-1 control-label" for="encaminhamento">Senha de Pânico</label>
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">     
@@ -824,7 +824,7 @@ function removerCampo(idCampo){
 
 
 <div class="form-group">
-  <label class="col-md-2 control-label" for="encaminhamento">Porta Motorista <h11>*</h11></label>
+  <label class="col-md-2 control-label" for="encaminhamento">Porta Motorista</label>
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">     
@@ -844,7 +844,7 @@ function removerCampo(idCampo){
   </div>
   
    
-   <label class="col-md-1 control-label" for="encaminhamento">Porta do Passageiro<h11>*</h11></label>
+   <label class="col-md-1 control-label" for="encaminhamento">Porta do Passageiro</label>
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">     
@@ -872,7 +872,7 @@ function removerCampo(idCampo){
 
 
 <div class="form-group">
-  <label class="col-md-2 control-label" for="encaminhamento">Ignição Desligada <h11>*</h11></label>
+  <label class="col-md-2 control-label" for="encaminhamento">Ignição Desligada</label>
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">     
@@ -892,7 +892,7 @@ function removerCampo(idCampo){
   </div>
   
   
-   <label class="col-md-1 control-label" for="encaminhamento">Violação de Painel<h11>*</h11></label>
+   <label class="col-md-1 control-label" for="encaminhamento">Violação de Painel</label>
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">     
@@ -920,7 +920,7 @@ function removerCampo(idCampo){
 
 
 <div class="form-group">
-  <label class="col-md-2 control-label" for="encaminhamento">Violação de Grade <h11>*</h11></label>
+  <label class="col-md-2 control-label" for="encaminhamento">Violação de Grade</label>
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">     
@@ -949,7 +949,7 @@ function removerCampo(idCampo){
  <!-- Text input-->
 
 <div class="form-group">
-  <label class="col-md-2 control-label" for="prependedtext">Descritivo da Ocorrência<h11>*</h11></label>
+  <label class="col-md-2 control-label" for="prependedtext">Descritivo da Ocorrência</label>
   <div class="col-md-9">
     <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>

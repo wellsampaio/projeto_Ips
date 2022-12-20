@@ -115,11 +115,14 @@ function exibe(i) {
 function desabilita(i){
     
      document.getElementById(i).disabled = true;
-      document.getElementById('enc_instituicao').value=("");
+    document.getElementById('enc_instituicao').value=("");
+  
+
     }
 function habilita(i)
     {
         document.getElementById(i).disabled = false;
+        
     }
 
 
