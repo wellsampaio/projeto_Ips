@@ -2,6 +2,9 @@
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="/res/site/js2/jquery.min.js"></script>
 
+        <link rel="icon" type="image/png" href="/res/site/images/01_LOGO ORIGINAL.png" />
+        <title>Recuperar senha</title>
+
         <link rel="stylesheet" href="/res/site/css/bootstrap.min.css">
          <!-- Custom Theme files -->
         <link href="/res/site/css2/style.css" rel='stylesheet' type='text/css' />

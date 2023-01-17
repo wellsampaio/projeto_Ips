@@ -1,5 +1,6 @@
 <?php 
 session_start();
+ob_start();
 require_once("vendor/autoload.php");
 
 use \Slim\Slim;
@@ -18,5 +19,6 @@ require_once("admin-orders.php");
 require_once("cart.php");
 
 $app->run();
+ob_end_flush();
 
  ?>

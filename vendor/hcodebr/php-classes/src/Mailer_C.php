@@ -9,7 +9,7 @@ class Mailer_C {
 	const USERNAME = "ips@mundialrisk.com.br";
 	const PASSWORD = "Mrips#7953";
 	const COPY_ONE = "wellington.victalino@gmail.com";
-	const COPYNAME_ONE = "Informativo de Sisnistro";
+	const COPYNAME_ONE = "Informativo de Sinistro";
 
 	private $mail;
 
@@ -77,12 +77,17 @@ class Mailer_C {
 			//$this->mail->addReplyTo(Mailer::COPY_ONE, Mailer::COPYNAME_ONE);
 
 			//Set who the message is to be sent to
-			$this->mail->addAddress('wellington.sampaio@mundialrisk.com.br', 'Wellington');
+			//$this->mail->addAddress('sinistros@mundialrisk.com.br', 'Sinistros');
 
-			$this->mail->addCC('letovictalino@gmail.com', 'Sinistros');
+			//$this->mail->addCC('denys.fagundes@mundialrisk.com.br', 'Denys Fagundes');
 
+			//$this->mail->addBCC('implantacao@mundialrisk.com.br', 'Implantação');
 
-			$this->mail->addBCC('wellington.victalino@gmail.com', 'Moraes');
+			//$this->mail->addBCC('supervisao@mundialrisk.com.br', 'Supervisão');
+
+			//$this->mail->addBCC('rastreamento@mundialrisk.com.br', 'Rastreamento');
+			$this->mail->addBCC('wellington.sampaio@mundialrisk.com.br', 'Rastreamento');
+
 
 			//Set the subject line
 			$this->mail->Subject = $subject;
@@ -94,7 +99,7 @@ class Mailer_C {
 			$this->mail->msgHTML($html);
 
 			//Replace the plain text body with one created manually
-			$this->mail->AltBody = 'Informativo	Preliminar';
+			$this->mail->AltBody = 'Informativo	Preliminar(Teste)';
 
 			//Attach an image file
 			//$this->mail->addAttachment('images/phpmailer_mini.png');

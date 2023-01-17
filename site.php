@@ -170,13 +170,6 @@ $app->post("/ips", function(){
 	$address = new Address();
 
 
-	if (!isset($_POST['gerenteResponsavel']) || $_POST['gerenteResponsavel'] === '') {
-
-		Address::setMsgError("Informe o Gerente responsável.");
-
-		header('Location: /ips');
-		exit;
-	}
 
 
 	if (Address::checkSmExist($_POST['NumSM']) === true) {
@@ -215,7 +208,7 @@ $app->post("/ips", function(){
 	$address->saveAlertas();
 	
 	$url = $_POST['NumSM'];
-	$link = "http://127.0.0.1/ips/solicitacao/$url";
+	$link = "http://sistemas.mundialrisk.local/ips/solicitacao/$url";
    	$mailer_C = new Mailer_C("Nova Solicitacao de Ips", "Ips_Email", array(
                  "name"=>$_POST['desperson'],
                  "link"=> $link,
@@ -623,7 +616,7 @@ $app->get("/login", function(){
 });
 
 $app->post("/login", function(){
-	
+
 	try {
 		
 		User::login($_POST['login'], $_POST['password']);
@@ -803,19 +796,25 @@ $app->post("/forgot/reset", function(){
 
 	$user->setPassword($password);
 
-	$page = new Page();
+	$page = new Page([
+		'header'=>'false',
+		'footer'=>'false'
+	]);
 
 	$page->setTpl("forgot-reset-success");
 
 });
 
-/*$app->get("/profile", function(){
+$app->get("/profile", function(){
 
 	User::verifyLogin(false);
 
 	$user = User::getFromSession();
 
-	$page = new Page();
+	$page = new Page([
+		'header'=>false,
+		'footer'=>false
+	]);
 
 	$page->setTpl("profile", [
 		'user'=>$user->getValues(),
@@ -823,9 +822,9 @@ $app->post("/forgot/reset", function(){
 		'profileError'=>User::getError()
 	]);
 
-});*/
+});
 
-/*$app->post("/profile", function(){
+$app->post("/profile", function(){
 
 	User::verifyLogin(false);
 
@@ -856,7 +855,7 @@ $app->post("/forgot/reset", function(){
 	$_POST['iduser'] = $user->getiduser();
 	$_POST['inadmin'] = $user->getinadmin();
 	$_POST['despassword'] = $user->getdespassword();
-	$_POST['deslogin'] = $_POST['desemail'];
+	$_POST['deslogin'] = $user->getdeslogin();
 
 	$user->setData($_POST);
 
@@ -869,7 +868,9 @@ $app->post("/forgot/reset", function(){
 	header("Location: /profile");
 	exit;
 
-});*/
+});
+
+
 
 /*$app->get("/order/:idorder", function($idorder) {
 
@@ -1002,7 +1003,11 @@ $app->get("/profile/change-password", function(){
 
 	User::verifyLogin(false);
 
-	$page = new Page();
+	$page = new Page([
+		'header'=>false,
+		'footer'=>false
+
+	]);
 
 	$page->setTpl("profile-change-password", [
 		'changePassError'=>User::getError(),

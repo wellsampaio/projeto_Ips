@@ -29,7 +29,8 @@
     
     body {
   background-image: url("/res/site/images/3409297.jpg");
- 
+   background-repeat: no-repeat, repeat;
+   max-width: 100%;
 }
   </style>
 </head>

@@ -9,8 +9,183 @@
 
 <link href="/res/site/css3/style.css" rel="stylesheet" type="text/css" media="all" />
 <link href="/res/site/css/loading.min.css" rel="stylesheet" type="text/css" media="all" />
+<script type="text/javascript">
+  function myFunction() {
+  document.getElementById("myText").required = true;
+  document.getElementById("dtComunicado").required = true;
+  document.getElementById("seguradora").required = true;
+  document.getElementById("gerente").required = true;
+  document.getElementById("sinistro").required = true;
+  document.getElementById("lsinistro").required = true;
+  document.getElementById("llatitude").required = true;
+}
+
+</script>
+
+<script type="text/javascript">
+  
+document.addEventListener("keydown", function(e) {
+  if(e.keyCode === 13) {
+        
+    e.preventDefault();
+      
+  }
+});
+    
+    function limpa_formulario_cep() {
+            //Limpa valores do formulário de cep.
+            document.getElementById('rua').value=("");
+            document.getElementById('bairro').value=("");
+            document.getElementById('cidade').value=("");
+            document.getElementById('estado').value=("");
+            
+    }
+
+    function meu_callback(conteudo) {
+        if (!("erro" in conteudo)) {
+            //Atualiza os campos com os valores.
+            document.getElementById('rua').value=(conteudo.logradouro);
+            document.getElementById('bairro').value=(conteudo.bairro);
+            document.getElementById('cidade').value=(conteudo.localidade);
+            document.getElementById('estado').value=(conteudo.uf);
+        } //end if.
+        else {
+            //CEP não Encontrado.
+            limpa_formulario_cep();
+            alert("CEP não encontrado.");
+            document.getElementById('cep').value=("");
+        }
+    }
+        
+    function pesquisacep(valor) {
+
+        //Nova variável "cep" somente com dígitos.
+        var cep = valor.replace(/\D/g, '');
+
+        //Verifica se campo cep possui valor informado.
+        if (cep !== "") {
+
+            //Expressão regular para validar o CEP.
+            var validacep = /^[0-9]{8}$/;
+
+            //Valida o formato do CEP.
+            if(validacep.test(cep)) {
+
+                //Preenche os campos com "..." enquanto consulta webservice.
+                document.getElementById('rua').value="...";
+                document.getElementById('bairro').value="...";
+                document.getElementById('cidade').value="...";
+                document.getElementById('estado').value="...";
+
+                //Cria um elemento javascript.
+                var script = document.createElement('script');
+
+                //Sincroniza com o callback.
+                script.src = '//viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
+
+                //Insere script no documento e carrega o conteúdo.
+                document.body.appendChild(script);
+
+            } //end if.
+            else {
+                //cep é inválido.
+                limpa_formulario_cep();
+                alert("Formato de CEP inválido.");
+            }
+        } //end if.
+        else {
+            //cep sem valor, limpa formulário.
+            limpa_formulario_cep();
+        }
+    }
+
+function formatar(mascara, documento){
+  var i = documento.value.length;
+  var saida = mascara.substring(0,1);
+  var texto = mascara.substring(i);
+  
+  if (texto.substring(0,1) != saida){
+            documento.value += texto.substring(0,1);
+  }
+  
+}
+ 
+function idade (){
+    var data=document.getElementById("dtnasc").value;
+    var dia=data.substr(0, 2);
+    var mes=data.substr(3, 2);
+    var ano=data.substr(6, 4);
+    var d = new Date();
+    var ano_atual = d.getFullYear(),
+        mes_atual = d.getMonth() + 1,
+        dia_atual = d.getDate();
+        
+        ano=+ano,
+        mes=+mes,
+        dia=+dia;
+        
+    var idade=ano_atual-ano;
+    
+    if (mes_atual < mes || mes_atual == mes_aniversario && dia_atual < dia) {
+        idade--;
+    }
+return idade;
+} 
+  
+  
+function exibe(i) {
+    
+   
+        
+  document.getElementById(i).readOnly= true;
+      
+    
+  
+    
+}
+
+function desabilita(i){
+    
+     document.getElementById(i).disabled = true;
+    document.getElementById('enc_instituicao').value=("");
+  
+
+    }
+function habilita(i)
+    {
+        document.getElementById(i).disabled = false;
+        
+    }
 
 
+function showhide()
+ {
+       var div = document.getElementById("newpost");
+       
+       if(idade()>=18){
+ 
+    div.style.display = "none";
+}
+else if(idade()<18) {
+    div.style.display = "inline";
+}
+
+
+
+
+ }
+
+
+ 
+
+ 
+
+
+
+
+
+
+</script>
 
 
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -59,7 +234,7 @@
 var controleCampo = 1;
 function adicionarCampo() {
     controleCampo++;
-    document.getElementById('formulario').insertAdjacentHTML('beforeend', '<div class="form-group" id="campo' + controleCampo + '"><label class="col-md-2 control-label" for="prependedtext">Acionamentos</label><div class="col-md-2"><div class="input-group"><input id="acionamento" name="acionamento'+ controleCampo + '" placeholder="Tipo de acionamento" class="form-control" type="text" ></div></div><div class="col-md-2" style="margin-left: -50px"><div class="input-group"><input id="prependedtext" name="datah'+ controleCampo + '" class="form-control" type="datetime-local" ></div></div> <div class="col-md-1" style="margin-left: -55px"><div class="input-group"><input id="prependedtext" name="nome'+ controleCampo + '" class="form-control" placeholder="Nome" type="text" ></div></div>  <div class="col-md-2" style="margin-left: -20px"><div class="input-group"> <input id="prependedtext" name="contato'+ controleCampo + '" class="form-control" placeholder="Contato" type="text"></div></div><div class="col-md-2" style="margin-left: -50px"> <div class="input-group"><input id="local" name="local'+ controleCampo + '" class="form-control" placeholder="Local" type="text"></div>  </div><div class="col-md-2" style="margin-left: -55px"> <div class="input-group"><input id="descricao" name="descricao'+ controleCampo + '" class="form-control" placeholder="Descrição do acionamento" type="text"></div>  </div><input type="hidden" name="id' + controleCampo + '" id="id' + controleCampo + '" /><button type="button" id="' + controleCampo + '" onclick="removerCampo(' + controleCampo + ')"> - </button></div>');
+    document.getElementById('formulario').insertAdjacentHTML('beforeend', '<div class="form-group" id="campo' + controleCampo + '"><label class="col-md-2 control-label" for="prependedtext">Acionamentos</label><div class="col-md-2"><div class="input-group"><input id="acionamento" name="acionamento'+ controleCampo + '" placeholder="Tipo de acionamento" class="form-control" type="text" ></div></div><div class="col-md-2" style="margin-left: -50px"><div class="input-group"><input id="prependedtext" name="datah'+ controleCampo + '" class="form-control" type="datetime-local" ></div></div> <div class="col-md-1" style="margin-left: -55px"><div class="input-group"><input id="prependedtext" name="nome'+ controleCampo + '" class="form-control" placeholder="Nome" type="text" ></div></div>  <div class="col-md-2" style="margin-left: -30px"><div class="input-group"> <input id="prependedtext" name="contato'+ controleCampo + '" class="form-control" placeholder="Contato" type="text"></div></div><div class="col-md-2" style="margin-left: -50px"> <div class="input-group"><input id="local" name="local'+ controleCampo + '" class="form-control" placeholder="Local" type="text"></div>  </div><div class="col-md-2" style="margin-left: -55px"> <div class="input-group"><input id="descricao" name="descricao'+ controleCampo + '" class="form-control" placeholder="Descrição do acionamento" type="text"></div>  </div><input type="hidden" name="id' + controleCampo + '" id="id' + controleCampo + '" /><button type="button" id="' + controleCampo + '" onclick="removerCampo(' + controleCampo + ')"> - </button></div>');
     document.getElementById("qnt_campo").value = controleCampo;
 }
 
@@ -87,8 +262,9 @@ function removerCampo(idCampo){
                 <div class="top-header-left">
                      <ul>
                         <!--<li><a href="/profile">Minha Conta</a></li>-->
+                        <li><a href="#" target="blank" style="color: #08cc9e"><b>Solicitar IPS</b></a></li>
                         <li><a href="/ips/solicitacoes" target="blank">Solicitações</a></li>
-                        <li><a href="/ips/solicitacoes" target="blank">Editar Solicitação de IPS</a></li>
+                        <li><a href="#" target="blank">Pronta Resposta</a></li>
                         <li><a href="" >Contato</a></li>
 
                         <div class="clearfix"> </div>
@@ -100,7 +276,7 @@ function removerCampo(idCampo){
                 <div class="top-header-right">
                     <ul>
                         <?php if( checkLogin(false) ){ ?>
-                            <li><a href=""><i class="fa fa-user"></i> <?php echo getUserName(); ?></a></li>
+                            <li><a href="/profile"><i class="fa fa-user"></i> <?php echo getUserName(); ?></a></li>
                             <li><a href="/logout"><i class="fa fa-close"></i> Sair</a></li>
                             <?php }else{ ?>
                             <li><a href="/login"><i class="fa fa-lock"></i> Login</a></li>
@@ -187,9 +363,8 @@ function removerCampo(idCampo){
 <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Seguradora<h11> *</h11></span>
-      <select name="seguradora" id="cars" class="form-control" name="seguradora"> 
-
-       <option value=""></option>  
+      <select name="seguradora" id="seguradora" class="form-control" name="seguradora">
+      <option value=""></option> 
         <?php $counter1=-1;  if( isset($seguradoras) && ( is_array($seguradoras) || $seguradoras instanceof Traversable ) && sizeof($seguradoras) ) foreach( $seguradoras as $key1 => $value1 ){ $counter1++; ?>
           <option value="<?php echo htmlspecialchars( $value1["nomeSeguradora"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["nomeSeguradora"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
         <?php } ?>
@@ -204,6 +379,7 @@ function removerCampo(idCampo){
 
     <select id="gerente" class="form-control" name="gerenteResponsavel">
     <option value=""></option>
+
   <?php $counter1=-1;  if( isset($gerentes) && ( is_array($gerentes) || $gerentes instanceof Traversable ) && sizeof($gerentes) ) foreach( $gerentes as $key1 => $value1 ){ $counter1++; ?>
     <option value="<?php echo htmlspecialchars( $value1["nomeGerente"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["nomeGerente"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
   <?php } ?>
@@ -218,7 +394,8 @@ function removerCampo(idCampo){
 
 
 <div class="form-group">
-  <label class="col-md-2 control-label" for="encaminhamento">Acionar Seguradora </label>
+ 
+ <label class="col-md-2 control-label" for="encaminhamento">Acionar Seguradora </label>
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">     
@@ -230,8 +407,7 @@ function removerCampo(idCampo){
       <input type="radio" name="acionar" id="enc" value="Sim" onclick="habilita('enc_instituicao')">
       Sim
     </label>
-      </span>
-      <input id="enc_instituicao" name="telefone" class="form-control" type="text" placeholder="Telefone" disabled="false">
+      </span>      <input id="enc_instituicao" name="telefone" class="form-control" type="text" placeholder="Telefone" disabled="false">
       
     </div>
     
@@ -302,7 +478,7 @@ function removerCampo(idCampo){
 
    <div class="col-md-2">
     <div class="input-group">
-      <span class="input-group-addon">Isca</span>
+      <span class="input-group-addon">Possui Isca</span>
       <input id="prependedtext" name="isca" class="form-control" placeholder="" type="text" value="<?php echo htmlspecialchars( $address["isca"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
     </div>
   </div>
@@ -319,7 +495,24 @@ function removerCampo(idCampo){
 
 
 <div class="form-group">
- <label class="col-md-2 control-label" for="radios">Iscas Posicionando</label>
+   <label class="col-md-2 control-label" for="encaminhamento">Necessário Isca? </label>
+  <div class="col-md-4">
+    <div class="input-group">
+      <span class="input-group-addon">     
+        <label class="radio-inline" for="radios-0">
+      <input type="radio" name="nIsca" id="enc" value="Nao"  onclick="desabilita('nTerminal')" checked>
+      Não
+    </label> 
+    <label class="radio-inline" for="radios-1">
+      <input type="radio" name="nIsca" id="enc" value="Sim" onclick="habilita('nTerminal')">
+      Sim
+    </label>
+      </span>      <input id="nTerminal" name="nTerminal" class="form-control" type="text" placeholder="Terminal" disabled="false">
+      
+    </div>
+    
+  </div>
+ <label class="col-md-2 control-label" for="radios">Iscas Posicionando?</label>
   <div class="col-md-4"> 
     <label class="radio-inline" for="radios-0" >
       <input name="iscaPosicionando" id="" value="Sim" type="radio">
@@ -330,6 +523,9 @@ function removerCampo(idCampo){
       Não
     </label>
   </div>
+
+</div>
+
 
 </div>
 
@@ -409,7 +605,7 @@ function removerCampo(idCampo){
   
 <div class="col-md-4">
     <div class="input-group">
-      <span class="input-group-addon">Cidade Origem</span>
+      <span class="input-group-addon">Local Origem</span>
       <input id="rua" name="cidadeOrigem" class="form-control" placeholder="" readonly="readonly" type="text" value="<?php echo htmlspecialchars( $address["vloc_descricao_o"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
     </div>
     
@@ -422,7 +618,7 @@ function removerCampo(idCampo){
   <label class="col-md-2 control-label" for="prependedtext"></label>
   <div class="col-md-4">
     <div class="input-group">
-      <span class="input-group-addon">Cidade Destino</span>
+      <span class="input-group-addon">Local Destino</span>
       <input id="rua" name="cidadeDestino" class="form-control" placeholder="" readonly="readonly" type="text" value="<?php echo htmlspecialchars( $address["vloc_descricao_d"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
     </div>
     
@@ -444,8 +640,8 @@ function removerCampo(idCampo){
   <label class="col-md-2 control-label" for="prependedtext">Dados do Sinistro</label>
   <div class="col-md-4">
     <div class="input-group">
-      <span class="input-group-addon">Data e hora do comunicado</span>
-      <input id="rua" name="dtComunicado" class="form-control" placeholder="" type="datetime-local">
+      <span class="input-group-addon">Data e hora do comunicado<h11>*</h11></span>
+      <input id="dtComunicado" name="dtComunicado" class="form-control" placeholder="" type="datetime-local">
     </div>  
   </div>
 
@@ -463,16 +659,17 @@ function removerCampo(idCampo){
   <label class="col-md-2 control-label" for="prependedtext"></label>
   <div class="col-md-4">
     <div class="input-group">
-      <span class="input-group-addon">Data e hora do sinistro</span>
-      <input id="cidade" name="dtSinistro" class="form-control" placeholder=""  type="datetime-local">
+      <span class="input-group-addon">Data e hora do sinistro<h11>*</h11></span>
+      <input id="myText" name="dtSinistro" class="form-control" placeholder=""  type="datetime-local">
     </div>
     
   </div>
   
 <div class="col-md-4">
     <div class="input-group">
-      <span class="input-group-addon">Tipo de Sinistro</span>
-      <select name="tipoSinistro" id="cars" class="form-control">   
+      <span class="input-group-addon">Tipo de Sinistro<h11>*</h11></span>
+      <select name="tipoSinistro" id="sinistro" class="form-control">
+        <option value=""></option>
         <?php $counter1=-1;  if( isset($tiposSinistros) && ( is_array($tiposSinistros) || $tiposSinistros instanceof Traversable ) && sizeof($tiposSinistros) ) foreach( $tiposSinistros as $key1 => $value1 ){ $counter1++; ?>
           <option value="<?php echo htmlspecialchars( $value1["nomeSinistro"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["nomeSinistro"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
         <?php } ?>
@@ -489,7 +686,7 @@ function removerCampo(idCampo){
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Local do sinistro</span>
-      <input id="rua" name="localSinistro" class="form-control" placeholder="" type="text">
+      <input id="lsinistro" name="localSinistro" class="form-control" placeholder="" type="text">
     </div>
     
   </div>
@@ -509,7 +706,7 @@ function removerCampo(idCampo){
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Latitude</span>
-      <input id="rua" name="latitude" class="form-control" placeholder="" type="text">
+      <input id="llatitude" name="latitude" class="form-control" placeholder="" type="text">
     </div>
     
   </div>
@@ -518,7 +715,7 @@ function removerCampo(idCampo){
 <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">Logintude</span>
-      <input id="rua" name="logintude" class="form-control" placeholder="" type="text">
+      <input id="rua" name="longitude" class="form-control" placeholder="" type="text">
     </div>
     
   </div>
@@ -540,14 +737,14 @@ function removerCampo(idCampo){
       <input id="prependedtext" name="datah" class="form-control" type="datetime-local" >
     </div >
   </div>
-  <div class="col-md-1" style="margin-left: -55px">
+  <div class="col-md-1" style="margin-left: -45px">
     <div class="input-group">
       <input id="prependedtext" name="nome" class="form-control" placeholder="Nome" type="text" >
     </div>
 
   </div>
 
-  <div class="col-md-2" style="margin-left: -20px">
+  <div class="col-md-2" style="margin-left: -30px">
     <div class="input-group">
       <input id="prependedtext" name="contato" class="form-control" placeholder="Contato" type="text">
     </div>
@@ -966,7 +1163,7 @@ function removerCampo(idCampo){
 <div class="form-group">
   <label class="col-md-2 control-label" for="Cadastrar"></label>
   <div class="col-md-8">
-    <button id="Cadastrar" name="Cadastrar" class="btn btn-success" type="Submit">Cadastrar</button>
+    <button id="Cadastrar" name="Cadastrar" class="btn btn-success" type="Submit" onclick="myFunction()">Cadastrar</button>
     
   </div>
 </div>

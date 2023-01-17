@@ -107,7 +107,7 @@
   </div>
 
       <div class="col-md-2" id="print">
-      <button type="button" onclick="window.print()" class="hidden-print">Gerar Ips</button>
+      <button type="button" onclick="window.print()" class="hidden-print">Imprimir</button>
     </div>
 
 
@@ -381,7 +381,7 @@
   
 <div class="col-md-4">
     <div class="input-group">
-      <span class="input-group-addon">Cidade Origem</span>
+      <span class="input-group-addon">Local Origem</span>
       <input id="rua" name="cidadeOrigem" class="form-control" placeholder="" readonly="readonly" type="text" value="{$address.cidadeOrigem}">
     </div>
     
@@ -394,7 +394,7 @@
   <label class="col-md-2 control-label" for="prependedtext"></label>
   <div class="col-md-4">
     <div class="input-group">
-      <span class="input-group-addon">Cidade Destino</span>
+      <span class="input-group-addon">Local Destino</span>
       <input id="rua" name="cidadeDestino" class="form-control" placeholder="" readonly="readonly" type="text" value="{$address.cidadeDestino}">
     </div>
     
@@ -513,39 +513,39 @@
   <div class="col-md-2">
 
     <div class="input-group">
-      <input id="acionamento" name="tipo_acionamento" placeholder="Tipo de acionamento" class="form-control" type="text" value="{$address.tipo_acionamento}" disabled="false">
+      <input id="acionamento" name="tipo_acionamento" placeholder="Tipo de acionamento" class="form-control" type="text" value="{$address.tipo_acionamento}" disabled="false" style="font-size: 12;">
     </div>
   </div>
 
-     <div class="col-md-2" style="margin-left: -50px;">
+     <div class="col-md-2" style="margin-left: -70px;">
     <div class="input-group">
-      <input id="prependedtext" name="datah" class="form-control" type="datetime-local" value="{$address.datah}" disabled="false">
+      <input id="prependedtext" name="datah" class="form-control" type="datetime-local" value="{$address.datah}" disabled="false" style="font-size: 12;">
     </div >
   </div>
-  <div class="col-md-1" style="margin-left: -58px">
+  <div class="col-md-2" style="margin-left: -75px">
     <div class="input-group">
-      <input id="prependedtext" name="nome" class="form-control" placeholder="Nome" type="text" value="{$address.nome}" disabled="false">
+      <input id="prependedtext" name="nome" class="form-control" placeholder="Nome" type="text" value="{$address.nome}" disabled="false" style="font-size: 12;">
     </div>
 
   </div>
 
-  <div class="col-md-2" style="margin-left: -27px">
+  <div class="col-md-2" style="margin-left: -70px">
     <div class="input-group">
-      <input id="prependedtext" name="contato" class="form-control" placeholder="Contato" type="text" value="{$address.contato}" disabled="false">
+      <input id="prependedtext" name="contato" class="form-control" placeholder="Contato" type="text" value="{$address.contato}" disabled="false" style="font-size: 12;">
     </div>
   </div>
 
-   <div class="col-md-2" style="margin-left: -50px">
+   <div class="col-md-2" style="margin-left: -70px">
     <div class="input-group">
       
-      <input id="local" name="local" class="form-control" placeholder="Local" type="text" value="{$address.local}" disabled="false">
+      <input id="local" name="local" class="form-control" placeholder="Local" type="text" value="{$address.local}" disabled="false" style="font-size: 12;">
       
     </div>
   </div>
 
-  <div class="col-md-2" style="margin-left: -50px">
+  <div class="col-md-2" style="margin-left: -70px">
     <div class="input-group" style="width: 330px">
-      <input id="descricao" name="descricao" class="form-control" placeholder="Descrição do Acionamento" type="text" value="{$address.descricao}" disabled="false" >
+      <input id="descricao" name="descricao" class="form-control" placeholder="Descrição do Acionamento" type="text" value="{$address.descricao}" disabled="false" style="font-size: 12;">
     </div>
   </div>
 
@@ -558,39 +558,38 @@
   <label class="col-md-2 control-label" for="prependedtext">Acionamentos<h11>*</h11></label>
   <div class="col-md-2">
     <div class="input-group">
-      <input id="acionamento" name="acionamento2" placeholder="Tipo de acionamento" class="form-control" type="text" value="{$address.acionamento2}" disabled="false" >
+      <input id="acionamento" name="acionamento2" placeholder="Tipo de acionamento" class="form-control" type="text" value="{$address.acionamento2}" disabled="false" style="font-size: 12;">
     </div>
   </div>
 
-     <div class="col-md-2" style="margin-left: -50px">
+     <div class="col-md-2" style="margin-left: -70px">
     <div class="input-group">
-      <input id="prependedtext" name="datah2" class="form-control" type="datetime-local" value="{$address.datah2}" disabled="false">
+      <input id="prependedtext" name="datah2" class="form-control" type="datetime-local" value="{$address.datah2}" disabled="false" style="font-size: 12;">
     </div >
   </div>
-  <div class="col-md-1" style="margin-left: -58px">
+  <div class="col-md-2" style="margin-left: -75px">
     <div class="input-group">
-      <input id="prependedtext" name="nome2" class="form-control" placeholder="Nome" type="text" value="{$address.nome2}" disabled="false">
+      <input id="prependedtext" name="nome2" class="form-control" placeholder="Nome" type="text" value="{$address.nome2}" disabled="false" style="font-size: 12;">
     </div>
 
   </div>
 
-  <div class="col-md-2" style="margin-left: -27px">
+  <div class="col-md-2" style="margin-left: -70px">
     <div class="input-group">
-      <input id="prependedtext" name="contato2" class="form-control" placeholder="Contato" type="text" value="{$address.contato2}" disabled="false">
+      <input id="prependedtext" name="contato2" class="form-control" placeholder="Contato" type="text" value="{$address.contato2}" disabled="false" style="font-size: 12;">
     </div>
   </div>
 
-   <div class="col-md-2" style="margin-left: -50px">
+   <div class="col-md-2" style="margin-left: -70px">
     <div class="input-group">
+      <input id="local" name="local2" class="form-control" placeholder="Local" type="text" value="{$address.local2}" disabled="false" style="font-size: 12;">
       
-      <input id="local" name="local2" class="form-control" placeholder="Local" type="text" value="{$address.local2}" disabled="false">
-      
     </div>
   </div>
 
-  <div class="col-md-2" style="margin-left: -50px">
+  <div class="col-md-2" style="margin-left: -70px">
     <div class="input-group" style="width: 330px">
-      <input id="descricao" name="descricao2" class="form-control" placeholder="Descrição do Acionamento" type="text" value="{$address.descricao2}" disabled="false">
+      <input id="descricao" name="descricao2" class="form-control" placeholder="Descrição do Acionamento" type="text" value="{$address.descricao2}" disabled="false" style="font-size: 12;">
     </div>
   </div>
 
@@ -604,38 +603,36 @@
   <label class="col-md-2 control-label" for="prependedtext">Acionamentos<h11>*</h11></label>
   <div class="col-md-2">
     <div class="input-group">
-      <input id="acionamento" name="acionamento3" placeholder="Tipo de acionamento" class="form-control" type="text" value="{$address.acionamento3}" disabled="false">
+      <input id="acionamento" name="acionamento3" placeholder="Tipo de acionamento" class="form-control" type="text" value="{$address.acionamento3}" disabled="false" style="font-size: 12;">
     </div>
   </div>
 
-     <div class="col-md-2" style="margin-left: -50px">
+     <div class="col-md-2" style="margin-left: -70px">
     <div class="input-group">
-      <input id="prependedtext" name="datah3" class="form-control" type="datetime-local" value="{$address.datah3}" disabled="false">
+      <input id="prependedtext" name="datah3" class="form-control" type="datetime-local" value="{$address.datah3}" disabled="false" style="font-size: 12;">
     </div >
   </div>
-  <div class="col-md-1" style="margin-left: -58px">
+  <div class="col-md-2" style="margin-left: -75px" style="font-size: 12;">
     <div class="input-group">
       <input id="prependedtext" name="nome3" class="form-control" placeholder="Nome" type="text" value="{$address.nome3}" disabled="false">
     </div>
 
   </div>
 
-  <div class="col-md-2" style="margin-left: -27px">
+  <div class="col-md-2" style="margin-left: -70px">
     <div class="input-group">
-      <input id="prependedtext" name="contato3" class="form-control" placeholder="Contato" type="text" value="{$address.contato3}" disabled="false">
+      <input id="prependedtext" name="contato3" class="form-control" placeholder="Contato" type="text" value="{$address.contato3}" disabled="false" style="font-size: 12;">
     </div>
   </div>
 
-   <div class="col-md-2" style="margin-left: -50px">
+   <div class="col-md-2" style="margin-left: -70px">
     <div class="input-group">
-      
-      <input id="local" name="local3" class="form-control" placeholder="Local" type="text" value="{$address.local3}" disabled="false">
-      
+      <input id="local" name="local3" class="form-control" placeholder="Local" type="text" value="{$address.local3}" disabled="false" style="font-size: 12;">
     </div>
   </div>
-<div class="col-md-2" style="margin-left: -50px">
+<div class="col-md-2" style="margin-left: -70px">
     <div class="input-group" style="width: 330px">
-      <input id="descricao"  class="form-control" placeholder="Descrição do Acionamento" type="text" value="{$address.descricao3}" name="descricao3" disabled="false">
+      <input id="descricao"  class="form-control" placeholder="Descrição do Acionamento" type="text" value="{$address.descricao3}" name="descricao3" disabled="false" style="font-size: 12;">
     </div>
   </div>
 
@@ -649,38 +646,38 @@
   <label class="col-md-2 control-label" for="prependedtext">Acionamentos<h11>*</h11></label>
   <div class="col-md-2">
     <div class="input-group">
-      <input id="acionamento" name="acionamento4" placeholder="Tipo de acionamento" class="form-control" type="text" value="{$address.acionamento4}" disabled="false" >
+      <input id="acionamento" name="acionamento4" placeholder="Tipo de acionamento" class="form-control" type="text" value="{$address.acionamento4}" disabled="false" style="font-size: 12;">
     </div>
   </div>
 
-     <div class="col-md-2" style="margin-left: -50px">
+     <div class="col-md-2" style="margin-left: -70px">
     <div class="input-group">
-      <input id="prependedtext" name="datah4" class="form-control" type="datetime-local" value="{$address.datah4}" disabled="false">
+      <input id="prependedtext" name="datah4" class="form-control" type="datetime-local" value="{$address.datah4}" disabled="false" style="font-size: 12;">
     </div >
   </div>
-  <div class="col-md-1" style="margin-left: -58px">
+  <div class="col-md-2" style="margin-left: -75px">
     <div class="input-group">
-      <input id="prependedtext" name="nome4" class="form-control" placeholder="Nome" type="text" value="{$address.nome4}" disabled="false">
+      <input id="prependedtext" name="nome4" class="form-control" placeholder="Nome" type="text" value="{$address.nome4}" disabled="false" style="font-size: 12;">
     </div>
 
   </div>
 
-  <div class="col-md-2" style="margin-left: -27px">
+  <div class="col-md-2" style="margin-left: -70px">
     <div class="input-group">
-      <input id="prependedtext" name="contato4" class="form-control" placeholder="Contato" type="text" value="{$address.contato4}" disabled="false">
+      <input id="prependedtext" name="contato4" class="form-control" placeholder="Contato" type="text" value="{$address.contato4}" disabled="false" style="font-size: 12;">
     </div>
   </div>
 
-   <div class="col-md-2" style="margin-left: -50px">
+   <div class="col-md-2" style="margin-left: -70px">
     <div class="input-group">
       
-      <input id="local" name="local4" class="form-control" placeholder="Local" type="text" value="{$address.local4}" disabled="false">
+      <input id="local" name="local4" class="form-control" placeholder="Local" type="text" value="{$address.local4}" disabled="false" style="font-size: 12;">
       
     </div>
   </div>
-  <div class="col-md-2" style="margin-left: -50px">
+  <div class="col-md-2" style="margin-left: -70px">
     <div class="input-group" style="width: 330px">
-      <input id="descricao" name="descricao4" class="form-control" placeholder="Descrição do Acionamento" type="text" value="{$address.descricao4}" disabled="false">
+      <input id="descricao" name="descricao4" class="form-control" placeholder="Descrição do Acionamento" type="text" value="{$address.descricao4}" disabled="false" style="font-size: 12;">
     </div>
   </div>
 
@@ -731,16 +728,18 @@
     
   </div>
   
-   {if="($address.perdaTerminal)!='Sim'"}
+   
    <label class="col-md-1 control-label" for="encaminhamento">Perda de Terminal<h11>*</h11></label>
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">     
         <label class="radio-inline" for="radios-1">
+          {if="($address.perdaTerminal)!='Sim'"}
       <input type="radio" name="perdaTerminal" id="terminal" value="Não" {if="($address.perdaTerminal)!='Sim'"} checked {/if} onclick="desabilita('tterminal')">
       Não
+      {else}
     </label>
-    {else} 
+     
     <label class="radio-inline" for="radios-1">
       <input type="radio" name="perdaTerminal" id="terminal" value="Sim" {if="($address.perdaTerminal)=='Sim'"} checked {/if}  onclick="habilita('tterminal')">
       Sim

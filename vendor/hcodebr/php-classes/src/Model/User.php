@@ -235,10 +235,10 @@ class User extends Model {
 
              if ($inadmin === true) {
                  $link = 
-"http://127.0.0.1/admin/forgot/reset?code=$result";
+"http://sistemas.mundialrisk.local/admin/forgot/reset?code=$result";
              } else {
                  $link = 
-"http://127.0.0.1/forgot/reset?code=$result";
+"http://sistemas.mundialrisk.local/forgot/reset?code=$result";
              } 
 
              $mailer = new Mailer($data['desemail'], $data['desperson'], "Redefinir senha", "forgot", array(

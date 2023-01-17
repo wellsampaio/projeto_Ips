@@ -11,8 +11,6 @@ class Address extends Model {
 
 	const SESSION_ERROR = "AddressError";
 
-	
-
 
 	public static function getBuscarViagem($nrviagem)
 	{
@@ -110,7 +108,7 @@ class Address extends Model {
 
 		$sql = new Sql();
 
-			$results = $sql->select("CALL sp_veiculos_save(:idveiculo, :idperson, :marca, :modelo, :placa, :cor, :vtec_descricao, :term_numero_terminal, :NumSM)",  array(
+			$results = $sql->select("CALL sp_veiculos_saves(:idveiculo, :idperson, :marca, :modelo, :placa, :cor, :vtec_descricao, :term_numero_terminal, :NumSM)",  array(
 		    ':idveiculo'=>$this->getidveiculo(),
 		    ':idperson'=>$this->getidperson(),
 		    ':marca'=>$this->getmarca(),
@@ -135,11 +133,14 @@ class Address extends Model {
 
 		$sql = new Sql();
 
-			$results = $sql->select("CALL sp_iscas_save(:idiscas, :isca, :tec_isca, :iscaPosicionando, :NumSM)",  array(
+			$results = $sql->select("CALL sp_iscas_saves(:idiscas, :isca, :tec_isca, :iscaPosicionando, :nIsca, :nTerminal, :nIscaPosicionando, :NumSM)",  array(
 		    ':idiscas'=>$this->getidiscas(),
 		    ':isca'=>$this->getisca(),
 		    ':tec_isca'=>$this->gettec_isca(),
 		    ':iscaPosicionando'=>$this->getiscaPosicionando(),
+		    ':nIsca'=>$this->getnIsca(),
+		    ':nTerminal'=>$this->getnTerminal(),
+		    ':nIscaPosicionando'=>$this->getnIscaPosicionando(),
 		    ':NumSM'=>$this->getNumSM()
 		    
 	));
@@ -171,7 +172,7 @@ class Address extends Model {
 		$sql = new Sql();
 
 
-			$results = $sql->select("CALL sp_acionamentos_save(:idacionamento,:tipo_acionamento,:datah,:nome,:contato,:local,:NumSM, :descricao, :acionamento2, :datah2, :nome2, :contato2, :local2, :descricao2, :acionamento3, :datah3, :nome3, :contato3, :local3, :descricao3, :acionamento4, :datah4, :nome4, :contato4, :local4, :descricao4)",  array(
+			$results = $sql->select("CALL sp_acionamentos_saves(:idacionamento,:tipo_acionamento,:datah,:nome,:contato,:local,:NumSM, :descricao, :acionamento2, :datah2, :nome2, :contato2, :local2, :descricao2, :acionamento3, :datah3, :nome3, :contato3, :local3, :descricao3, :acionamento4, :datah4, :nome4, :contato4, :local4, :descricao4)",  array(
 		    ':idacionamento'=>$this->getidacionamento(),
 		    ':tipo_acionamento'=>$this->gettipo_acionamento(),
 		    ':datah'=>$this->getdatah(),
@@ -293,7 +294,7 @@ public function saveSinistros()
 
 		$sql = new Sql();
 
-			$results = $sql->select("CALL sp_sinistros_save(:idsinistro , :dtComunicado, :dtSinistro, :localSinistro, :latitude, :longitude, :Km, :tipoSinistro, :nomeComunicante, :NumSM, :Descritivo )",  array(
+			$results = $sql->select("CALL sp_sinistros_saves(:idsinistro, :dtComunicado, :dtSinistro, :localSinistro, :latitude, :longitude, :Km, :tipoSinistro, :nomeComunicante, :NumSM, :Descritivo)",  array(
 		    ':idsinistro'=>$this->getidsinistro(),
 		    ':dtComunicado'=>$this->getdtComunicado(),
 		    ':dtSinistro'=>$this->getdtSinistro(),
@@ -369,6 +370,9 @@ public function saveSinistros()
 	}
 
 
+	
+
+
 		public function updateIps()
 	{
 
@@ -376,18 +380,16 @@ public function saveSinistros()
 
 
 		 $sql->query("UPDATE tb_sinistros s
-			JOIN tb_acionamentos a on a.NumSM = s.NumSM
-			JOIN tb_veiculos v on v.NumSM = a.NumSM
-			Join tb_persons p on p.idperson = v.idperson
-			Join tb_viagens vg on vg.viagemId = v.NumSM
-			Join tb_motoristas m on m.NumSM = vg.viagemId
-			Join tb_iscas i on i.NumSM = m.NumSM
-			Join tb_clientes c on c.NumSM = i.NumSM
-			left Join tb_alertas al on al.NumSM = c.NumSM
-			left Join tb_acionamentos ac on ac.NumSM = al.NumSM
-			set s.dtComunicado = :dtComunicado, s.dtSinistro = :dtSinistro,  s.localSinistro = :localSinistro, s.latitude = :latitude, s.longitude = :longitude, S.Km = :Km, s.tipoSinistro = :tipoSinistro, s.nomeComunicante = :nomeComunicante, s.Descritivo = :Descritivo, a.tipo_acionamento = :tipo_acionamento, a.datah = :datah, a.nome = :nome, a.contato = :contato, a.local = :local, a.descricao = :descricao, a.acionamento2 = :acionamento2, a.datah2 = :datah2, a.nome2 = :nome2, a.contato2 = :contato2, a.local2 = :local2, a.descricao2 = :descricao2, a.acionamento3 = :acionamento3, a.datah3 = :datah3, a.nome3 = :nome3, a.contato3 = :contato3, a.local3 = :local3, a.descricao3 = :descricao3, a.acionamento4 = :acionamento4, a.datah4 = :datah4, a.nome4 = :nome4, a.contato4 = :contato4, a.local4 = :local4, a.descricao4 = :descricao4,  v.marca = :marca, v.modelo = :modelo, v.placa = :placa, v.cor = :cor, v.vtec_descricao = :vtec_descricao, v.term_numero_terminal = :term_numero_terminal, vg.dataInicio = :dataInicio, vg.Valor = :Valor, vg.cidadeOrigem = :cidadeOrigem,
-			vg.cidadeDestino = :cidadeDestino, vg.Produtos = :Produtos, m.Motorista = :Motorista, m.CPF = :CPF, m.Vinculo = :Vinculo, i.isca = :isca, i.tec_isca = :tec_isca, i.iscaPosicionando = :iscaPosicionando, c.nomeEmbarcador =  :nomeEmbarcador, c.nomeTransportador = :nomeTransportador, c.seguradora = :seguradora, c.gerenteResponsavel = :gerenteResponsavel, c.acionar = :acionar, c.telefone = :telefone, c.Protocolo = :Protocolo, al.perdaBateria = :perdaBateria, al.dtAlertaBateria = :dtAlertaBateria, al.perdaSinal = :perdaSinal, al.dtPerdaSinal = :dtPerdaSinal, al.btpanico = :btPanico, al.dtBtPanico = :dtBtPanico, al.portaBauLateral = :portaBauLateral, al.dtPortaBauLateral = :dtPortaBauLateral, al.desengateCarreta = :desengateCarreta, al.dtDesengateCarreta = :dtDesengateCarreta, al.portaMotorista = :portaMotorista, al.dtPortaMotorista = :dtPortaMotorista, al.ignicaoDesligada = :ignicaoDesligada, al.dtIgnicaoDesligada = :dtIgnicaoDesligada, al.violacaoGrade = :violacaoGrade, al.dtViolacaoGrade = :dtViolacaoGrade, al.perdaTerminal = :perdaTerminal, al.dtPerdaTerminal = :dtPerdaTerminal, al.desvioRota = :desvioRota, al.dtDesvioRota = :dtDesvioRota, al.portaBauTraseira = :portaBauTraseira, al.dtPortaBauTraseira = :dtPortaBauTraseira, al.arrombamentoBau = :arrombamentoBau, al.dtArrombamentoBau = :dtArrombamentoBau, al.senhaPanico = :senhaPanico, al.dtSenhaPanico = :dtSenhaPanico, al.portaPassageiro = :portaPassageiro, al.dtPortaPassageiro = :dtPortaPassageiro, al.violacaoPainel = :violacaoPainel, al.dtViolacaoPainel = :dtViolacaoPainel where s.NumSM = :NumSM", [
-			    
+			join tb_acionamentos a on a.NumSM = s.NumSM
+			join tb_veiculos v on v.NumSM = a.NumSM
+			join tb_persons p on p.idperson = v.idperson
+			join tb_viagens vg on vg.viagemId = v.NumSM
+			join tb_motoristas m on m.NumSM = vg.viagemId
+			join tb_iscas i on i.NumSM = m.NumSM
+			join tb_clientes c on c.NumSM = i.NumSM
+			join tb_alertas al on al.NumSM = c.NumSM
+			join tb_acionamentos ac on ac.NumSM = al.NumSM
+			set s.dtComunicado = :dtComunicado, s.dtSinistro = :dtSinistro,  s.localSinistro = :localSinistro, s.latitude = :latitude, s.longitude = :longitude, s.Km = :Km, s.tipoSinistro = :tipoSinistro, s.nomeComunicante = :nomeComunicante, s.Descritivo = :Descritivo, a.tipo_acionamento = :tipo_acionamento, a.datah = :datah, a.nome = :nome, a.contato = :contato, a.local = :local, a.descricao = :descricao, a.acionamento2 = :acionamento2, a.datah2 = :datah2, a.nome2 = :nome2, a.contato2 = :contato2, a.local2 = :local2, a.descricao2 = :descricao2, a.acionamento3 = :acionamento3, a.datah3 = :datah3, a.nome3 = :nome3, a.contato3 = :contato3, a.local3 = :local3, a.descricao3 = :descricao3, a.acionamento4 = :acionamento4, a.datah4 = :datah4, a.nome4 = :nome4, a.contato4 = :contato4, a.local4 = :local4, a.descricao4 = :descricao4, v.marca = :marca, v.modelo = :modelo, v.placa = :placa, v.cor = :cor, v.vtec_descricao = :vtec_descricao, v.term_numero_terminal = :term_numero_terminal, vg.dataInicio = :dataInicio, vg.Valor = :Valor, vg.cidadeOrigem = :cidadeOrigem, vg.cidadeDestino = :cidadeDestino, vg.Produtos = :Produtos, m.Motorista = :Motorista, m.CPF = :CPF, m.Vinculo = :Vinculo, i.isca = :isca, i.tec_isca = :tec_isca, i.iscaPosicionando = :iscaPosicionando, c.nomeEmbarcador =  :nomeEmbarcador, c.nomeTransportador = :nomeTransportador, c.seguradora = :seguradora, c.gerenteResponsavel = :gerenteResponsavel, c.acionar = :acionar, c.telefone = :telefone, c.Protocolo = :Protocolo, al.perdaBateria = :perdaBateria, al.dtAlertaBateria = :dtAlertaBateria, al.perdaSinal = :perdaSinal, al.dtPerdaSinal = :dtPerdaSinal, al.btpanico = :btPanico, al.dtBtPanico = :dtBtPanico, al.portaBauLateral = :portaBauLateral, al.dtPortaBauLateral = :dtPortaBauLateral, al.desengateCarreta = :desengateCarreta, al.dtDesengateCarreta = :dtDesengateCarreta, al.portaMotorista = :portaMotorista, al.dtPortaMotorista = :dtPortaMotorista, al.ignicaoDesligada = :ignicaoDesligada, al.dtIgnicaoDesligada = :dtIgnicaoDesligada, al.violacaoGrade = :violacaoGrade, al.dtViolacaoGrade = :dtViolacaoGrade, al.perdaTerminal = :perdaTerminal, al.dtPerdaTerminal = :dtPerdaTerminal, al.desvioRota = :desvioRota, al.dtDesvioRota = :dtDesvioRota, al.portaBauTraseira = :portaBauTraseira, al.dtPortaBauTraseira = :dtPortaBauTraseira, al.arrombamentoBau = :arrombamentoBau, al.dtArrombamentoBau = :dtArrombamentoBau, al.senhaPanico = :senhaPanico, al.dtSenhaPanico = :dtSenhaPanico, al.portaPassageiro = :portaPassageiro, al.dtPortaPassageiro = :dtPortaPassageiro, al.violacaoPainel = :violacaoPainel, al.dtViolacaoPainel = :dtViolacaoPainel where s.NumSM = :NumSM", [
 				':dtComunicado'=>$this->getdtComunicado(),
 			    ':dtSinistro'=>$this->getdtSinistro(),
 			    ':localSinistro'=>$this->getlocalSinistro(),
@@ -488,9 +490,9 @@ public function saveSinistros()
 	public static function listGerentes()
 	{
 
-	$sqls = new Sqls();
+	$sql = new Sql();
 
-	return $sqls->select("SELECT * FROM tb_gerentes where inativo = 0 order by nomeGerente");
+	return $sql->select("SELECT * FROM tb_gerentes where inativo = 0 order by nomeGerente");
 
 	}
 
@@ -498,9 +500,9 @@ public function saveSinistros()
 	public static function listSeguradoras()
 	{
 
-	$sqls = new Sqls();
+	$sql = new Sql();
 
-	return $sqls->select("SELECT * FROM tb_seguradoras where inativo = 0 order by nomeSeguradora");
+	return $sql->select("SELECT * FROM tb_seguradoras where inativo = 0 order by nomeSeguradora");
 
 	}
 
@@ -508,15 +510,15 @@ public function saveSinistros()
 	public static function listTiposSinistros()
 	{
 
-	$sqls = new Sqls();
+	$sql = new Sql();
 
-	return $sqls->select("SELECT * FROM tb_tiposSinistro where inativo = 0 order by nomeSinistro");
+	return $sql->select("SELECT * FROM tb_tipossinistro where inativo = 0 order by nomeSinistro");
 
 	}
 
 
 
-	public static function getPageIps($page = 1, $itemsPerPage = 10)
+	public static function getPageIps($page = 1, $itemsPerPage = 100)
 	{
  		
  		$start = ($page - 1) * $itemsPerPage;
@@ -534,6 +536,7 @@ public function saveSinistros()
 			Join tb_clientes c on c.NumSM = i.NumSM
 			left Join tb_alertas al on al.NumSM = c.NumSM
 			left Join tb_acionamentos ac on ac.NumSM = al.NumSM
+			order by v.NumSM desc
 			LIMIT $start, $itemsPerPage;
 		");
 
@@ -547,7 +550,7 @@ public function saveSinistros()
  	}
 
 
- 	 	public static function getPageSearchIps($search, $page = 1, $itemsPerPage = 10)
+ 	 	public static function getPageSearchIps($search, $page = 1, $itemsPerPage = 100)
 	{
  		
  		$start = ($page - 1) * $itemsPerPage;

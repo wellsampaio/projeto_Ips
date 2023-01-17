@@ -4,9 +4,9 @@ namespace Hcode\DB;
 
 class Sqls {
 
-	const HOSTNAME = "localhost";
-	const USERNAME = "root";
-	const PASSWORD = "";
+	const HOSTNAME = "sistemas.mundialrisk.local";
+	const USERNAME = "sistemas";
+	const PASSWORD = "Sismundial@87755";
 	const DBNAME = "db_sinistros";
 
 	private $conn;
