@@ -130,6 +130,7 @@ $app->get("/ips", function(){
 	if (!$address->getdataInicio()) $address->setdataInicio('');
 	if (!$address->getCliente()) $address->setCliente('');
 	if (!$address->getplaca()) $address->setplaca('');
+	
 	if (!$address->getmarca()) $address->setmarca('');
 	if (!$address->getmodelo()) $address->setmodelo('');
 	if (!$address->getcor()) $address->setcor('');
@@ -163,13 +164,11 @@ $app->get("/ips", function(){
 
 $app->post("/ips", function(){
 
-	User::verifyLogin(true);
+	User::verifyLogin(false);
 
 	$user = User::getFromSession();
 
 	$address = new Address();
-
-
 
 
 	if (Address::checkSmExist($_POST['NumSM']) === true) {
@@ -292,9 +291,15 @@ $app->get("/ips/solicitacoes/:idNumSm", function($idNumSm) {
 
 	$tiposSinistros = Address::listTiposSinistros();
 
+	$tiposSinistros = Address::listTiposSinistros();
+
+	$acionamento = Address::getAcionamento($idNumSm);
+	
 	$seguradoras = Address::listSeguradoras();
 
 	$gerentes = Address::listGerentes();
+
+
 
 
 	$page = new Page([
@@ -306,8 +311,7 @@ $app->get("/ips/solicitacoes/:idNumSm", function($idNumSm) {
 		'address'=>$address->getValues(),
 		'seguradoras'=>$seguradoras,
 		'gerentes'=>$gerentes,
-		'tiposSinistros'=>$tiposSinistros 
-
+		'acionamento'=>$acionamento
 	]);
 	
 });
@@ -320,10 +324,28 @@ $app->post("/ips/solicitacoes/:idNumSm", function($idNumSm) {
 	$address = new Address();
 
 	$address->getIps($idNumSm);
+	
 
 	$address->setData($_POST);
-
 	$address->updateIps();
+
+
+	
+
+
+	if (Address::checkdatahExist(isset($_POST['datah'])) === false) {
+
+	$address->setData($_POST);
+		$address->saveAcionamento();
+		header("Location: /ips/solicitacoes");
+		exit;
+	}
+
+
+
+
+
+
 
 	header("Location: /ips/solicitacoes");
 	exit;
@@ -337,6 +359,8 @@ $app->get("/ips/solicitacao/:idNumSm", function($idNumSm) {
 	$address = new Address();
 
 	$address->getIps($idNumSm);
+
+	$acionamento = Address::getAcionamento($idNumSm);
 
 	$tiposSinistros = Address::listTiposSinistros();
 
@@ -354,7 +378,8 @@ $app->get("/ips/solicitacao/:idNumSm", function($idNumSm) {
 		'address'=>$address->getValues(),
 		'seguradoras'=>$seguradoras,
 		'gerentes'=>$gerentes,
-		'tiposSinistros'=>$tiposSinistros 
+		'tiposSinistros'=>$tiposSinistros,
+		'acionamento'=>$acionamento
 
 	]);
 	

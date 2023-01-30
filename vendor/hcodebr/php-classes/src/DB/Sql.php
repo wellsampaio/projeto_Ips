@@ -4,9 +4,9 @@ namespace Hcode\DB;
 
 class Sql {
 
-	const HOSTNAME = "10.112.10.36:33306";
-	const USERNAME = "sistemas";
-	const PASSWORD = "Sismundial@87755";
+	const HOSTNAME = "127.0.0.1";
+	const USERNAME = "root";
+	const PASSWORD = "";
 	const DBNAME = "db_sinistros";
 
 	private $conn;

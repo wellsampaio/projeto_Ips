@@ -290,18 +290,37 @@
 
 
 <div class="form-group">
- <label class="col-md-2 control-label" for="radios">Iscas Posicionando<h11>*</h11></label>
+   <label class="col-md-2 control-label" for="encaminhamento">Necessário Isca? </label>
+  <div class="col-md-4">
+    <div class="input-group">
+      <span class="input-group-addon">     
+        <label class="radio-inline" for="radios-0">
+      <input type="radio" name="nIsca" id="enc" value="Nao"  onclick="desabilita('nTerminal')" <?php if( ($address["nIsca"])!='Sim' ){ ?>  checked <?php } ?>>
+      Não
+    </label> 
+    <label class="radio-inline" for="radios-1">
+      <input type="radio" name="nIsca" id="enc" value="" onclick="habilita('nTerminal')" <?php if( ($address["nIsca"])!='Nao' ){ ?>  checked <?php } ?>>
+      Sim
+    </label>
+      </span>      <input id="nTerminal" name="nTerminal" class="form-control" type="text" placeholder="Terminal" disabled="false" value="<?php echo htmlspecialchars( $address["nTerminal"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+      
+    </div>
+    
+  </div>
+ <label class="col-md-2 control-label" for="radios">Iscas Posicionando?</label>
   <div class="col-md-4"> 
     <label class="radio-inline" for="radios-0" >
-
-      <input name="iscaPosicionando" disabled="false" id="" value="Sim" type="radio">
+      <input name="iscaPosicionando" id="" value="Sim" type="radio" <?php if( ($address["iscaPosicionando"])!='Não' ){ ?> checked <?php } ?>>
       Sim
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input name="iscaPosicionando" id="" value="Não" type="radio" checked="" disabled="false">
+      <input name="iscaPosicionando" id="" value="Não" type="radio" <?php if( ($address["iscaPosicionando"])!='Sim' ){ ?>  checked <?php } ?>>
       Não
     </label>
   </div>
+
+</div>
+
 
 </div>
 
@@ -507,182 +526,53 @@
 </div>
 
 <hr></hr>
-
+<?php $counter1=-1;  if( isset($acionamento) && ( is_array($acionamento) || $acionamento instanceof Traversable ) && sizeof($acionamento) ) foreach( $acionamento as $key1 => $value1 ){ $counter1++; ?>
 <div class="form-group" id= "formulario">
   <label class="col-md-2 control-label" for="prependedtext">Acionamentos<h11>*</h11></label>
   <div class="col-md-2">
 
     <div class="input-group">
-      <input id="acionamento" name="tipo_acionamento" placeholder="Tipo de acionamento" class="form-control" type="text" value="<?php echo htmlspecialchars( $address["tipo_acionamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" disabled="false" style="font-size: 12;">
+      <input id="acionamento" name="tipo_acionamento" placeholder="Tipo de acionamento" class="form-control" type="text" value="<?php echo htmlspecialchars( $value1["tipo_acionamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" disabled="false" style="font-size: 12;">
     </div>
   </div>
 
      <div class="col-md-2" style="margin-left: -70px;">
     <div class="input-group">
-      <input id="prependedtext" name="datah" class="form-control" type="datetime-local" value="<?php echo htmlspecialchars( $address["datah"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" disabled="false" style="font-size: 12;">
+      <input id="prependedtext" name="datah" class="form-control" type="datetime-local" value="<?php echo htmlspecialchars( $value1["datah"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" disabled="false" style="font-size: 12;">
     </div >
   </div>
   <div class="col-md-2" style="margin-left: -75px">
     <div class="input-group">
-      <input id="prependedtext" name="nome" class="form-control" placeholder="Nome" type="text" value="<?php echo htmlspecialchars( $address["nome"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" disabled="false" style="font-size: 12;">
+      <input id="prependedtext" name="nome" class="form-control" placeholder="Nome" type="text" value="<?php echo htmlspecialchars( $value1["nome"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" disabled="false" style="font-size: 12;">
     </div>
 
   </div>
 
   <div class="col-md-2" style="margin-left: -70px">
     <div class="input-group">
-      <input id="prependedtext" name="contato" class="form-control" placeholder="Contato" type="text" value="<?php echo htmlspecialchars( $address["contato"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" disabled="false" style="font-size: 12;">
+      <input id="prependedtext" name="contato" class="form-control" placeholder="Contato" type="text" value="<?php echo htmlspecialchars( $value1["contato"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" disabled="false" style="font-size: 12;">
     </div>
   </div>
 
    <div class="col-md-2" style="margin-left: -70px">
     <div class="input-group">
       
-      <input id="local" name="local" class="form-control" placeholder="Local" type="text" value="<?php echo htmlspecialchars( $address["local"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" disabled="false" style="font-size: 12;">
+      <input id="local" name="local" class="form-control" placeholder="Local" type="text" value="<?php echo htmlspecialchars( $value1["local"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" disabled="false" style="font-size: 12;">
       
     </div>
   </div>
 
   <div class="col-md-2" style="margin-left: -70px">
     <div class="input-group" style="width: 330px">
-      <input id="descricao" name="descricao" class="form-control" placeholder="Descrição do Acionamento" type="text" value="<?php echo htmlspecialchars( $address["descricao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" disabled="false" style="font-size: 12;">
+      <input id="descricao" name="descricao" class="form-control" placeholder="Descrição do Acionamento" type="text" value="<?php echo htmlspecialchars( $value1["descricao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" disabled="false" style="font-size: 12;">
     </div>
   </div>
 
 
- </div> 
+ </div>
+ <?php } ?> 
 
-    <?php if( ($address["acionamento2"])!='' ){ ?>
-
- <div class="form-group" id= "formulario">
-  <label class="col-md-2 control-label" for="prependedtext">Acionamentos<h11>*</h11></label>
-  <div class="col-md-2">
-    <div class="input-group">
-      <input id="acionamento" name="acionamento2" placeholder="Tipo de acionamento" class="form-control" type="text" value="<?php echo htmlspecialchars( $address["acionamento2"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" disabled="false" style="font-size: 12;">
-    </div>
-  </div>
-
-     <div class="col-md-2" style="margin-left: -70px">
-    <div class="input-group">
-      <input id="prependedtext" name="datah2" class="form-control" type="datetime-local" value="<?php echo htmlspecialchars( $address["datah2"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" disabled="false" style="font-size: 12;">
-    </div >
-  </div>
-  <div class="col-md-2" style="margin-left: -75px">
-    <div class="input-group">
-      <input id="prependedtext" name="nome2" class="form-control" placeholder="Nome" type="text" value="<?php echo htmlspecialchars( $address["nome2"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" disabled="false" style="font-size: 12;">
-    </div>
-
-  </div>
-
-  <div class="col-md-2" style="margin-left: -70px">
-    <div class="input-group">
-      <input id="prependedtext" name="contato2" class="form-control" placeholder="Contato" type="text" value="<?php echo htmlspecialchars( $address["contato2"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" disabled="false" style="font-size: 12;">
-    </div>
-  </div>
-
-   <div class="col-md-2" style="margin-left: -70px">
-    <div class="input-group">
-      <input id="local" name="local2" class="form-control" placeholder="Local" type="text" value="<?php echo htmlspecialchars( $address["local2"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" disabled="false" style="font-size: 12;">
-      
-    </div>
-  </div>
-
-  <div class="col-md-2" style="margin-left: -70px">
-    <div class="input-group" style="width: 330px">
-      <input id="descricao" name="descricao2" class="form-control" placeholder="Descrição do Acionamento" type="text" value="<?php echo htmlspecialchars( $address["descricao2"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" disabled="false" style="font-size: 12;">
-    </div>
-  </div>
-
-
- </div> 
-<?php } ?>
-
-    <?php if( ($address["acionamento3"])!='' ){ ?>
-
- <div class="form-group" id= "formulario">
-  <label class="col-md-2 control-label" for="prependedtext">Acionamentos<h11>*</h11></label>
-  <div class="col-md-2">
-    <div class="input-group">
-      <input id="acionamento" name="acionamento3" placeholder="Tipo de acionamento" class="form-control" type="text" value="<?php echo htmlspecialchars( $address["acionamento3"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" disabled="false" style="font-size: 12;">
-    </div>
-  </div>
-
-     <div class="col-md-2" style="margin-left: -70px">
-    <div class="input-group">
-      <input id="prependedtext" name="datah3" class="form-control" type="datetime-local" value="<?php echo htmlspecialchars( $address["datah3"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" disabled="false" style="font-size: 12;">
-    </div >
-  </div>
-  <div class="col-md-2" style="margin-left: -75px" style="font-size: 12;">
-    <div class="input-group">
-      <input id="prependedtext" name="nome3" class="form-control" placeholder="Nome" type="text" value="<?php echo htmlspecialchars( $address["nome3"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" disabled="false">
-    </div>
-
-  </div>
-
-  <div class="col-md-2" style="margin-left: -70px">
-    <div class="input-group">
-      <input id="prependedtext" name="contato3" class="form-control" placeholder="Contato" type="text" value="<?php echo htmlspecialchars( $address["contato3"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" disabled="false" style="font-size: 12;">
-    </div>
-  </div>
-
-   <div class="col-md-2" style="margin-left: -70px">
-    <div class="input-group">
-      <input id="local" name="local3" class="form-control" placeholder="Local" type="text" value="<?php echo htmlspecialchars( $address["local3"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" disabled="false" style="font-size: 12;">
-    </div>
-  </div>
-<div class="col-md-2" style="margin-left: -70px">
-    <div class="input-group" style="width: 330px">
-      <input id="descricao"  class="form-control" placeholder="Descrição do Acionamento" type="text" value="<?php echo htmlspecialchars( $address["descricao3"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" name="descricao3" disabled="false" style="font-size: 12;">
-    </div>
-  </div>
-
- </div> 
- <?php } ?>
-
-
-    <?php if( ($address["acionamento4"])!='' ){ ?>
-
- <div class="form-group" id= "formulario" >
-  <label class="col-md-2 control-label" for="prependedtext">Acionamentos<h11>*</h11></label>
-  <div class="col-md-2">
-    <div class="input-group">
-      <input id="acionamento" name="acionamento4" placeholder="Tipo de acionamento" class="form-control" type="text" value="<?php echo htmlspecialchars( $address["acionamento4"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" disabled="false" style="font-size: 12;">
-    </div>
-  </div>
-
-     <div class="col-md-2" style="margin-left: -70px">
-    <div class="input-group">
-      <input id="prependedtext" name="datah4" class="form-control" type="datetime-local" value="<?php echo htmlspecialchars( $address["datah4"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" disabled="false" style="font-size: 12;">
-    </div >
-  </div>
-  <div class="col-md-2" style="margin-left: -75px">
-    <div class="input-group">
-      <input id="prependedtext" name="nome4" class="form-control" placeholder="Nome" type="text" value="<?php echo htmlspecialchars( $address["nome4"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" disabled="false" style="font-size: 12;">
-    </div>
-
-  </div>
-
-  <div class="col-md-2" style="margin-left: -70px">
-    <div class="input-group">
-      <input id="prependedtext" name="contato4" class="form-control" placeholder="Contato" type="text" value="<?php echo htmlspecialchars( $address["contato4"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" disabled="false" style="font-size: 12;">
-    </div>
-  </div>
-
-   <div class="col-md-2" style="margin-left: -70px">
-    <div class="input-group">
-      
-      <input id="local" name="local4" class="form-control" placeholder="Local" type="text" value="<?php echo htmlspecialchars( $address["local4"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" disabled="false" style="font-size: 12;">
-      
-    </div>
-  </div>
-  <div class="col-md-2" style="margin-left: -70px">
-    <div class="input-group" style="width: 330px">
-      <input id="descricao" name="descricao4" class="form-control" placeholder="Descrição do Acionamento" type="text" value="<?php echo htmlspecialchars( $address["descricao4"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" disabled="false" style="font-size: 12;">
-    </div>
-  </div>
-
- </div> 
-<?php } ?>
+   
 
 <hr></hr>
 
@@ -1123,8 +1013,8 @@
     <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
       <textarea id="story" name="Descritivo" disabled="false"
-          rows="10" cols="100" style=" resize: none" class="form-control">
-        <?php echo htmlspecialchars( $address["Descritivo"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+          rows="10" cols="100" style="resize: none" class="form-control">
+      <?php echo htmlspecialchars( $address["Descritivo"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
       </textarea>
     </div>
   </div>

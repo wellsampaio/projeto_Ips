@@ -210,7 +210,7 @@ else if(idade()<18) {
 var controleCampo = 1;
 function adicionarCampo() {
     controleCampo++;
-    document.getElementById('formulario').insertAdjacentHTML('beforeend', '<div class="form-group" id="campo' + controleCampo + '"><label class="col-md-2 control-label" for="prependedtext">Acionamentos<h11>*</h11></label><div class="col-md-2"><div class="input-group"><input id="acionamento" name="acionamento'+ controleCampo + '" placeholder="Tipo de acionamento" class="form-control" type="text" ></div></div><div class="col-md-2" style="margin-left: -50px"><div class="input-group"><input id="prependedtext" name="datah'+ controleCampo + '" class="form-control" type="datetime-local" ></div></div> <div class="col-md-1" style="margin-left: -55px"><div class="input-group"><input id="prependedtext" name="nome'+ controleCampo + '" class="form-control" placeholder="Nome" type="text" ></div></div>  <div class="col-md-2" style="margin-left: -20px"><div class="input-group"> <input id="prependedtext" name="contato'+ controleCampo + '" class="form-control" placeholder="Contato" type="text"></div></div><div class="col-md-2" style="margin-left: -50px"> <div class="input-group"><input id="local" name="local'+ controleCampo + '" class="form-control" placeholder="Local" type="text"></div>  </div><div class="col-md-2" style="margin-left: -55px"> <div class="input-group"><input id="descricao" name="descricao'+ controleCampo + '" class="form-control" placeholder="Descrição do acionamento" type="text"></div>  </div><input type="hidden" name="id' + controleCampo + '" id="id' + controleCampo + '" /><button type="button" id="' + controleCampo + '" onclick="removerCampo(' + controleCampo + ')"> - </button></div>');
+    document.getElementById('formulario').insertAdjacentHTML('beforeend', '<div class="form-group" id="campo' + controleCampo + '"><label class="col-md-2 control-label" for="prependedtext">Acionamentos<h11>*</h11></label><div class="col-md-2"><div class="input-group"><input id="acionamento" name="tipo_acionamento[]" placeholder="Tipo de acionamento" class="form-control" required type="text" ></div></div><div class="col-md-2" style="margin-left: -50px"><div class="input-group"><input id="prependedtext" name="datah[]" class="form-control" type="datetime-local" ></div></div> <div class="col-md-1" style="margin-left: -55px"><div class="input-group"><input id="prependedtext" name="nome[]" class="form-control" placeholder="Nome" type="text" ></div></div>  <div class="col-md-2" style="margin-left: -20px"><div class="input-group"> <input id="prependedtext" name="contato[]" class="form-control" placeholder="Contato" type="text"></div></div><div class="col-md-2" style="margin-left: -50px"> <div class="input-group"><input id="local" name="local[]" class="form-control" placeholder="Local" type="text"></div>  </div><div class="col-md-2" style="margin-left: -55px"> <div class="input-group"><input id="descricao" name="descricao[]" class="form-control" placeholder="Descrição do acionamento" type="text"></div>  </div><input type="hidden" name="id" id="id' + controleCampo + '" /><button type="button" id="' + controleCampo + '" onclick="removerCampo(' + controleCampo + ')" name="id4"> - </button></div>');
     document.getElementById("qnt_campo").value = controleCampo;
 }
 
@@ -460,17 +460,37 @@ function removerCampo(idCampo){
 
 
 <div class="form-group">
- <label class="col-md-2 control-label" for="radios">Iscas Posicionando</label>
+   <label class="col-md-2 control-label" for="encaminhamento">Necessário Isca? </label>
+  <div class="col-md-4">
+    <div class="input-group">
+      <span class="input-group-addon">     
+        <label class="radio-inline" for="radios-0">
+      <input type="radio" name="nIsca" id="enc" value="Nao"  onclick="desabilita('nTerminal')" {if="($address.nIsca)!='Sim'"}  checked {/if}>
+      Não
+    </label> 
+    <label class="radio-inline" for="radios-1">
+      <input type="radio" name="nIsca" id="enc" value="" onclick="habilita('nTerminal')" {if="($address.nIsca)!='Nao'"}  checked {/if}>
+      Sim
+    </label>
+      </span>      <input id="nTerminal" name="nTerminal" class="form-control" type="text" placeholder="Terminal" disabled="false" value="{$address.nTerminal}">
+      
+    </div>
+    
+  </div>
+ <label class="col-md-2 control-label" for="radios">Iscas Posicionando?</label>
   <div class="col-md-4"> 
     <label class="radio-inline" for="radios-0" >
-      <input name="iscaPosicionando" id="" value="Sim" type="radio">
+      <input name="iscaPosicionando" id="" value="Sim" type="radio" {if="($address.iscaPosicionando)!='Não'"} checked {/if}>
       Sim
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input name="iscaPosicionando" id="" value="Não" type="radio" checked="">
+      <input name="iscaPosicionando" id="" value="Não" type="radio" {if="($address.iscaPosicionando)!='Sim'"}  checked {/if}>
       Não
     </label>
   </div>
+
+</div>
+
 
 </div>
 
@@ -676,179 +696,59 @@ function removerCampo(idCampo){
 </div>
 
 <hr></hr>
-
+{loop="$acionamento"}
 <div class="form-group" id= "formulario">
   <label class="col-md-2 control-label" for="prependedtext">Acionamentos</label>
   <div class="col-md-2">
     <div class="input-group">
-      <input id="acionamento" name="tipo_acionamento" placeholder="Tipo de acionamento" class="form-control" type="text" value="{$address.tipo_acionamento}" >
+      <input id="acionamento" name="" placeholder="Tipo de acionamento" class="form-control" type="text" value="{$value.tipo_acionamento}" readonly="readonly" >
+    </div>
+
+     <div class="input-group" style="display: none;">
+      <input id="acionamento" name="" placeholder="Tipo de acionamento" class="form-control" type="text" value="{$value.idacionamento}" readonly="readonly" >
     </div>
   </div>
 
+
      <div class="col-md-2" style="margin-left: -50px">
     <div class="input-group">
-      <input id="prependedtext" name="datah" class="form-control" type="datetime-local" value="{$address.datah}">
+      <input id="prependedtext" name="" class="form-control" type="datetime-local" value="{$value.datah}" readonly="readonly">
     </div >
   </div>
   <div class="col-md-1" style="margin-left: -55px">
     <div class="input-group">
-      <input id="prependedtext" name="nome" class="form-control" placeholder="Nome" type="text" value="{$address.nome}">
+      <input id="prependedtext" name="" class="form-control" placeholder="Nome" type="text" value="{$value.nome}" readonly="readonly">
     </div>
 
   </div>
 
   <div class="col-md-2" style="margin-left: -20px">
     <div class="input-group">
-      <input id="prependedtext" name="contato" class="form-control" placeholder="Contato" type="text" value="{$address.contato}">
+      <input id="prependedtext" name="contato[]" class="form-control" placeholder="Contato" type="text" value="{$address.contato}" readonly="readonly">
     </div>
   </div>
 
    <div class="col-md-2" style="margin-left: -50px">
     <div class="input-group">
       
-      <input id="local" name="local" class="form-control" placeholder="Local" type="text" value="{$address.local}">
+      <input id="local" name="" class="form-control" placeholder="Local" type="text" value="{$value.local}" readonly="readonly">
       
     </div>
   </div>
 
   <div class="col-md-2" style="margin-left: -50px">
     <div class="input-group">
-      <input id="descricao" name="descricao" class="form-control" placeholder="Descrição do Acionamento" type="text" value="{$address.descricao}">
+      <input id="descricao" name="" class="form-control" placeholder="Descrição do Acionamento" type="text" value="{$value.descricao}" readonly="readonly">
     </div>
   </div>
 
-
+<button type="button" onclick="adicionarCampo()" id="qtd" name="CadUsuario"> + </button>
  </div> 
 
-
- <div class="form-group" id= "formulario">
-  <label class="col-md-2 control-label" for="prependedtext">Acionamentos</label>
-  <div class="col-md-2">
-    <div class="input-group">
-      <input id="acionamento" name="acionamento2" placeholder="Tipo de acionamento" class="form-control" type="text" value="{$address.acionamento2}" >
-    </div>
-  </div>
-
-     <div class="col-md-2" style="margin-left: -50px">
-    <div class="input-group">
-      <input id="prependedtext" name="datah2" class="form-control" type="datetime-local" value="{$address.datah2}">
-    </div >
-  </div>
-  <div class="col-md-1" style="margin-left: -55px">
-    <div class="input-group">
-      <input id="prependedtext" name="nome2" class="form-control" placeholder="Nome" type="text" value="{$address.nome2}">
-    </div>
-
-  </div>
-
-  <div class="col-md-2" style="margin-left: -20px">
-    <div class="input-group">
-      <input id="prependedtext" name="contato2" class="form-control" placeholder="Contato" type="text" value="{$address.contato2}">
-    </div>
-  </div>
-
-   <div class="col-md-2" style="margin-left: -50px">
-    <div class="input-group">
-      
-      <input id="local" name="local2" class="form-control" placeholder="Local" type="text" value="{$address.local2}">
-      
-    </div>
-  </div>
-
-  <div class="col-md-2" style="margin-left: -50px">
-    <div class="input-group">
-      <input id="descricao" name="descricao2" class="form-control" placeholder="Descrição do Acionamento" type="text" value="{$address.descricao2}">
-    </div>
-  </div>
+ {/loop}
 
 
- </div> 
-
-
-
- <div class="form-group" id= "formulario">
-  <label class="col-md-2 control-label" for="prependedtext">Acionamentos</label>
-  <div class="col-md-2">
-    <div class="input-group">
-      <input id="acionamento" name="acionamento3" placeholder="Tipo de acionamento" class="form-control" type="text" value="{$address.acionamento3}" >
-    </div>
-  </div>
-
-     <div class="col-md-2" style="margin-left: -50px">
-    <div class="input-group">
-      <input id="prependedtext" name="datah3" class="form-control" type="datetime-local" value="{$address.datah3}">
-    </div >
-  </div>
-  <div class="col-md-1" style="margin-left: -55px">
-    <div class="input-group">
-      <input id="prependedtext" name="nome3" class="form-control" placeholder="Nome" type="text" value="{$address.nome3}">
-    </div>
-
-  </div>
-
-  <div class="col-md-2" style="margin-left: -20px">
-    <div class="input-group">
-      <input id="prependedtext" name="contato3" class="form-control" placeholder="Contato" type="text" value="{$address.contato3}">
-    </div>
-  </div>
-
-   <div class="col-md-2" style="margin-left: -50px">
-    <div class="input-group">
-      
-      <input id="local" name="local3" class="form-control" placeholder="Local" type="text" value="{$address.local3}">
-      
-    </div>
-  </div>
-<div class="col-md-2" style="margin-left: -50px">
-    <div class="input-group">
-      <input id="descricao"  class="form-control" placeholder="Descrição do Acionamento" type="text" value="{$address.descricao3}" name="descricao3">
-    </div>
-  </div>
-
- </div> 
-
-
-
- <div class="form-group" id= "formulario" >
-  <label class="col-md-2 control-label" for="prependedtext">Acionamentos</label>
-  <div class="col-md-2">
-    <div class="input-group">
-      <input id="acionamento" name="acionamento4" placeholder="Tipo de acionamento" class="form-control" type="text" value="{$address.acionamento4}" >
-    </div>
-  </div>
-
-     <div class="col-md-2" style="margin-left: -50px">
-    <div class="input-group">
-      <input id="prependedtext" name="datah4" class="form-control" type="datetime-local" value="{$address.datah4}">
-    </div >
-  </div>
-  <div class="col-md-1" style="margin-left: -55px">
-    <div class="input-group">
-      <input id="prependedtext" name="nome4" class="form-control" placeholder="Nome" type="text" value="{$address.nome4}">
-    </div>
-
-  </div>
-
-  <div class="col-md-2" style="margin-left: -20px">
-    <div class="input-group">
-      <input id="prependedtext" name="contato4" class="form-control" placeholder="Contato" type="text" value="{$address.contato4}">
-    </div>
-  </div>
-
-   <div class="col-md-2" style="margin-left: -50px">
-    <div class="input-group">
-      
-      <input id="local" name="local4" class="form-control" placeholder="Local" type="text" value="{$address.local4}">
-      
-    </div>
-  </div>
-  <div class="col-md-2" style="margin-left: -50px">
-    <div class="input-group">
-      <input id="descricao" name="descricao4" class="form-control" placeholder="Descrição do Acionamento" type="text" value="{$address.descricao4}">
-    </div>
-  </div>
-
- </div> 
+ 
 
 <hr></hr>
 

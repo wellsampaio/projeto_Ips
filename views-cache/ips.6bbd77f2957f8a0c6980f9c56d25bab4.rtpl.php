@@ -234,7 +234,7 @@ else if(idade()<18) {
 var controleCampo = 1;
 function adicionarCampo() {
     controleCampo++;
-    document.getElementById('formulario').insertAdjacentHTML('beforeend', '<div class="form-group" id="campo' + controleCampo + '"><label class="col-md-2 control-label" for="prependedtext">Acionamentos</label><div class="col-md-2"><div class="input-group"><input id="acionamento" name="acionamento'+ controleCampo + '" placeholder="Tipo de acionamento" class="form-control" type="text" ></div></div><div class="col-md-2" style="margin-left: -50px"><div class="input-group"><input id="prependedtext" name="datah'+ controleCampo + '" class="form-control" type="datetime-local" ></div></div> <div class="col-md-1" style="margin-left: -55px"><div class="input-group"><input id="prependedtext" name="nome'+ controleCampo + '" class="form-control" placeholder="Nome" type="text" ></div></div>  <div class="col-md-2" style="margin-left: -30px"><div class="input-group"> <input id="prependedtext" name="contato'+ controleCampo + '" class="form-control" placeholder="Contato" type="text"></div></div><div class="col-md-2" style="margin-left: -50px"> <div class="input-group"><input id="local" name="local'+ controleCampo + '" class="form-control" placeholder="Local" type="text"></div>  </div><div class="col-md-2" style="margin-left: -55px"> <div class="input-group"><input id="descricao" name="descricao'+ controleCampo + '" class="form-control" placeholder="Descrição do acionamento" type="text"></div>  </div><input type="hidden" name="id' + controleCampo + '" id="id' + controleCampo + '" /><button type="button" id="' + controleCampo + '" onclick="removerCampo(' + controleCampo + ')"> - </button></div>');
+    document.getElementById('formulario').insertAdjacentHTML('beforeend', '<div class="form-group" id="campo' + controleCampo + '"><label class="col-md-2 control-label" for="prependedtext">Acionamentos</label><div class="col-md-2"><div class="input-group"><input id="acionamento" name="tipo_acionamento[]" placeholder="Tipo de acionamento" class="form-control" type="text" ></div></div><div class="col-md-2" style="margin-left: -50px"><div class="input-group"><input id="prependedtext" name="datah[]" class="form-control" type="datetime-local" ></div></div> <div class="col-md-1" style="margin-left: -55px"><div class="input-group"><input id="prependedtext" name="nome[]" class="form-control" placeholder="Nome" type="text" ></div></div>  <div class="col-md-2" style="margin-left: -30px"><div class="input-group"> <input id="prependedtext" name="contato[]" class="form-control" placeholder="Contato" type="text"></div></div><div class="col-md-2" style="margin-left: -50px"> <div class="input-group"><input id="local" name="local[]" class="form-control" placeholder="Local" type="text"></div>  </div><div class="col-md-2" style="margin-left: -55px"> <div class="input-group"><input id="descricao" name="descricao[]" class="form-control" placeholder="Descrição do acionamento" type="text"></div>  </div><input type="hidden" name="id' + controleCampo + '" id="id' + controleCampo + '" /><button type="button" id="' + controleCampo + '" onclick="removerCampo(' + controleCampo + ')"> - </button></div>');
     document.getElementById("qnt_campo").value = controleCampo;
 }
 
@@ -728,37 +728,37 @@ function removerCampo(idCampo){
   <label class="col-md-2 control-label" for="prependedtext">Acionamentos</label>
   <div class="col-md-2">
     <div class="input-group">
-      <input id="acionamento" name="tipo_acionamento" placeholder="Tipo de acionamento" class="form-control" type="text" >
+      <input id="acionamento" name="tipo_acionamento[]" placeholder="Tipo de acionamento" class="form-control" type="text" >
     </div>
   </div>
 
      <div class="col-md-2" style="margin-left: -50px">
     <div class="input-group">
-      <input id="prependedtext" name="datah" class="form-control" type="datetime-local" >
+      <input id="prependedtext" name="datah[]" class="form-control" type="datetime-local" >
     </div >
   </div>
   <div class="col-md-1" style="margin-left: -45px">
     <div class="input-group">
-      <input id="prependedtext" name="nome" class="form-control" placeholder="Nome" type="text" >
+      <input id="prependedtext" name="nome[]" class="form-control" placeholder="Nome" type="text" >
     </div>
 
   </div>
 
   <div class="col-md-2" style="margin-left: -30px">
     <div class="input-group">
-      <input id="prependedtext" name="contato" class="form-control" placeholder="Contato" type="text">
+      <input id="prependedtext" name="contato[]" class="form-control" placeholder="Contato" type="text">
     </div>
   </div>
 
    <div class="col-md-2" style="margin-left: -50px">
     <div class="input-group">
-      <input id="local" name="local" class="form-control" placeholder="Local" type="text">
+      <input id="local" name="local[]" class="form-control" placeholder="Local" type="text">
     </div>
   </div>
 
   <div class="col-md-2" style="margin-left: -50px">
     <div class="input-group">
-      <input id="descricao" name="descricao" class="form-control" placeholder="Descrição do Acionamento" type="text">
+      <input id="descricao" name="descricao[]" class="form-control" placeholder="Descrição do Acionamento" type="text">
     </div>
   </div>
    <button type="button" onclick="adicionarCampo()" id="qtd" name="qtd"> + </button>

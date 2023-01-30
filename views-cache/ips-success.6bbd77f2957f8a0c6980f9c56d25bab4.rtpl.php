@@ -1,0 +1,71 @@
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!DOCTYPE HTML>
+<html>
+    <head>
+ 
+
+  <link rel="icon" type="image/png" href="/res/site/images/01_LOGO ORIGINAL.png" />
+        <link href="/res/site/css2/bootstrap.css" rel='stylesheet' type='text/css' />
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="/res/site/js2/jquery.min.js"></script>
+
+        <link rel="stylesheet" href="/res/site/css/bootstrap.min.css">
+         <!-- Custom Theme files -->
+        <link href="/res/site/css2/style.css" rel='stylesheet' type='text/css' />
+        <link rel="stylesheet" href="/res/site/css/style.css">
+         <!-- Custom Theme files -->
+         <meta http-equiv="X-UA-Compatible" content="IE=edge" charset="ISO-8859-1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+        </script>
+
+        <script>function CompararData(){ campodata = document.checkout.data.value datdahoje = document.F1.hoje.value var result = true; if (campodata >= datahoje) result = false; else alert("A data informada é Retroativa...\nInforme uma data Valida")}</script>
+
+        <script type="text/javascript" language="javascript">
+function valida_form (){
+if(document.getElementById("qtd").firstChild.nodeValue = document.getElementById("qtd").firstChild.nodeValue){
+alert('Carinho Vazio, Para continuar adicione itens no carrinho.');
+return false
+}
+}
+</script>
+
+
+        <script src="/res/site/js2/jquery.easydropdown.js"></script>
+        <!----webfonts--->
+        <link 
+href='https://fonts.googleapis.com/css?family=Open+Sans:300,700,800,400,600' rel='stylesheet' type='text/css'>
+        <!---//webfonts--->
+        
+        <script src="/res/site/js2/jquery.min.js"></script>
+        <script type="text/javascript" src="/res/site/js2/move-top.js"></script>
+        <script type="text/javascript" src="/res/site/js2/easing.js"></script>
+        <link rel="stylesheet" href="/res/site/css2/etalage.css">
+        <link href="/res/site/css2/form.css" rel="stylesheet" type="text/css" media="all" />
+        <script src="/res/site/js2/jquery.easydropdown.js"></script>
+
+        <script src="/res/site/js2/jquery.etalage.min.js"></script>
+        </head>
+        <body >
+
+<div class="single-product-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div class="jumbotron">
+                    <h1 class="display-3" style="text-align: center">Informativo de Sinistro</h1>
+                    <p class="lead"  style="text-align: center">Cadastrado com sucesso</p>
+                    <hr class="my-4">
+                    <p></p>
+                   <p class="lead">
+                        <a href="/ips" role="button">Registrar um novo ips</a>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

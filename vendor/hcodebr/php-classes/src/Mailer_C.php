@@ -86,7 +86,8 @@ class Mailer_C {
 			//$this->mail->addBCC('supervisao@mundialrisk.com.br', 'Supervisão');
 
 			//$this->mail->addBCC('rastreamento@mundialrisk.com.br', 'Rastreamento');
-			$this->mail->addBCC('wellington.sampaio@mundialrisk.com.br', 'Rastreamento');
+			
+			//$this->mail->addBCC('wellington.sampaio@mundialrisk.com.br', 'Rastreamento');
 
 
 			//Set the subject line
@@ -99,7 +100,7 @@ class Mailer_C {
 			$this->mail->msgHTML($html);
 
 			//Replace the plain text body with one created manually
-			$this->mail->AltBody = 'Informativo	Preliminar(Teste)';
+			$this->mail->AltBody = 'Informativo	Preliminar';
 
 			//Attach an image file
 			//$this->mail->addAttachment('images/phpmailer_mini.png');
