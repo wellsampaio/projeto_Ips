@@ -26,58 +26,7 @@ $app->get('/', function() {
 	]);
 });
 
-/*$app->get('/about', function() {
 
-	$page = new Page();
-
-	$page->setTpl("about");
-
-});*/
-
-/*$app->get("/categories/:idcategory", function($idcategory){
-
-	$page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
-
-	$category = new Category();
-
-	$category->get((int)$idcategory);
-
-	$pagination = $category->getProductsPage($page);
-
-	$pages = [];
-
-	for ($i=1; $i <=$pagination['pages']; $i++) { 
-		array_push($pages, [
-			'link'=>'/categories/' .$category->getidcategory(). '?page=' .$i,
-			'page'=>$i
-
-		]);
-	}
-
-	$page = new Page();
-
-	$page->setTpl("category", [
-		'category'=>$category->getValues(),
-		'products'=>$pagination["data"],
-		'pages'=>$pages
-
-	]);
-
-});*/
-/*$app->get("/products/:desurl", function($desurl){
-
-	$product = new Product();
-
-	$product->getFromURL($desurl);
-
-	$page = new Page();
-
-	$page->setTpl("product-detail", [
-		'product'=>$product->getValues(),
-		'categories'=>$product->getCategories()
-	]);
-	
-});*/
 
 $app->get('/ips/success', function(){
 
@@ -210,6 +159,8 @@ $app->post("/ips", function(){
 	$link = "http://sistemas.mundialrisk.local/ips/solicitacao/$url";
    	$mailer_C = new Mailer_C("Nova Solicitacao de Ips", "Ips_Email", array(
                  "name"=>$_POST['desperson'],
+                 "transportador"=>$_POST['nomeTransportador'],
+                 "gerente"=>$_POST['gerenteResponsavel'],
                  "link"=> $link,
                  "url"=>$url
              	)); 
@@ -289,7 +240,6 @@ $app->get("/ips/solicitacoes/:idNumSm", function($idNumSm) {
 
 	$address->getIps($idNumSm);
 
-	$tiposSinistros = Address::listTiposSinistros();
 
 	$tiposSinistros = Address::listTiposSinistros();
 
@@ -311,7 +261,8 @@ $app->get("/ips/solicitacoes/:idNumSm", function($idNumSm) {
 		'address'=>$address->getValues(),
 		'seguradoras'=>$seguradoras,
 		'gerentes'=>$gerentes,
-		'acionamento'=>$acionamento
+		'acionamento'=>$acionamento,
+		'tiposSinistros'=>$tiposSinistros
 	]);
 	
 });

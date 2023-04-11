@@ -9,7 +9,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta charset="utf-8">
   <meta http-equiv="Content-Language" content="pt-br">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Admin | Casa de Dona Brasilina</title>
+  <title>Admin </title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -179,31 +179,22 @@ desired effect
         </div>
       </div>
 
-      <!-- search form (Optional) -->
-      <form action="#" method="get" class="sidebar-form">
-        <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search...">
-              <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-        </div>
-      </form>
+    
       <!-- /.search form -->
 
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu">
-        <li> <a href="/admin"><i class="fa fa-dashboard"></i><span>DASHBOARD</span></a></li>
-        <li> <a href="/admin/graphic_orders"> <i class="fa fa-line-chart"></i><span>Graficos Pedidos</span></a></li>
+      <!--  <li> <a href="/admin"><i class="fa fa-dashboard"></i><span>DASHBOARD</span></a></li>
+        <li> <a href="/admin/graphic_orders"> <i class="fa fa-line-chart"></i><span>Graficos Pedidos</span></a></li>-->
         <!-- Optionally, you can add icons to the links -->
         <li><a href="/admin/users"><i class="fa fa-users"></i> <span>Usuarios</span></a></li>
-        <li><a href="/admin/administrators"><i class="fa fa-users"></i> <span>Funcionários</span></a></li>
-        <li><a href="/admin/categories"><i class="fa fa-link"></i> <span>Categorias</span></a></li>
+        <li><a href="/admin/administrators"><i class="fa fa-users"></i> <span>Administradores</span></a></li>
+       <!-- <li><a href="/admin/categories"><i class="fa fa-link"></i> <span>Categorias</span></a></li>
         <li><a href="/admin/products"><i class="fa fa-gift"></i> <span>Produtos</span></a></li>
         <li><a href="/admin/orders"><i class="fa fa-shopping-cart"></i> <span>Pedidos</span></a></li>
         <li><a href="/admin/ordersstatuspago"><i class="fa fa-dollar"></i> <span>Pedidos Pagos</span></a></li>
          <li><a href="/admin/orders_aguardando_pag"><i class="fa fa-spinner"></i> <span>Pedidos Aguard Pagamento</span></a></li>
-         <li><a href="/admin/orders_cancelados"><i class="fa fa-folder-open"></i> <span>Pedidos Cancelados</span></a></li>
+         <li><a href="/admin/orders_cancelados"><i class="fa fa-folder-open"></i> <span>Pedidos Cancelados</span></a></li>-->
        
       <!-- /.sidebar-menu -->
     </section>

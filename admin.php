@@ -225,7 +225,7 @@ $app->post("/admin/login", function(){
 		User::setError($e->getMessage());
 	}
 
-	header("Location: /admin");
+	header("Location: /admin/users");
 	exit;
 
 });

@@ -560,7 +560,7 @@ for($i = 0; $i <$qtd_insert; $i++) {
 			Join tb_iscas i on i.NumSM = m.NumSM
 			Join tb_clientes c on c.NumSM = i.NumSM
 			Join tb_alertas al on al.NumSM = c.NumSM
-			order by v.NumSM desc
+			order by s.dtSinistro 
 			LIMIT $start, $itemsPerPage;
 		");
 
