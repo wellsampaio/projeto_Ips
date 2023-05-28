@@ -73,10 +73,7 @@
 
                        
                             <li><a href=""><i class="fa fa-user"></i> Criado Por: <?php echo htmlspecialchars( $address["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?></a></li>
-                           
-                            
-                          
-                            
+ 
                     </ul>
                 </div>
                 <div class="clearfix"> 

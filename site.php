@@ -111,7 +111,7 @@ $app->get("/ips", function(){
 	]);
 });
 
-$app->post("/ips", function(){
+$app->post("/ips", function() use ($app) {
 
 	User::verifyLogin(false);
 
@@ -131,6 +131,7 @@ $app->post("/ips", function(){
 
 	$_POST['desperson'] = $user->getdesperson();
 
+	$f = $_POST['desperson'];
 	$address->setData($_POST);
 	$address->save();
 
@@ -154,6 +155,28 @@ $app->post("/ips", function(){
 
 	$address->setData($_POST);
 	$address->saveAlertas();
+
+	$y = $_POST['NumSM'];
+
+	$data = [$app->request()->post(), "criado_por"=>$f];
+
+    // Converta os dados em formato de string
+    $logData = json_encode($data, JSON_UNESCAPED_UNICODE);
+
+    $dateTime = new DateTime();
+	$timestamp = $dateTime->format('YmdHis');
+
+	// Nome do arquivo com o carimbo de data e hora
+	$filename = 'log_cadastro_' . $y . "_" . $timestamp . '.txt';
+
+    // Caminho completo do arquivo de log na pasta 'logs'
+   	$filePath = __DIR__ . '/logs/' . $filename;
+ 
+    // Converta a string de dados para UTF-8
+    $logDataUtf8 = mb_convert_encoding($logData, 'UTF-8');
+
+    // Grave os dados no arquivo de log com o formato UTF-8
+    file_put_contents($filePath, $logDataUtf8 . PHP_EOL, FILE_APPEND);
 	
 	$url = $_POST['NumSM'];
 	$link = "http://sistemas.mundialrisk.local/ips/solicitacao/$url";
@@ -162,7 +185,8 @@ $app->post("/ips", function(){
                  "transportador"=>$_POST['nomeTransportador'],
                  "gerente"=>$_POST['gerenteResponsavel'],
                  "link"=> $link,
-                 "url"=>$url
+                 "url"=>$url,
+                 "tipoSinistro"=>$_POST['tipoSinistro']
              	)); 
 
     $mailer_C->send();
@@ -268,7 +292,7 @@ $app->get("/ips/solicitacoes/:idNumSm", function($idNumSm) {
 });
 
 
-$app->post("/ips/solicitacoes/:idNumSm", function($idNumSm) {
+$app->post("/ips/solicitacoes/:idNumSm", function($idNumSm) use ($app) {
 
 	User::verifyLogin(false);
 
@@ -280,9 +304,33 @@ $app->post("/ips/solicitacoes/:idNumSm", function($idNumSm) {
 	$address->setData($_POST);
 	$address->updateIps();
 
-
+	$user = User::getFromSession();
 	
+	$y = $_POST['NumSM'];
 
+	$_POST['desperson'] = $user->getdesperson();
+
+	$f = $_POST['desperson'];
+	
+	$data = [$app->request()->post(), "editado_por"=>$f];
+
+    // Converta os dados em formato de string
+    $logData = json_encode($data, JSON_UNESCAPED_UNICODE);
+
+    $dateTime = new DateTime();
+	$timestamp = $dateTime->format('YmdHis');
+
+	// Nome do arquivo com o carimbo de data e hora
+	$filename = 'log_edição_' . $y . "_" . $timestamp . '.txt';
+
+    // Caminho completo do arquivo de log na pasta 'logs'
+   	$filePath = __DIR__ . '/logs/' . $filename;
+ 
+    // Converta a string de dados para UTF-8
+    $logDataUtf8 = mb_convert_encoding($logData, 'UTF-8');
+
+    // Grave os dados no arquivo de log com o formato UTF-8
+    file_put_contents($filePath, $logDataUtf8 . PHP_EOL, FILE_APPEND);
 
 	if (Address::checkdatahExist(isset($_POST['datah'])) === false) {
 

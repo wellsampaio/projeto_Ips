@@ -4,7 +4,7 @@
     <div class="pull-right hidden-xs">
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2018<a href="https://www.casadedonabrasilina.com.br"> Casa de Dona Brasilina</a>.</strong> Todos os direitos reservados.
+     <strong>Sistemas <a href="https://www.mundialrisk.com.br/" target="blank">Mundial Risk</a> &copy; 2023 -</strong> Todos os direitos reservados.
   </footer>
 
   <!-- Control Sidebar -->

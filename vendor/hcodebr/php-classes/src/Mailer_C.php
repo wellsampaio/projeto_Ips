@@ -87,7 +87,7 @@ class Mailer_C {
 
 			//$this->mail->addBCC('rastreamento@mundialrisk.com.br', 'Rastreamento');
 			
-			//$this->mail->addBCC('wellington.sampaio@mundialrisk.com.br', 'Rastreamento');
+			$this->mail->addBCC('wellington.sampaio@mundialrisk.com.br', 'Rastreamento');
 
 
 			//Set the subject line

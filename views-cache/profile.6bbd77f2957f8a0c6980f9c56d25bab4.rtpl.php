@@ -71,7 +71,7 @@
                 <?php } ?>                
                 <form method="post" action="/profile">
                     <div class="form-group">
-                    <label for="desperson"><b>Nome completo</b></label>
+                    <label for="desperson"><b>Nome e Sobrenome</b></label>
                     <input type="text" class="form-control" id="desperson" name="desperson" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $user["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                     </div>
                     <div class="form-group">

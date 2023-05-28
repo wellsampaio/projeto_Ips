@@ -226,7 +226,7 @@ for($i = 0; $i <$qtd_insert; $i++) {
 
 		$sql = new Sql();
 
-			$results = $sql->select("CALL sp_clientes_save(:idcliente,:Cliente,:nomeEmbarcador,:nomeTransportador, :seguradora, :gerenteResponsavel, :acionar, :telefone,:NumSM,:Protocolo)",  array(
+			$results = $sql->select("CALL sp_clientes_saves(:idcliente,:Cliente,:nomeEmbarcador,:nomeTransportador, :seguradora, :gerenteResponsavel, :acionar, :telefone,:NumSM,:Protocolo)",  array(
 		    ':idcliente'=>$this->getidcliente(),
 		    ':Cliente'=>$this->getCliente(),
 		    ':nomeEmbarcador'=>$this->getnomeEmbarcador(),

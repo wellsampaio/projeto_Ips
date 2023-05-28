@@ -415,10 +415,28 @@
                         <table class="body-text">
                           <tr>
                             <td class="body-text-cell">
+                           Transportador: <?php echo htmlspecialchars( $transportador, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td class="body-text-cell">
+                           Tipo Sinistro: <?php echo htmlspecialchars( $tipoSinistro, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                            </td>
+                          </tr>
+                           <tr>
+                            <td class="body-text-cell">
+                           Gerente Responsável: <?php echo htmlspecialchars( $gerente, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="body-text-cell">
                            Acesse o link para visualizar e baixar. <a href="<?php echo htmlspecialchars( $link, ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $link, ENT_COMPAT, 'UTF-8', FALSE ); ?></a>.
                             </td>
                           </tr>
                         </table>
+
+                        
                         <div><!--[if mso]>
                           <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="#" style="height:38px;v-text-anchor:middle;width:230px;" arcsize="11%" strokecolor="#407429" fill="t">
                             <v:fill type="tile" src="https://www.filepicker.io/api/file/N8GiNGsmT6mK6ORk00S7" color="#41CC00" />
@@ -453,28 +471,13 @@
         <td></td>
         <td class="container">
           <div class="content footer-lead">
-            <a href="#"><b>Entrar em contato </b></a>Entre em contato se tiver alguma dúvida ou feedback
+            <a href="#"><b>Entrar em contato </b></a>Entre em contato se tiver alguma dúvida ou feedback.
           </div>
         </td>
         <td></td>
       </tr>
     </table>
-    <table class="footer-wrap w320 full-width-gmail-android" bgcolor="#e5e5e5">
-      <tr>
-        <td></td>
-        <td class="container">
-          <div class="content">
-            <!--<a href="#">Contact Us</a>&nbsp;&nbsp;|&nbsp;&nbsp;-->
-            <span class="footer-group">
-              <a href="">Facebook</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-              <!--<a href="#">Twitter</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-              <a href="#">Support</a>-->
-            </span>
-          </div>
-        </td>
-        <td></td>
-      </tr>
-    </table>
+    
   </div>
 
 </body>
