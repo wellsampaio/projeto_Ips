@@ -724,7 +724,7 @@ function removerCampo(idCampo){
 
   <div class="col-md-2" style="margin-left: -20px">
     <div class="input-group">
-      <input id="prependedtext" name="contato[]" class="form-control" placeholder="Contato" type="text" value="<?php echo htmlspecialchars( $address["contato"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" readonly="readonly">
+      <input id="prependedtext" class="form-control" placeholder="Contato" type="text" value="<?php echo htmlspecialchars( $address["contato"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" readonly="readonly">
     </div>
   </div>
 

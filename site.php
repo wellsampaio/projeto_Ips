@@ -267,14 +267,15 @@ $app->get("/ips/solicitacoes/:idNumSm", function($idNumSm) {
 
 	$tiposSinistros = Address::listTiposSinistros();
 
-	$acionamento = Address::getAcionamento($idNumSm);
+	$num = $address->getNumSM();
+	$acionamento = Address::getAcionamento($num);
 	
 	$seguradoras = Address::listSeguradoras();
 
 	$gerentes = Address::listGerentes();
 
 
-
+	
 
 	$page = new Page([
 			'header'=>false,

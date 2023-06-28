@@ -208,7 +208,7 @@ for($i = 0; $i <$qtd_insert; $i++) {
 			':datah'=>$datah,
 			':nome'=> $nome,
 			':contato'=>$contato,
-			':local'=>$contato,
+			':local'=>$local,
 			':NumSM'=>$this->getNumSM(),
 			':descricao'=>$descricao
 		]);
@@ -641,7 +641,7 @@ for($i = 0; $i <$qtd_insert; $i++) {
 
 		$sql = new Sql();
 
-		$results = $sql->select("SELECT * from tb_acionamentos where NumSM = :idNumSm",[
+		$results = $sql->select("SELECT * from tb_acionamentos where NumSM = :idNumSm order by datah, contato",[
 			':idNumSm'=>$idNumSm
 
 

@@ -176,15 +176,6 @@ else if(idade()<18) {
  }
 
 
- 
-
- 
-
-
-
-
-
-
 </script>
 
 
