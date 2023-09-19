@@ -18,6 +18,7 @@
   document.getElementById("sinistro").required = true;
   document.getElementById("lsinistro").required = true;
   document.getElementById("llatitude").required = true;
+  document.getElementById("llongitude").required = true;
 }
 
 </script>
@@ -631,7 +632,7 @@ function removerCampo(idCampo){
   <label class="col-md-2 control-label" for="prependedtext">Dados do Sinistro</label>
   <div class="col-md-4">
     <div class="input-group">
-      <span class="input-group-addon">Data e hora do comunicado<h11>*</h11></span>
+      <span class="input-group-addon">Data e hora do comunicado<h11> *</h11></span>
       <input id="dtComunicado" name="dtComunicado" class="form-control" placeholder="" type="datetime-local">
     </div>  
   </div>
@@ -650,7 +651,7 @@ function removerCampo(idCampo){
   <label class="col-md-2 control-label" for="prependedtext"></label>
   <div class="col-md-4">
     <div class="input-group">
-      <span class="input-group-addon">Data e hora do sinistro<h11>*</h11></span>
+      <span class="input-group-addon">Data e hora do sinistro<h11> *</h11></span>
       <input id="myText" name="dtSinistro" class="form-control" placeholder=""  type="datetime-local">
     </div>
     
@@ -658,7 +659,7 @@ function removerCampo(idCampo){
   
 <div class="col-md-4">
     <div class="input-group">
-      <span class="input-group-addon">Tipo de Sinistro<h11>*</h11></span>
+      <span class="input-group-addon">Tipo de Sinistro<h11> *</h11></span>
       <select name="tipoSinistro" id="sinistro" class="form-control">
         <option value=""></option>
         <?php $counter1=-1;  if( isset($tiposSinistros) && ( is_array($tiposSinistros) || $tiposSinistros instanceof Traversable ) && sizeof($tiposSinistros) ) foreach( $tiposSinistros as $key1 => $value1 ){ $counter1++; ?>
@@ -696,7 +697,7 @@ function removerCampo(idCampo){
   <label class="col-md-2 control-label" for="prependedtext"></label>
   <div class="col-md-4">
     <div class="input-group">
-      <span class="input-group-addon">Latitude</span>
+      <span class="input-group-addon">Latitude<h11> *</h11></span>
       <input id="llatitude" name="latitude" class="form-control" placeholder="" type="text">
     </div>
     
@@ -705,8 +706,8 @@ function removerCampo(idCampo){
   
 <div class="col-md-4">
     <div class="input-group">
-      <span class="input-group-addon">Logintude</span>
-      <input id="rua" name="longitude" class="form-control" placeholder="" type="text">
+      <span class="input-group-addon">Logintude<h11> *</h11></span>
+      <input id="llongitude" name="longitude" class="form-control" placeholder="" type="text">
     </div>
     
   </div>

@@ -60,8 +60,6 @@ $app->get("/ips", function(){
 	$tiposSinistros = Address::listTiposSinistros();
 
 
-
-
 	if (!isset($_GET['NumSM']))$_GET['NumSM'] = $address->getNumSM();
 
 
@@ -156,7 +154,21 @@ $app->post("/ips", function() use ($app) {
 	$address->setData($_POST);
 	$address->saveAlertas();
 
-	$y = $_POST['NumSM'];
+	
+	$url = $_POST['NumSM'];
+	$link = "http://sistemas.mundialrisk.local/ips/solicitacao/$url";
+   	$mailer_C = new Mailer_C("Nova Solicitacao de Ips", "Ips_Email", array(
+                 "name"=>$_POST['desperson'],
+                 "transportador"=>$_POST['nomeTransportador'],
+                 "gerente"=>$_POST['gerenteResponsavel'],
+                 "link"=> $link,
+                 "url"=>$url,
+                 "tipoSinistro"=>$_POST['tipoSinistro']
+             	)); 
+
+    $mailer_C->send();
+
+    $y = $_POST['NumSM'];
 
 	$data = [$app->request()->post(), "criado_por"=>$f];
 
@@ -178,18 +190,6 @@ $app->post("/ips", function() use ($app) {
     // Grave os dados no arquivo de log com o formato UTF-8
     file_put_contents($filePath, $logDataUtf8 . PHP_EOL, FILE_APPEND);
 	
-	$url = $_POST['NumSM'];
-	$link = "http://sistemas.mundialrisk.local/ips/solicitacao/$url";
-   	$mailer_C = new Mailer_C("Nova Solicitacao de Ips", "Ips_Email", array(
-                 "name"=>$_POST['desperson'],
-                 "transportador"=>$_POST['nomeTransportador'],
-                 "gerente"=>$_POST['gerenteResponsavel'],
-                 "link"=> $link,
-                 "url"=>$url,
-                 "tipoSinistro"=>$_POST['tipoSinistro']
-             	)); 
-
-    $mailer_C->send();
 
     header("Location: /ips/success");
 
