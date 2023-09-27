@@ -107,7 +107,7 @@ class Address extends Model {
 
 		$sql = new Sql();
 
-			$results = $sql->select("CALL sp_veiculos_saves(:idveiculo, :idperson, :marca, :modelo, :placa, :cor, :vtec_descricao, :term_numero_terminal, :NumSM)",  array(
+			$results = $sql->select("CALL sp_veiculos_saves(:idveiculo, :idperson, :marca, :modelo, :placa, :cor, :vtec_descricao, :term_numero_terminal, :NumSM, :idsinistro)",  array(
 		    ':idveiculo'=>$this->getidveiculo(),
 		    ':idperson'=>$this->getidperson(),
 		    ':marca'=>$this->getmarca(),
@@ -116,7 +116,8 @@ class Address extends Model {
 		    ':cor'=>$this->getcor(),
 		    ':vtec_descricao'=>$this->getvtec_descricao(),
 		    ':term_numero_terminal'=>$this->getterm_numero_terminal(),
-		    ':NumSM'=>$this->getNumSM()
+		    ':NumSM'=>$this->getNumSM(),
+		    ':idsinistro'=>$this->getidsinistro()
 		    
 	));
 
@@ -132,7 +133,7 @@ class Address extends Model {
 
 		$sql = new Sql();
 
-			$results = $sql->select("CALL sp_iscas_saves(:idiscas, :isca, :tec_isca, :iscaPosicionando, :nIsca, :nTerminal, :nIscaPosicionando, :NumSM)",  array(
+			$results = $sql->select("CALL sp_iscas_saves(:idiscas, :isca, :tec_isca, :iscaPosicionando, :nIsca, :nTerminal, :nIscaPosicionando, :NumSM, :idsinistro)",  array(
 		    ':idiscas'=>$this->getidiscas(),
 		    ':isca'=>$this->getisca(),
 		    ':tec_isca'=>$this->gettec_isca(),
@@ -140,7 +141,8 @@ class Address extends Model {
 		    ':nIsca'=>$this->getnIsca(),
 		    ':nTerminal'=>$this->getnTerminal(),
 		    ':nIscaPosicionando'=>$this->getnIscaPosicionando(),
-		    ':NumSM'=>$this->getNumSM()
+		    ':NumSM'=>$this->getNumSM(),
+		    ':idsinistro'=>$this->getidsinistro(),
 		    
 	));
 
@@ -154,15 +156,16 @@ class Address extends Model {
 
 
 
-	public static function checkSmExist($NumSM)
+	public static function checkSmExist($NumSM, $tipoSinistro)
 	{
 		$sql = new Sql();
-		$results = $sql->select("SELECT * FROM tb_clientes WHERE NumSM = :NumSM", [
-			':NumSM'=>$NumSM
+		$results = $sql->select("SELECT * FROM tb_sinistros WHERE NumSM = :NumSM and tipoSinistro = :tipoSinistro", [
+			':NumSM'=>$NumSM,
+			':tipoSinistro'=>$tipoSinistro
 		]);
 		return (count($results) > 0);
 	}
-
+	
 
 	public static function checkdatahExist($datah)
 	{
@@ -203,14 +206,15 @@ for($i = 0; $i <$qtd_insert; $i++) {
 
 
 
-    $sql->query("INSERT INTO tb_acionamentos (tipo_acionamento, datah, nome, contato, local, NumSM, descricao) VALUES(:tipo_acionamento, :datah, :nome, :contato, :local, :NumSM, :descricao)", [
+    $sql->query("INSERT INTO tb_acionamentos (tipo_acionamento, datah, nome, contato, local, NumSM, descricao, idsinistro) VALUES(:tipo_acionamento, :datah, :nome, :contato, :local, :NumSM, :descricao, :idsinistro)", [
 			':tipo_acionamento'=> $tipo_acionamento,
 			':datah'=>$datah,
 			':nome'=> $nome,
 			':contato'=>$contato,
 			':local'=>$local,
 			':NumSM'=>$this->getNumSM(),
-			':descricao'=>$descricao
+			':descricao'=>$descricao,
+			'idsinistro'=>$this->getidsinistro()
 		]);
    
 }
@@ -226,7 +230,7 @@ for($i = 0; $i <$qtd_insert; $i++) {
 
 		$sql = new Sql();
 
-			$results = $sql->select("CALL sp_clientes_saves(:idcliente,:Cliente,:nomeEmbarcador,:nomeTransportador, :seguradora, :gerenteResponsavel, :acionar, :telefone,:NumSM,:Protocolo)",  array(
+			$results = $sql->select("CALL sp_clientes_saves(:idcliente,:Cliente,:nomeEmbarcador,:nomeTransportador, :seguradora, :gerenteResponsavel, :acionar, :telefone,:NumSM,:Protocolo, :idsinistro)",  array(
 		    ':idcliente'=>$this->getidcliente(),
 		    ':Cliente'=>$this->getCliente(),
 		    ':nomeEmbarcador'=>$this->getnomeEmbarcador(),
@@ -236,7 +240,8 @@ for($i = 0; $i <$qtd_insert; $i++) {
 		    ':acionar'=>$this->getacionar(),
 		    ':telefone'=>$this->gettelefone(),
 		    ':NumSM'=>$this->getNumSM(),
-		    ':Protocolo'=>$this->getProtocolo()
+		    ':Protocolo'=>$this->getProtocolo(),
+		    ':idsinistro'=>$this->getidsinistro()
 		    
 	));
 
@@ -256,16 +261,15 @@ for($i = 0; $i <$qtd_insert; $i++) {
 
 		$sql = new Sql();
 
-			$results = $sql->select("CALL sp_motoristas_save(:idmotorista,:Motorista,:CPF,:Vinculo,:NumSM)",  array(
+			$results = $sql->select("CALL sp_motoristas_saves(:idmotorista,:Motorista,:CPF,:Vinculo,:NumSM, :idsinistro)",  array(
 		    ':idmotorista'=>$this->getidmotorista(),
 		    ':Motorista'=>$this->getMotorista(),
 		    ':CPF'=>$this->getCPF(),
 		    ':Vinculo'=>$this->getVinculo(),
-		    ':NumSM'=>$this->getNumSM()
+		    ':NumSM'=>$this->getNumSM(),
+		    ':idsinistro'=>$this->getidsinistro()
 		    
 	));
-
-
 
 			if (count($results) > 0) {
 			$this->setData($results[0]);
@@ -281,14 +285,15 @@ for($i = 0; $i <$qtd_insert; $i++) {
 
 		$sql = new Sql();
 
-			$results = $sql->select("CALL sp_viagens_save(:idviagem, :viagemId, :dataInicio,:Valor,:cidadeOrigem,:cidadeDestino, :Produtos)",  array(
+			$results = $sql->select("CALL sp_viagens_saves(:idviagem, :viagemId, :dataInicio,:Valor,:cidadeOrigem,:cidadeDestino, :Produtos, :idsinistro)",  array(
 		    ':idviagem'=>$this->getidviagem(),
 		    ':viagemId'=>$this->getviagemId(),
 		    ':dataInicio'=>$this->getdataInicio(),
 		    ':Valor'=>$this->getValor(),
 		    ':cidadeOrigem'=>$this->getcidadeOrigem(),
 		    ':cidadeDestino'=>$this->getcidadeDestino(),
-		    ':Produtos'=>$this->getProdutos()
+		    ':Produtos'=>$this->getProdutos(),
+		    ':idsinistro'=>$this->getidsinistro()
 	));
 
 
@@ -336,7 +341,7 @@ public function saveSinistros()
 
 		$sql = new Sql();
 
-			$results = $sql->select("CALL sp_alertas_save(:idalerta,:perdaBateria, :dtAlertaBateria, :NumSM, :perdaSinal, :dtPerdaSinal, :btPanico, :dtBtPanico, :portaBauLateral, :dtPortaBauLateral, :desengateCarreta, :dtDesengateCarreta, :portaMotorista, :dtPortaMotorista, :ignicaoDesligada, :dtIgnicaoDesligada, :violacaoGrade, :dtViolacaoGrade, :perdaTerminal, :dtPerdaTerminal, :desvioRota, :dtDesvioRota, :portaBauTraseira, :dtPortaBauTraseira, :arrombamentoBau, :dtArrombamentoBau, :senhaPanico, :dtSenhaPanico, :portaPassageiro, :dtPortaPassageiro, :violacaoPainel, :dtViolacaoPainel)",  array(
+			$results = $sql->select("CALL sp_alertas_saves(:idalerta,:perdaBateria, :dtAlertaBateria, :NumSM, :perdaSinal, :dtPerdaSinal, :btPanico, :dtBtPanico, :portaBauLateral, :dtPortaBauLateral, :desengateCarreta, :dtDesengateCarreta, :portaMotorista, :dtPortaMotorista, :ignicaoDesligada, :dtIgnicaoDesligada, :violacaoGrade, :dtViolacaoGrade, :perdaTerminal, :dtPerdaTerminal, :desvioRota, :dtDesvioRota, :portaBauTraseira, :dtPortaBauTraseira, :arrombamentoBau, :dtArrombamentoBau, :senhaPanico, :dtSenhaPanico, :portaPassageiro, :dtPortaPassageiro, :violacaoPainel, :dtViolacaoPainel, :idsinistro)",  array(
 		    ':idalerta'=>$this->getidalerta(),
 		    ':perdaBateria'=>$this->getperdaBateria(),
 		    ':dtAlertaBateria'=>$this->getdtAlertaBateria(),
@@ -368,7 +373,8 @@ public function saveSinistros()
 		    ':portaPassageiro'=>$this->getportaPassageiro(),
 		    ':dtPortaPassageiro'=>$this->getdtPortaPassageiro(),
 		    ':violacaoPainel'=>$this->getviolacaoPainel(),
-		    ':dtViolacaoPainel'=>$this->getdtViolacaoPainel()
+		    ':dtViolacaoPainel'=>$this->getdtViolacaoPainel(),
+		    ':idsinistro'=>$this->getidsinistro()
 	));
 
 
@@ -385,22 +391,22 @@ public function saveSinistros()
 	
 
 
-		public function updateIps()
+	public function updateIps()
 	{
 
 		$sql = new Sql();
 
 
 		 $sql->query("UPDATE tb_sinistros s
-			join tb_veiculos v on v.NumSM = s.NumSM
+			join tb_veiculos v on v.idsinistro = s.idsinistro
 			join tb_persons p on p.idperson = v.idperson
-			join tb_viagens vg on vg.viagemId = v.NumSM
-			join tb_motoristas m on m.NumSM = vg.viagemId
-			join tb_iscas i on i.NumSM = m.NumSM
-			join tb_clientes c on c.NumSM = i.NumSM
-			join tb_alertas al on al.NumSM = c.NumSM
-			join tb_acionamentos ac on ac.NumSM = al.NumSM
-			set s.dtComunicado = :dtComunicado, s.dtSinistro = :dtSinistro,  s.localSinistro = :localSinistro, s.latitude = :latitude, s.longitude = :longitude, s.Km = :Km, s.tipoSinistro = :tipoSinistro, s.nomeComunicante = :nomeComunicante, s.Descritivo = :Descritivo, v.marca = :marca, v.modelo = :modelo, v.placa = :placa, v.cor = :cor, v.vtec_descricao = :vtec_descricao, v.term_numero_terminal = :term_numero_terminal, vg.dataInicio = :dataInicio, vg.Valor = :Valor, vg.cidadeOrigem = :cidadeOrigem, vg.cidadeDestino = :cidadeDestino, vg.Produtos = :Produtos, m.Motorista = :Motorista, m.CPF = :CPF, m.Vinculo = :Vinculo, i.isca = :isca, i.tec_isca = :tec_isca, i.iscaPosicionando = :iscaPosicionando, i.nIsca = :nIsca, i.nTerminal = :nTerminal,  c.nomeEmbarcador =  :nomeEmbarcador, c.nomeTransportador = :nomeTransportador, c.seguradora = :seguradora, c.gerenteResponsavel = :gerenteResponsavel, c.acionar = :acionar, c.telefone = :telefone, c.Protocolo = :Protocolo, al.perdaBateria = :perdaBateria, al.dtAlertaBateria = :dtAlertaBateria, al.perdaSinal = :perdaSinal, al.dtPerdaSinal = :dtPerdaSinal, al.btpanico = :btPanico, al.dtBtPanico = :dtBtPanico, al.portaBauLateral = :portaBauLateral, al.dtPortaBauLateral = :dtPortaBauLateral, al.desengateCarreta = :desengateCarreta, al.dtDesengateCarreta = :dtDesengateCarreta, al.portaMotorista = :portaMotorista, al.dtPortaMotorista = :dtPortaMotorista, al.ignicaoDesligada = :ignicaoDesligada, al.dtIgnicaoDesligada = :dtIgnicaoDesligada, al.violacaoGrade = :violacaoGrade, al.dtViolacaoGrade = :dtViolacaoGrade, al.perdaTerminal = :perdaTerminal, al.dtPerdaTerminal = :dtPerdaTerminal, al.desvioRota = :desvioRota, al.dtDesvioRota = :dtDesvioRota, al.portaBauTraseira = :portaBauTraseira, al.dtPortaBauTraseira = :dtPortaBauTraseira, al.arrombamentoBau = :arrombamentoBau, al.dtArrombamentoBau = :dtArrombamentoBau, al.senhaPanico = :senhaPanico, al.dtSenhaPanico = :dtSenhaPanico, al.portaPassageiro = :portaPassageiro, al.dtPortaPassageiro = :dtPortaPassageiro, al.violacaoPainel = :violacaoPainel, al.dtViolacaoPainel = :dtViolacaoPainel where s.NumSM = :NumSM", [
+			join tb_viagens vg on vg.idsinistro = s.idsinistro
+			join tb_motoristas m on m.idsinistro = s.idsinistro
+			join tb_iscas i on i.idsinistro = s.idsinistro
+			join tb_clientes c on c.idsinistro = s.idsinistro
+			join tb_alertas al on al.idsinistro = s.idsinistro
+			join tb_acionamentos ac on ac.idsinistro = s.idsinistro
+			set s.dtComunicado = :dtComunicado, s.dtSinistro = :dtSinistro,  s.localSinistro = :localSinistro, s.latitude = :latitude, s.longitude = :longitude, s.Km = :Km, s.tipoSinistro = :tipoSinistro, s.nomeComunicante = :nomeComunicante, s.Descritivo = :Descritivo, v.marca = :marca, v.modelo = :modelo, v.placa = :placa, v.cor = :cor, v.vtec_descricao = :vtec_descricao, v.term_numero_terminal = :term_numero_terminal, vg.dataInicio = :dataInicio, vg.Valor = :Valor, vg.cidadeOrigem = :cidadeOrigem, vg.cidadeDestino = :cidadeDestino, vg.Produtos = :Produtos, m.Motorista = :Motorista, m.CPF = :CPF, m.Vinculo = :Vinculo, i.isca = :isca, i.tec_isca = :tec_isca, i.iscaPosicionando = :iscaPosicionando, i.nIsca = :nIsca, i.nTerminal = :nTerminal,  c.nomeEmbarcador =  :nomeEmbarcador, c.nomeTransportador = :nomeTransportador, c.seguradora = :seguradora, c.gerenteResponsavel = :gerenteResponsavel, c.acionar = :acionar, c.telefone = :telefone, c.Protocolo = :Protocolo, al.perdaBateria = :perdaBateria, al.dtAlertaBateria = :dtAlertaBateria, al.perdaSinal = :perdaSinal, al.dtPerdaSinal = :dtPerdaSinal, al.btpanico = :btPanico, al.dtBtPanico = :dtBtPanico, al.portaBauLateral = :portaBauLateral, al.dtPortaBauLateral = :dtPortaBauLateral, al.desengateCarreta = :desengateCarreta, al.dtDesengateCarreta = :dtDesengateCarreta, al.portaMotorista = :portaMotorista, al.dtPortaMotorista = :dtPortaMotorista, al.ignicaoDesligada = :ignicaoDesligada, al.dtIgnicaoDesligada = :dtIgnicaoDesligada, al.violacaoGrade = :violacaoGrade, al.dtViolacaoGrade = :dtViolacaoGrade, al.perdaTerminal = :perdaTerminal, al.dtPerdaTerminal = :dtPerdaTerminal, al.desvioRota = :desvioRota, al.dtDesvioRota = :dtDesvioRota, al.portaBauTraseira = :portaBauTraseira, al.dtPortaBauTraseira = :dtPortaBauTraseira, al.arrombamentoBau = :arrombamentoBau, al.dtArrombamentoBau = :dtArrombamentoBau, al.senhaPanico = :senhaPanico, al.dtSenhaPanico = :dtSenhaPanico, al.portaPassageiro = :portaPassageiro, al.dtPortaPassageiro = :dtPortaPassageiro, al.violacaoPainel = :violacaoPainel, al.dtViolacaoPainel = :dtViolacaoPainel where s.idsinistro = :NumSM", [
 				':dtComunicado'=>$this->getdtComunicado(),
 			    ':dtSinistro'=>$this->getdtSinistro(),
 			    ':localSinistro'=>$this->getlocalSinistro(),
@@ -466,7 +472,7 @@ public function saveSinistros()
 			    ':dtPortaPassageiro'=>$this->getdtPortaPassageiro(),
 			    ':violacaoPainel'=>$this->getviolacaoPainel(),
 			    ':dtViolacaoPainel'=>$this->getdtViolacaoPainel(),
-			    ':NumSM'=>$this->getNumSM()
+			    ':NumSM'=>$this->getidsinistro()
 			]);
 	
 
@@ -520,9 +526,6 @@ for($i = 0; $i <$qtd_insert; $i++) {
 
 	}
 
-
-
-
 	public static function listSeguradoras()
 	{
 
@@ -552,15 +555,16 @@ for($i = 0; $i <$qtd_insert; $i++) {
  		$sql = new Sql();
 
  		$results = $sql->select("
-			SELECT SQL_CALC_FOUND_ROWS * from tb_sinistros s
-			Join tb_veiculos v on v.NumSM = s.NumSM
+			SELECT SQL_CALC_FOUND_ROWS s.idsinistro, s.NumSM, s.dtSinistro, vg.Valor, s.tipoSinistro, c.nomeTransportador,p.desperson 
+			from tb_sinistros s
+			Join tb_veiculos v on v.idsinistro = s.idsinistro
 			Join tb_persons p on p.idperson = v.idperson
-			Join tb_viagens vg on vg.viagemId = v.NumSM
-			Join tb_motoristas m on m.NumSM = vg.viagemId
-			Join tb_iscas i on i.NumSM = m.NumSM
-			Join tb_clientes c on c.NumSM = i.NumSM
-			Join tb_alertas al on al.NumSM = c.NumSM
-			order by s.dtSinistro 
+			Join tb_viagens vg on vg.idsinistro = s.idsinistro
+			Join tb_motoristas m on m.idsinistro = s.idsinistro
+			Join tb_iscas i on i.idsinistro = s.idsinistro
+			Join tb_clientes c on c.idsinistro = s.idsinistro
+			Join tb_alertas al on al.idsinistro = c.idsinistro
+			order by s.dtSinistro
 			LIMIT $start, $itemsPerPage;
 		");
 
@@ -582,14 +586,15 @@ for($i = 0; $i <$qtd_insert; $i++) {
  		$sql = new Sql();
 
  		$results = $sql->select("
-			SELECT SQL_CALC_FOUND_ROWS * from tb_sinistros s
-			Join tb_veiculos v on v.NumSM = s.NumSM
+			SELECT SQL_CALC_FOUND_ROWS s.idsinistro, s.NumSM, s.dtSinistro, vg.Valor, s.tipoSinistro, c.nomeTransportador,p.desperson 
+			from tb_sinistros s
+			Join tb_veiculos v on v.idsinistro = s.idsinistro
 			Join tb_persons p on p.idperson = v.idperson
-			Join tb_viagens vg on vg.viagemId = v.NumSM
-			Join tb_motoristas m on m.NumSM = vg.viagemId
-			Join tb_iscas i on i.NumSM = m.NumSM
-			Join tb_clientes c on c.NumSM = i.NumSM
-			left Join tb_alertas al on al.NumSM = c.NumSM
+			Join tb_viagens vg on vg.idsinistro = s.idsinistro
+			Join tb_motoristas m on m.idsinistro = s.idsinistro
+			Join tb_iscas i on i.idsinistro = s.idsinistro
+			Join tb_clientes c on c.idsinistro = s.idsinistro
+			Join tb_alertas al on al.idsinistro = c.idsinistro
 			where s.NumSM LIKE :search
 			ORDER BY s.NumSM
 			LIMIT $start, $itemsPerPage;
@@ -615,15 +620,15 @@ for($i = 0; $i <$qtd_insert; $i++) {
 
 		$results = $sql->select("SELECT SQL_CALC_FOUND_ROWS 
 						* from tb_sinistros s
-			Join tb_acionamentos a on a.NumSM = s.NumSM
-			Join tb_veiculos v on v.NumSM = a.NumSM
+			Join tb_acionamentos a on a.idsinistro = s.idsinistro
+			Join tb_veiculos v on v.idsinistro = s.idsinistro
 			Join tb_persons p on p.idperson = v.idperson
-			Join tb_viagens vg on vg.viagemId = v.NumSM
-			Join tb_motoristas m on m.NumSM = vg.viagemId
-			Join tb_iscas i on i.NumSM = m.NumSM
-			Join tb_clientes c on c.NumSM = i.NumSM
-			Join tb_alertas al on al.NumSM = c.NumSM
-			where s.NumSM = :idNumSm",[
+			Join tb_viagens vg on vg.idsinistro = s.idsinistro
+			Join tb_motoristas m on m.idsinistro = s.idsinistro
+			Join tb_iscas i on i.idsinistro = s.idsinistro
+			Join tb_clientes c on c.idsinistro = s.idsinistro
+			Join tb_alertas al on al.idsinistro = c.idsinistro
+			where s.idsinistro = :idNumSm",[
 			':idNumSm'=>$idNumSm
 
 		]);
@@ -635,21 +640,18 @@ for($i = 0; $i <$qtd_insert; $i++) {
 
 
 	
- 		public function getAcionamento($idNumSm)
+ 	public function getAcionamento($idNumSm)
 
 	{
 
 		$sql = new Sql();
 
-		$results = $sql->select("SELECT * from tb_acionamentos where NumSM = :idNumSm order by datah, contato",[
+		$results = $sql->select("SELECT * from tb_acionamentos where idsinistro = :idNumSm order by datah, contato",[
 			':idNumSm'=>$idNumSm
 
 
 		]);
 		return $results;
-
-
-
 	}
 
 

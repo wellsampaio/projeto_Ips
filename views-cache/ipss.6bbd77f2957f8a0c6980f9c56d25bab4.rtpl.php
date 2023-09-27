@@ -153,8 +153,8 @@ desired effect
                     <td><?php echo htmlspecialchars( $value1["dtSinistro"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                     <td><?php echo htmlspecialchars( $value1["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                     <td>
-                       <a href="/ips/solicitacao/<?php echo htmlspecialchars( $value1["NumSM"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-default btn-xs"><i class="fa fa-eye"></i> Ver detalhes</a>
-                       <a href="/ips/solicitacoes/<?php echo htmlspecialchars( $value1["NumSM"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</a>
+                       <a href="/ips/solicitacao/<?php echo htmlspecialchars( $value1["idsinistro"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-default btn-xs"><i class="fa fa-eye"></i> Ver detalhes</a>
+                       <a href="/ips/solicitacoes/<?php echo htmlspecialchars( $value1["idsinistro"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</a>
                     </td>
                   </tr>
                   <?php } ?>

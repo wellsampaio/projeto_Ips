@@ -413,26 +413,31 @@
                       <td class="body-padded">
                         <div class="body-title">Solicitação <?php echo htmlspecialchars( $url, ENT_COMPAT, 'UTF-8', FALSE ); ?> Criada por: <?php echo htmlspecialchars( $name, ENT_COMPAT, 'UTF-8', FALSE ); ?></div>
                         <table class="body-text">
+
                           <tr>
                             <td class="body-text-cell">
-                           Transportador: <?php echo htmlspecialchars( $transportador, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                           <b>SM:</b> <?php echo htmlspecialchars( $sm, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                             </td>
                           </tr>
 
                           <tr>
                             <td class="body-text-cell">
-                           Tipo Sinistro: <?php echo htmlspecialchars( $tipoSinistro, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                           <b>Transportador:</b> <?php echo htmlspecialchars( $transportador, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td class="body-text-cell">
+                           <b>Tipo Sinistro:</b> <?php echo htmlspecialchars( $tipoSinistro, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                             </td>
                           </tr>
                            <tr>
                             <td class="body-text-cell">
-                           Gerente Responsável: <?php echo htmlspecialchars( $gerente, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                           <b>Gerente Responsável:</b> <?php echo htmlspecialchars( $gerente, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                             </td>
                           </tr>
                           <tr>
-                            <td class="body-text-cell">
-                           Acesse o link para visualizar e baixar. <a href="<?php echo htmlspecialchars( $link, ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $link, ENT_COMPAT, 'UTF-8', FALSE ); ?></a>.
-                            </td>
+                            
                           </tr>
                         </table>
 
@@ -448,7 +453,7 @@
                         <table class="body-signature-block">
                           <tr>
                             <td class="body-signature-cell">
-                              <p>Obrigado!</p>
+                              <p>Atenciosamente.</p>
                               <p class="body-signature"><img src="https://mundialgr.mundialrisk.com.br/trafeguswebnovo/public/img/logo/mundial_menu.png" alt="Mundial Risk"></p>
                             </td>
                           </tr>
@@ -471,7 +476,7 @@
         <td></td>
         <td class="container">
           <div class="content footer-lead">
-            <a href="#"><b>Entrar em contato </b></a>Entre em contato se tiver alguma dúvida ou feedback.
+            <a href="#"><b></b></a>Entre em contato se tiver alguma dúvida ou feedback.
           </div>
         </td>
         <td></td>

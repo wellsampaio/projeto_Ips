@@ -118,7 +118,7 @@ $app->post("/ips", function() use ($app) {
 	$address = new Address();
 
 
-	if (Address::checkSmExist($_POST['NumSM']) === true) {
+	if (Address::checkSmExist($_POST['NumSM'], $_POST['tipoSinistro']) === true) {
 
 		Address::setMsgError("Já existe uma solicitação de Ips para esta SM.");
 		header("Location: /ips");
@@ -130,11 +130,16 @@ $app->post("/ips", function() use ($app) {
 	$_POST['desperson'] = $user->getdesperson();
 
 	$f = $_POST['desperson'];
+
+
 	$address->setData($_POST);
-	$address->save();
+	$address->saveSinistros();
 
 	$address->setData($_POST);
 	$address->saveAcionamento();
+
+	$address->setData($_POST);
+	$address->saveAlertas();
 
 	$address->setData($_POST);
 	$address->saveClientes();
@@ -146,25 +151,22 @@ $app->post("/ips", function() use ($app) {
 	$address->saveMotoristas();
 
 	$address->setData($_POST);
+	$address->save();
+
+	$address->setData($_POST);
 	$address->saveViagens();
-
-	$address->setData($_POST);
-	$address->saveSinistros();
-
-	$address->setData($_POST);
-	$address->saveAlertas();
-
 	
-	$url = $_POST['NumSM'];
+	$url = $address->getidsinistro();
 	$link = "http://sistemas.mundialrisk.local/ips/solicitacao/$url";
    	$mailer_C = new Mailer_C("Nova Solicitacao de Ips", "Ips_Email", array(
-                 "name"=>$_POST['desperson'],
-                 "transportador"=>$_POST['nomeTransportador'],
-                 "gerente"=>$_POST['gerenteResponsavel'],
-                 "link"=> $link,
-                 "url"=>$url,
-                 "tipoSinistro"=>$_POST['tipoSinistro']
-             	)); 
+            "name"=>$_POST['desperson'],
+            "transportador"=>$_POST['nomeTransportador'],
+            "gerente"=>$_POST['gerenteResponsavel'],
+            "link"=> $link,
+            "url"=>$url,
+            "tipoSinistro"=>$_POST['tipoSinistro'],
+            "sm"=>$_POST['NumSM']
+            )); 
 
     $mailer_C->send();
 
@@ -267,7 +269,7 @@ $app->get("/ips/solicitacoes/:idNumSm", function($idNumSm) {
 
 	$tiposSinistros = Address::listTiposSinistros();
 
-	$num = $address->getNumSM();
+	$num = $address->getidsinistro();
 	$acionamento = Address::getAcionamento($num);
 	
 	$seguradoras = Address::listSeguradoras();
