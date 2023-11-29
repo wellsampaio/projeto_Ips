@@ -1008,11 +1008,9 @@
   <label class="col-md-2 control-label" for="prependedtext">Descritivo da Ocorrência<h11>*</h11></label>
   <div class="col-md-9">
     <div class="input-group">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
-      <textarea id="story" name="Descritivo" disabled="false"
-          rows="10" cols="100" style="resize: none" class="form-control">
+     
       <?php echo htmlspecialchars( $address["Descritivo"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
-      </textarea>
+
     </div>
   </div>
 </div>

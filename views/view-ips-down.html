@@ -784,7 +784,7 @@
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon">
-      {if="($address.portaBauLateral)!='Sim'"}      
+      {if="($address.arrombamentoBau)!='Sim'"}      
         <label class="radio-inline" for="radios-0">
       <input type="radio" name="arrombamentoBau" id="bau" value="Não" onclick="desabilita('tbau')" {if="($address.arrombamentoBau)!='Sim'"} checked {/if}>
       Não
@@ -1009,10 +1009,9 @@
   <div class="col-md-9">
     <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
-      <textarea id="story" name="Descritivo" disabled="false"
-          rows="10" cols="100" style="resize: none" class="form-control">
-      {$address.Descritivo}
-      </textarea>
+      <textarea id="story" name="Descritivo" rows="1" cols="150" style="resize: none" class="form-control" readonly>
+        {$address.Descritivo}
+    </textarea>
     </div>
   </div>
 </div>
@@ -1028,5 +1027,20 @@
 </form>
 
 </body>
+
+<script>
+        // Obtém o elemento textarea
+        var textarea = document.getElementById('story');
+
+        // Define a altura inicial com base no conteúdo
+        textarea.style.height = textarea.scrollHeight + 'px';
+
+        // Configura um ouvinte de eventos para detectar mudanças no conteúdo
+        textarea.addEventListener('input', function () {
+            // Define a altura do textarea com base no conteúdo e no tamanho da fonte
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+        });
+    </script>
 
 </html>

@@ -118,12 +118,12 @@ $app->post("/ips", function() use ($app) {
 	$address = new Address();
 
 
-	if (Address::checkSmExist($_POST['NumSM'], $_POST['tipoSinistro']) === true) {
+	/*if (Address::checkSmExist($_POST['NumSM'], $_POST['tipoSinistro']) === true) {
 
 		Address::setMsgError("Já existe uma solicitação de Ips para esta SM.");
 		header("Location: /ips");
 		exit;
-	}
+	}*/
 
 	$_POST['idperson'] = $user->getidperson();
 
