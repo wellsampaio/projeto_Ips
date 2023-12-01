@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Invoice</title>
+ <title>Solicitação de Ips <?php echo htmlspecialchars( $address["NumSM"], ENT_COMPAT, 'UTF-8', FALSE ); ?></title>
+
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -35,13 +36,13 @@
   
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper" >
     <!-- Content Header (Page header) -->
-    <section class="invoice">
+    <section class="invoice" style="margin: 0;">
 
       <div class="row no-print">
         <div class="col-xs-12">
-          <a href="invoice-print.html" target="_blank" onclick="window.print()" class="btn btn-default"><i class="fa fa-print"></i> Imprimir</a>
+          <a onclick="window.print()" class="btn btn-default"><i class="fa fa-print"></i> Imprimir</a>
          
         </div>
       </div>
@@ -50,7 +51,7 @@
         <div class="col-xs-12">
           
             <h2 class="page-header"><i class="fa fa-globe"></i> SM: #<?php echo htmlspecialchars( $address["NumSM"], ENT_COMPAT, 'UTF-8', FALSE ); ?></h2>
-            <small class="pull-right"><img src="https://tomticket-assets.s3.amazonaws.com/logotipo-empresa/51702.png"></small>
+            <small class="pull-right"><img src="https://tomticket-assets.s3.amazonaws.com/logotipo-empresa/51702.png" width="100" height="40"></small>
           
         </div>
       <!-- /.col -->
@@ -60,9 +61,9 @@
         <div class="col-sm-12">
           Dados do Cliente:
           <address>
-            <strong>Embarcador: </strong><?php echo htmlspecialchars( $address["nomeEmbarcador"], ENT_COMPAT, 'UTF-8', FALSE ); ?><br>
-            <strong>Transportador: </strong><?php echo htmlspecialchars( $address["nomeTransportador"], ENT_COMPAT, 'UTF-8', FALSE ); ?><br>
-            <strong>Gerente Responsável: </strong><?php echo htmlspecialchars( $address["gerenteResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?><br>
+            <strong style="font-size: 13px">Embarcador: </strong><?php echo htmlspecialchars( $address["nomeEmbarcador"], ENT_COMPAT, 'UTF-8', FALSE ); ?><br>
+            <strong style="font-size: 13px">Transportador: </strong><?php echo htmlspecialchars( $address["nomeTransportador"], ENT_COMPAT, 'UTF-8', FALSE ); ?><br>
+            <strong style="font-size: 13px">Gerente Responsável: </strong><?php echo htmlspecialchars( $address["gerenteResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?><br>
           </address>
         </div>
       </div>
@@ -70,7 +71,7 @@
       <!-- /.col -->
      <div class="col-sm-3 invoice-col">
           Dados Seguradora:
-          <address>
+          <address style="font-size: 12px">
             <strong>Seguradora: </strong><?php echo htmlspecialchars( $address["seguradora"], ENT_COMPAT, 'UTF-8', FALSE ); ?><br>
             <strong>Acionamento: </strong><?php if( ($address["acionar"])!='Sim' ){ ?> Não <?php }else{ ?> Sim <?php } ?><br>
             <strong>Contato: </strong><?php echo htmlspecialchars( $address["telefone"], ENT_COMPAT, 'UTF-8', FALSE ); ?><br>
@@ -80,7 +81,7 @@
 
          <div class="col-sm-3 invoice-col">
           Tecnologia Rastreamento:
-          <address>
+          <address style="font-size: 12px">
             <strong>Nome: </strong><?php echo htmlspecialchars( $address["vtec_descricao"], ENT_COMPAT, 'UTF-8', FALSE ); ?><br>
             <strong>Terminal: </strong><?php echo htmlspecialchars( $address["term_numero_terminal"], ENT_COMPAT, 'UTF-8', FALSE ); ?><br>
             <strong>Isca: </strong><?php echo htmlspecialchars( $address["isca"], ENT_COMPAT, 'UTF-8', FALSE ); ?><br>
@@ -91,7 +92,7 @@
 
          <div class="col-sm-3 invoice-col">
           Dados do Veiculo:
-          <address>
+          <address style="font-size: 12px">
             <strong>Placa: </strong><?php echo htmlspecialchars( $address["placa"], ENT_COMPAT, 'UTF-8', FALSE ); ?><br>
             <strong>Marca: </strong><?php echo htmlspecialchars( $address["marca"], ENT_COMPAT, 'UTF-8', FALSE ); ?><br>
             <strong>Modelo: </strong><?php echo htmlspecialchars( $address["modelo"], ENT_COMPAT, 'UTF-8', FALSE ); ?><br>
@@ -110,16 +111,16 @@
         <table class="table table-striped">
           <thead>
           <tr>
-            <th>Motorista</th>
-            <th>Cpf</th>
-            <th>Vinculo</th>
+            <th style="font-size: 12px">Motorista</th>
+            <th style="font-size: 12px">Cpf</th>
+            <th style="font-size: 12px">Vinculo</th>
           </tr>
           </thead>
           <tbody>
           <tr>
-            <td><?php echo htmlspecialchars( $address["Motorista"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-            <td><?php echo htmlspecialchars( $address["CPF"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-            <td><?php echo htmlspecialchars( $address["Vinculo"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+            <td style="font-size: 12px"><?php echo htmlspecialchars( $address["Motorista"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+            <td style="font-size: 12px"><?php echo htmlspecialchars( $address["CPF"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+            <td style="font-size: 12px"><?php echo htmlspecialchars( $address["Vinculo"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
           </tr>
          
           </tbody>
@@ -132,26 +133,27 @@
     <div class="row">
    
        <div class="col-xs-12 table-responsive">
+        <p class="lead">Dados da viagem:</p> 
         <table class="table table-striped">
           <thead>
           <tr>
-            <th>Dt Inicio SM</th>
-            <th>Vinculo</th>
-            <th>Valor</th>
-            <th>Local Origem</th>
-            <th>Local Destino</th>
-            <th>Produtos</th>
+            <th style="font-size: 12px">Dt Inicio SM</th>
+            <th style="font-size: 12px">Vinculo</th>
+            <th style="font-size: 12px">Valor</th>
+            <th style="font-size: 12px">Local Origem</th>
+            <th style="font-size: 12px">Local Destino</th>
+            <th style="font-size: 12px">Produtos</th>
 
           </tr>
           </thead>
           <tbody>
           <tr>
-            <td><?php echo formatDate($address["dataInicio"]); ?></td>
-            <td><?php echo htmlspecialchars( $address["Vinculo"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-            <td><?php echo htmlspecialchars( $address["Valor"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-            <td><?php echo htmlspecialchars( $address["cidadeOrigem"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-            <td><?php echo htmlspecialchars( $address["cidadeDestino"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-            <td><?php echo htmlspecialchars( $address["Produtos"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+            <td style="font-size: 12px; width: 130px"><?php echo formatDate($address["dataInicio"]); ?></td>
+            <td style="font-size: 12px"><?php echo htmlspecialchars( $address["Vinculo"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+            <td style="font-size: 12px"><?php echo htmlspecialchars( $address["Valor"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+            <td style="font-size: 12px"><?php echo htmlspecialchars( $address["cidadeOrigem"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+            <td style="font-size: 12px"><?php echo htmlspecialchars( $address["cidadeDestino"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+            <td style="font-size: 12px"><?php echo htmlspecialchars( $address["Produtos"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
 
           </tr>
          
@@ -166,23 +168,25 @@
     <div class="row">
    
        <div class="col-xs-12 table-responsive">
+        <p class="lead">Dados do Sinistro:</p> 
+
         <table class="table table-striped">
           <thead>
           <tr>
-            <th>Dt/hr comunicado</th>
-            <th>Comunicante</th>
-            <th>Dt/hora sinistro</th>
-            <th>Tipo Sinistro</th>
+            <th style="font-size: 12px">Dt/hr comunicado</th>
+            <th style="font-size: 12px">Comunicante</th>
+            <th style="font-size: 12px">Dt/hora sinistro</th>
+            <th style="font-size: 12px">Tipo Sinistro</th>
           
 
           </tr>
           </thead>
           <tbody>
           <tr>
-            <td><?php echo formatDate($address["dtComunicado"]); ?></td>
-             <td><?php echo htmlspecialchars( $address["nomeComunicante"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-            <td><?php echo formatDate($address["dtSinistro"]); ?></td>
-            <td><?php echo htmlspecialchars( $address["tipoSinistro"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+            <td style="font-size: 12px"><?php echo formatDate($address["dtComunicado"]); ?></td>
+             <td style="font-size: 12px"><?php echo htmlspecialchars( $address["nomeComunicante"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+            <td style="font-size: 12px"><?php echo formatDate($address["dtSinistro"]); ?></td>
+            <td style="font-size: 12px"><?php echo htmlspecialchars( $address["tipoSinistro"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
           </tr>
          
           </tbody>
@@ -198,20 +202,20 @@
         <table class="table table-striped">
           <thead>
           <tr>
-            <th>Local do sinistro</th>
-            <th>Km/Número</th>
-            <th>Latitude</th>
-            <th>Longitude</th>
+            <th style="font-size: 12px">Local do sinistro</th>
+            <th style="font-size: 12px">Km/Número</th>
+            <th style="font-size: 12px">Latitude</th>
+            <th style="font-size: 12px">Longitude</th>
           
 
           </tr>
           </thead>
           <tbody>
           <tr>
-            <td><?php echo htmlspecialchars( $address["localSinistro"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-             <td><?php echo htmlspecialchars( $address["Km"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-            <td><?php echo htmlspecialchars( $address["latitude"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-            <td><?php echo htmlspecialchars( $address["longitude"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+            <td style="font-size: 12px"><?php echo htmlspecialchars( $address["localSinistro"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+             <td style="font-size: 12px"><?php echo htmlspecialchars( $address["Km"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+            <td style="font-size: 12px"><?php echo htmlspecialchars( $address["latitude"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+            <td style="font-size: 12px"><?php echo htmlspecialchars( $address["longitude"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
           </tr>
          
           </tbody>
@@ -223,27 +227,28 @@
 
      <div class="row">
        <div class="col-xs-12 table-responsive">
+         <p class="lead">Acionamentos:</p>      
         <table class="table table-striped">
           <thead>
           <tr>
-            <th>Tipo de acionamento</th>
-            <th>Data</th>
-            <th>Nome</th>
-            <th>Contato</th>
-            <th>Local</th>
-            <th>Descrição Acionamento</th>
+            <th style="font-size: 12px">Acionamento</th>
+            <th style="font-size: 12px">Data</th>
+            <th style="font-size: 12px">Nome</th>
+            <th style="font-size: 12px">Contato</th>
+            <th style="font-size: 12px">Local</th>
+            <th style="font-size: 12px">Descrição Acionamento</th>
 
           </tr>
           </thead>
           <tbody>
             <?php $counter1=-1;  if( isset($acionamento) && ( is_array($acionamento) || $acionamento instanceof Traversable ) && sizeof($acionamento) ) foreach( $acionamento as $key1 => $value1 ){ $counter1++; ?>
           <tr>
-            <td><?php echo htmlspecialchars( $value1["tipo_acionamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-            <td><?php echo formatDate($value1["datah"]); ?></td>
-            <td><?php echo htmlspecialchars( $value1["nome"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-            <td><?php echo htmlspecialchars( $address["contato"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-            <td><?php echo htmlspecialchars( $value1["local"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-            <td><?php echo htmlspecialchars( $address["descricao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+            <td style="font-size: 12px"><?php echo htmlspecialchars( $value1["tipo_acionamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+            <td style="font-size: 12px; width: 130px"><?php if( ($value1["datah"])!='' ){ ?><?php echo formatDate($value1["datah"]); ?><?php } ?></td>
+            <td style="font-size: 12px"><?php echo htmlspecialchars( $value1["nome"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+            <td style="font-size: 12px; width: 130px"><?php echo htmlspecialchars( $address["contato"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+            <td style="font-size: 12px"><?php echo htmlspecialchars( $value1["local"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+            <td style="font-size: 12px"><?php echo htmlspecialchars( $address["descricao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
 
           </tr>
           <?php } ?>
@@ -259,28 +264,33 @@
 
      <div class="row">
       <div class="col-xs-12">
-                    
+              
+        <p class="lead">Alertas Gerados:</p>      
         </div>
       <div class="col-xs-4">
        
 
-        <div class="table-responsive">
-          <table class="table">
+        <div class="table table-striped">
+          <table class="table table-striped">
             <tr>
-              <th style="width:65%">Perda de Bateria:<?php if( ($address["perdaBateria"])!='Sim' ){ ?> Não <?php }else{ ?> Sim<?php } ?></th>
-              <td> <?php if( ($address["perdaBateria"])=='Sim' ){ ?><?php echo formatDate($address["dtAlertaBateria"]); ?> <?php } ?></td>
+              <th style="font-size:12px;">Perda de Bateria:<?php if( ($address["perdaBateria"])!='Sim' ){ ?> Não <?php }else{ ?> Sim<?php } ?></th>
+              <td style="font-size:12px; "> <?php if( ($address["perdaBateria"])=='Sim' ){ ?><?php echo formatDate($address["dtAlertaBateria"]); ?> <?php } ?></td>
             </tr>
             <tr>
-               <th style="width:65%">Perda de Terminal:<?php if( ($address["perdaTerminal"])!='Sim' ){ ?> Não <?php }else{ ?> Sim<?php } ?></th>
-              <td> <?php if( ($address["perdaTerminal"])=='Sim' ){ ?><?php echo formatDate($address["dtPerdaTerminal"]); ?> <?php } ?></td>
+               <th style="font-size:12px">Perda de Terminal:<?php if( ($address["perdaTerminal"])!='Sim' ){ ?> Não <?php }else{ ?> Sim<?php } ?></th>
+              <td style="font-size:12px"> <?php if( ($address["perdaTerminal"])=='Sim' ){ ?><?php echo formatDate($address["dtPerdaTerminal"]); ?> <?php } ?></td>
             </tr>
             <tr>
-               <th style="width:65%">Perda de Sinal:<?php if( ($address["perdaSinal"])!='Sim' ){ ?> Não <?php }else{ ?> Sim<?php } ?></th>
-              <td> <?php if( ($address["perdaSinal"])=='Sim' ){ ?><?php echo formatDate($address["dtPerdaSinal"]); ?> <?php } ?></td>
+               <th style="font-size:12px">Perda de Sinal:<?php if( ($address["perdaSinal"])!='Sim' ){ ?> Não <?php }else{ ?> Sim<?php } ?></th>
+              <td style="font-size:12px"> <?php if( ($address["perdaSinal"])=='Sim' ){ ?><?php echo formatDate($address["dtPerdaSinal"]); ?> <?php } ?></td>
             </tr>
             <tr>
-              <th style="width:65%">Desvio de rota:<?php if( ($address["desvioRota"])!='Sim' ){ ?> Não <?php }else{ ?> Sim<?php } ?></th>
-              <td> <?php if( ($address["desvioRota"])=='Sim' ){ ?><?php echo formatDate($address["dtDesvioRota"]); ?> <?php } ?></td>
+              <th style="font-size:12px">Desvio de rota:<?php if( ($address["desvioRota"])!='Sim' ){ ?> Não <?php }else{ ?> Sim<?php } ?></th>
+              <td style="font-size:12px"> <?php if( ($address["desvioRota"])=='Sim' ){ ?><?php echo formatDate($address["dtDesvioRota"]); ?> <?php } ?></td>
+            </tr>
+            <tr>
+              <th style="width:70%; font-size: 12px">Ignição Desligada:<?php if( ($address["ignicaoDesligada"])!='Sim' ){ ?> Não <?php }else{ ?> Sim<?php } ?></th>
+              <td style="font-size:12px"> <?php if( ($address["ignicaoDesligada"])=='Sim' ){ ?><?php echo formatDate($address["dtIgnicaoDesligada"]); ?> <?php } ?></td>
             </tr>
 
           </table>
@@ -293,23 +303,27 @@
        
 
         <div class="table-responsive">
-          <table class="table">
+          <table class="table table-striped">
              <tr>
-              <th style="width:70%">Botão de Pânico:<?php if( ($address["btPanico"])!='Sim' ){ ?> Não <?php }else{ ?> Sim<?php } ?></th>
-              <td> <?php if( ($address["btPanico"])=='Sim' ){ ?><?php echo formatDate($address["dtBtPanico"]); ?> <?php } ?></td>
+              <th style="font-size: 12px">Botão de Pânico:<?php if( ($address["btPanico"])!='Sim' ){ ?> Não <?php }else{ ?> Sim<?php } ?></th>
+              <td style="font-size:12px"> <?php if( ($address["btPanico"])=='Sim' ){ ?> <?php echo formatDate($address["dtBtPanico"]); ?> <?php } ?></td>
             </tr>
 
             <tr>
-              <th style="width:65%">Porta Baú Traseira:<?php if( ($address["portaBauTraseira"])!='Sim' ){ ?> Não <?php }else{ ?> Sim<?php } ?></th>
-              <td> <?php if( ($address["portaBauTraseira"])=='Sim' ){ ?><?php echo formatDate($address["dtPortaBauTraseira"]); ?> <?php } ?></td>
+              <th style="font-size:12px">Porta Baú Traseira:<?php if( ($address["portaBauTraseira"])!='Sim' ){ ?> Não <?php }else{ ?> Sim<?php } ?></th>
+              <td style="font-size:12px"> <?php if( ($address["portaBauTraseira"])=='Sim' ){ ?><?php echo formatDate($address["dtPortaBauTraseira"]); ?> <?php } ?></td>
             </tr>
             <tr>
-               <th style="width:65%">Porta Baú Lateral:<?php if( ($address["portaBauLateral"])!='Sim' ){ ?> Não <?php }else{ ?> Sim<?php } ?></th>
-              <td> <?php if( ($address["portaBauLateral"])=='Sim' ){ ?><?php echo formatDate($address["dtPortaBauLateral"]); ?> <?php } ?></td>
+               <th style="font-size:12px">Porta Baú Lateral:<?php if( ($address["portaBauLateral"])!='Sim' ){ ?> Não <?php }else{ ?> Sim<?php } ?></th>
+              <td style="font-size:12px"> <?php if( ($address["portaBauLateral"])=='Sim' ){ ?><?php echo formatDate($address["dtPortaBauLateral"]); ?> <?php } ?></td>
             </tr>
             <tr>
-               <th style="width:65%">Arrombamento de baú:<?php if( ($address["arrombamentoBau"])!='Sim' ){ ?> Não <?php }else{ ?> Sim<?php } ?></th>
-              <td> <?php if( ($address["arrombamentoBau"])=='Sim' ){ ?><?php echo formatDate($address["dtArrombamentoBau"]); ?> <?php } ?></td>
+               <th style="font-size:12px">Arrombamento de baú:<?php if( ($address["arrombamentoBau"])!='Sim' ){ ?> Não <?php }else{ ?> Sim<?php } ?></th>
+              <td style="font-size:12px"> <?php if( ($address["arrombamentoBau"])=='Sim' ){ ?><?php echo formatDate($address["dtArrombamentoBau"]); ?> <?php } ?></td>
+            </tr>
+            <tr>
+              <th style="font-size:12px">Violação de Painel:<?php if( ($address["violacaoPainel"])!='Sim' ){ ?> Não <?php }else{ ?> Sim<?php } ?></th>
+              <td style="font-size:12px"> <?php if( ($address["violacaoPainel"])=='Sim' ){ ?><?php echo formatDate($address["dtViolacaoPainel"]); ?> <?php } ?></td>
             </tr>
           </table>
         </div>
@@ -322,22 +336,26 @@
     
 
         <div class="table-responsive">
-          <table class="table">
+          <table class="table table-striped">
             <tr>
-              <th style="width:65%">Desengate de Carreta:<?php if( ($address["desengateCarreta"])!='Sim' ){ ?> Não <?php }else{ ?> Sim<?php } ?></th>
-              <td> <?php if( ($address["desengateCarreta"])=='Sim' ){ ?><?php echo formatDate($address["dtDesengateCarreta"]); ?> <?php } ?></td>
+              <th style="font-size:12px">Desengate de Carreta:<?php if( ($address["desengateCarreta"])!='Sim' ){ ?> Não <?php }else{ ?> Sim<?php } ?></th>
+              <td style="font-size:12px"> <?php if( ($address["desengateCarreta"])=='Sim' ){ ?><?php echo formatDate($address["dtDesengateCarreta"]); ?> <?php } ?></td>
             </tr>
             <tr>
-              <th style="width:65%">Senha de Pânico:<?php if( ($address["senhaPanico"])!='Sim' ){ ?> Não <?php }else{ ?> Sim<?php } ?></th>
-              <td> <?php if( ($address["senhaPanico"])=='Sim' ){ ?><?php echo formatDate($address["dtSenhaPanico"]); ?> <?php } ?></td>
+              <th style="font-size:12px">Senha de Pânico:<?php if( ($address["senhaPanico"])!='Sim' ){ ?> Não <?php }else{ ?> Sim<?php } ?></th>
+              <td style="font-size:12px"> <?php if( ($address["senhaPanico"])=='Sim' ){ ?><?php echo formatDate($address["dtSenhaPanico"]); ?> <?php } ?></td>
             </tr>
             <tr>
-             <th style="width:70%">Porta Motorista:<?php if( ($address["portaMotorista"])!='Sim' ){ ?> Não <?php }else{ ?> Sim<?php } ?></th>
-              <td> <?php if( ($address["portaMotorista"])=='Sim' ){ ?><?php echo formatDate($address["dtPortaMotorista"]); ?> <?php } ?></td>
+             <th style="font-size: 12px">Porta Motorista:<?php if( ($address["portaMotorista"])!='Sim' ){ ?> Não <?php }else{ ?> Sim<?php } ?></th>
+              <td style="font-size:12px"> <?php if( ($address["portaMotorista"])=='Sim' ){ ?><?php echo formatDate($address["dtPortaMotorista"]); ?> <?php } ?></td>
             </tr>
             <tr>
-             <th style="width:70%">Porta Passageiro:<?php if( ($address["portaPassageiro"])!='Sim' ){ ?> Não <?php }else{ ?> Sim<?php } ?></th>
-              <td> <?php if( ($address["portaPassageiro"])=='Sim' ){ ?><?php echo formatDate($address["dtPortaPassageiro"]); ?> <?php } ?></td>
+             <th style="font-size: 12px">Porta Passageiro:<?php if( ($address["portaPassageiro"])!='Sim' ){ ?> Não <?php }else{ ?> Sim<?php } ?></th>
+              <td style="font-size:12px"> <?php if( ($address["portaPassageiro"])=='Sim' ){ ?><?php echo formatDate($address["dtPortaPassageiro"]); ?> <?php } ?></td>
+            </tr>
+            <tr>
+               <th style="font-size:12px">Violação de Grade:<?php if( ($address["violacaoGrade"])!='Sim' ){ ?> Não <?php }else{ ?> Sim<?php } ?></th>
+              <td style="font-size:12px"> <?php if( ($address["violacaoGrade"])=='Sim' ){ ?><?php echo formatDate($address["dtViolacaoGrade"]); ?> <?php } ?></td>
             </tr>
           </table>
         </div>
@@ -348,38 +366,12 @@
     </div>
      <div class="row">
 
-       <div class="col-xs-4">
-       
-
-        <div class="table-responsive">
-          <table class="table">
-             <tr>
-              <th style="width:70%">Ignição Desligada:<?php if( ($address["ignicaoDesligada"])!='Sim' ){ ?> Não <?php }else{ ?> Sim<?php } ?></th>
-              <td> <?php if( ($address["ignicaoDesligada"])=='Sim' ){ ?><?php echo formatDate($address["dtIgnicaoDesligada"]); ?> <?php } ?></td>
-            </tr>
-
-            <tr>
-              <th style="width:65%">Violação de Painel:<?php if( ($address["violacaoPainel"])!='Sim' ){ ?> Não <?php }else{ ?> Sim<?php } ?></th>
-              <td> <?php if( ($address["violacaoPainel"])=='Sim' ){ ?><?php echo formatDate($address["dtViolacaoPainel"]); ?> <?php } ?></td>
-            </tr>
-            
-            <tr>
-               <th style="width:65%">Violação de Grade:<?php if( ($address["violacaoGrade"])!='Sim' ){ ?> Não <?php }else{ ?> Sim<?php } ?></th>
-              <td> <?php if( ($address["violacaoGrade"])=='Sim' ){ ?><?php echo formatDate($address["dtViolacaoGrade"]); ?> <?php } ?></td>
-            </tr>
-          </table>
-        </div>
-
-
-        
-      </div>
       <!-- accepted payments column -->
-      <div class="col-xs-8">
+      <div class="col-xs-12">
         <p class="lead">Descrição:</p>
        
-        <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
-          Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem plugg dopplr
-          jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
+        <p class="well well-sm no-shadow" style="margin-top: 10px;">
+         <?php echo htmlspecialchars( $address["Descritivo"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
         </p>
       </div>
       <!-- /.col -->

@@ -36,9 +36,9 @@
   
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper" >
     <!-- Content Header (Page header) -->
-    <section class="invoice">
+    <section class="invoice" style="margin: 0;">
 
       <div class="row no-print">
         <div class="col-xs-12">
@@ -51,7 +51,7 @@
         <div class="col-xs-12">
           
             <h2 class="page-header"><i class="fa fa-globe"></i> SM: #{$address.NumSM}</h2>
-            <small class="pull-right"><img src="https://tomticket-assets.s3.amazonaws.com/logotipo-empresa/51702.png"></small>
+            <small class="pull-right"><img src="https://tomticket-assets.s3.amazonaws.com/logotipo-empresa/51702.png" width="100" height="40"></small>
           
         </div>
       <!-- /.col -->
@@ -61,9 +61,9 @@
         <div class="col-sm-12">
           Dados do Cliente:
           <address>
-            <strong>Embarcador: </strong>{$address.nomeEmbarcador}<br>
-            <strong>Transportador: </strong>{$address.nomeTransportador}<br>
-            <strong>Gerente Responsável: </strong>{$address.gerenteResponsavel}<br>
+            <strong style="font-size: 13px">Embarcador: </strong>{$address.nomeEmbarcador}<br>
+            <strong style="font-size: 13px">Transportador: </strong>{$address.nomeTransportador}<br>
+            <strong style="font-size: 13px">Gerente Responsável: </strong>{$address.gerenteResponsavel}<br>
           </address>
         </div>
       </div>
@@ -71,7 +71,7 @@
       <!-- /.col -->
      <div class="col-sm-3 invoice-col">
           Dados Seguradora:
-          <address>
+          <address style="font-size: 12px">
             <strong>Seguradora: </strong>{$address.seguradora}<br>
             <strong>Acionamento: </strong>{if="($address.acionar)!='Sim'"} Não {else} Sim {/if}<br>
             <strong>Contato: </strong>{$address.telefone}<br>
@@ -81,7 +81,7 @@
 
          <div class="col-sm-3 invoice-col">
           Tecnologia Rastreamento:
-          <address>
+          <address style="font-size: 12px">
             <strong>Nome: </strong>{$address.vtec_descricao}<br>
             <strong>Terminal: </strong>{$address.term_numero_terminal}<br>
             <strong>Isca: </strong>{$address.isca}<br>
@@ -92,7 +92,7 @@
 
          <div class="col-sm-3 invoice-col">
           Dados do Veiculo:
-          <address>
+          <address style="font-size: 12px">
             <strong>Placa: </strong>{$address.placa}<br>
             <strong>Marca: </strong>{$address.marca}<br>
             <strong>Modelo: </strong>{$address.modelo}<br>
@@ -111,16 +111,16 @@
         <table class="table table-striped">
           <thead>
           <tr>
-            <th>Motorista</th>
-            <th>Cpf</th>
-            <th>Vinculo</th>
+            <th style="font-size: 12px">Motorista</th>
+            <th style="font-size: 12px">Cpf</th>
+            <th style="font-size: 12px">Vinculo</th>
           </tr>
           </thead>
           <tbody>
           <tr>
-            <td>{$address.Motorista}</td>
-            <td>{$address.CPF}</td>
-            <td>{$address.Vinculo}</td>
+            <td style="font-size: 12px">{$address.Motorista}</td>
+            <td style="font-size: 12px">{$address.CPF}</td>
+            <td style="font-size: 12px">{$address.Vinculo}</td>
           </tr>
          
           </tbody>
@@ -133,26 +133,27 @@
     <div class="row">
    
        <div class="col-xs-12 table-responsive">
+        <p class="lead">Dados da viagem:</p> 
         <table class="table table-striped">
           <thead>
           <tr>
-            <th>Dt Inicio SM</th>
-            <th>Vinculo</th>
-            <th>Valor</th>
-            <th>Local Origem</th>
-            <th>Local Destino</th>
-            <th>Produtos</th>
+            <th style="font-size: 12px">Dt Inicio SM</th>
+            <th style="font-size: 12px">Vinculo</th>
+            <th style="font-size: 12px">Valor</th>
+            <th style="font-size: 12px">Local Origem</th>
+            <th style="font-size: 12px">Local Destino</th>
+            <th style="font-size: 12px">Produtos</th>
 
           </tr>
           </thead>
           <tbody>
           <tr>
-            <td>{function="formatDate($address.dataInicio)"}</td>
-            <td>{$address.Vinculo}</td>
-            <td>{$address.Valor}</td>
-            <td>{$address.cidadeOrigem}</td>
-            <td>{$address.cidadeDestino}</td>
-            <td>{$address.Produtos}</td>
+            <td style="font-size: 12px; width: 130px">{function="formatDate($address.dataInicio)"}</td>
+            <td style="font-size: 12px">{$address.Vinculo}</td>
+            <td style="font-size: 12px">{$address.Valor}</td>
+            <td style="font-size: 12px">{$address.cidadeOrigem}</td>
+            <td style="font-size: 12px">{$address.cidadeDestino}</td>
+            <td style="font-size: 12px">{$address.Produtos}</td>
 
           </tr>
          
@@ -167,23 +168,25 @@
     <div class="row">
    
        <div class="col-xs-12 table-responsive">
+        <p class="lead">Dados do Sinistro:</p> 
+
         <table class="table table-striped">
           <thead>
           <tr>
-            <th>Dt/hr comunicado</th>
-            <th>Comunicante</th>
-            <th>Dt/hora sinistro</th>
-            <th>Tipo Sinistro</th>
+            <th style="font-size: 12px">Dt/hr comunicado</th>
+            <th style="font-size: 12px">Comunicante</th>
+            <th style="font-size: 12px">Dt/hora sinistro</th>
+            <th style="font-size: 12px">Tipo Sinistro</th>
           
 
           </tr>
           </thead>
           <tbody>
           <tr>
-            <td>{function="formatDate($address.dtComunicado)"}</td>
-             <td>{$address.nomeComunicante}</td>
-            <td>{function="formatDate($address.dtSinistro)"}</td>
-            <td>{$address.tipoSinistro}</td>
+            <td style="font-size: 12px">{function="formatDate($address.dtComunicado)"}</td>
+             <td style="font-size: 12px">{$address.nomeComunicante}</td>
+            <td style="font-size: 12px">{function="formatDate($address.dtSinistro)"}</td>
+            <td style="font-size: 12px">{$address.tipoSinistro}</td>
           </tr>
          
           </tbody>
@@ -199,20 +202,20 @@
         <table class="table table-striped">
           <thead>
           <tr>
-            <th>Local do sinistro</th>
-            <th>Km/Número</th>
-            <th>Latitude</th>
-            <th>Longitude</th>
+            <th style="font-size: 12px">Local do sinistro</th>
+            <th style="font-size: 12px">Km/Número</th>
+            <th style="font-size: 12px">Latitude</th>
+            <th style="font-size: 12px">Longitude</th>
           
 
           </tr>
           </thead>
           <tbody>
           <tr>
-            <td>{$address.localSinistro}</td>
-             <td>{$address.Km}</td>
-            <td>{$address.latitude}</td>
-            <td>{$address.longitude}</td>
+            <td style="font-size: 12px">{$address.localSinistro}</td>
+             <td style="font-size: 12px">{$address.Km}</td>
+            <td style="font-size: 12px">{$address.latitude}</td>
+            <td style="font-size: 12px">{$address.longitude}</td>
           </tr>
          
           </tbody>
@@ -224,27 +227,28 @@
 
      <div class="row">
        <div class="col-xs-12 table-responsive">
+         <p class="lead">Acionamentos:</p>      
         <table class="table table-striped">
           <thead>
           <tr>
-            <th>Tipo de acionamento</th>
-            <th>Data</th>
-            <th>Nome</th>
-            <th>Contato</th>
-            <th>Local</th>
-            <th>Descrição Acionamento</th>
+            <th style="font-size: 12px">Acionamento</th>
+            <th style="font-size: 12px">Data</th>
+            <th style="font-size: 12px">Nome</th>
+            <th style="font-size: 12px">Contato</th>
+            <th style="font-size: 12px">Local</th>
+            <th style="font-size: 12px">Descrição Acionamento</th>
 
           </tr>
           </thead>
           <tbody>
             {loop="$acionamento"}
           <tr>
-            <td>{$value.tipo_acionamento}</td>
-            <td>{function="formatDate($value.datah)"}</td>
-            <td>{$value.nome}</td>
-            <td>{$address.contato}</td>
-            <td>{$value.local}</td>
-            <td>{$address.descricao}</td>
+            <td style="font-size: 12px">{$value.tipo_acionamento}</td>
+            <td style="font-size: 12px; width: 130px">{if="($value.datah)!=''"}{function="formatDate($value.datah)"}{/if}</td>
+            <td style="font-size: 12px">{$value.nome}</td>
+            <td style="font-size: 12px; width: 130px">{$address.contato}</td>
+            <td style="font-size: 12px">{$value.local}</td>
+            <td style="font-size: 12px">{$address.descricao}</td>
 
           </tr>
           {/loop}
@@ -260,28 +264,33 @@
 
      <div class="row">
       <div class="col-xs-12">
-                    
+              
+        <p class="lead">Alertas Gerados:</p>      
         </div>
       <div class="col-xs-4">
        
 
-        <div class="table-responsive">
-          <table class="table">
+        <div class="table table-striped">
+          <table class="table table-striped">
             <tr>
-              <th style="width:65%">Perda de Bateria:{if="($address.perdaBateria)!='Sim'"} Não {else} Sim{/if}</th>
-              <td> {if="($address.perdaBateria)=='Sim'"}{function="formatDate($address.dtAlertaBateria)"} {/if}</td>
+              <th style="font-size:12px;">Perda de Bateria:{if="($address.perdaBateria)!='Sim'"} Não {else} Sim{/if}</th>
+              <td style="font-size:12px; "> {if="($address.perdaBateria)=='Sim'"}{function="formatDate($address.dtAlertaBateria)"} {/if}</td>
             </tr>
             <tr>
-               <th style="width:65%">Perda de Terminal:{if="($address.perdaTerminal)!='Sim'"} Não {else} Sim{/if}</th>
-              <td> {if="($address.perdaTerminal)=='Sim'"}{function="formatDate($address.dtPerdaTerminal)"} {/if}</td>
+               <th style="font-size:12px">Perda de Terminal:{if="($address.perdaTerminal)!='Sim'"} Não {else} Sim{/if}</th>
+              <td style="font-size:12px"> {if="($address.perdaTerminal)=='Sim'"}{function="formatDate($address.dtPerdaTerminal)"} {/if}</td>
             </tr>
             <tr>
-               <th style="width:65%">Perda de Sinal:{if="($address.perdaSinal)!='Sim'"} Não {else} Sim{/if}</th>
-              <td> {if="($address.perdaSinal)=='Sim'"}{function="formatDate($address.dtPerdaSinal)"} {/if}</td>
+               <th style="font-size:12px">Perda de Sinal:{if="($address.perdaSinal)!='Sim'"} Não {else} Sim{/if}</th>
+              <td style="font-size:12px"> {if="($address.perdaSinal)=='Sim'"}{function="formatDate($address.dtPerdaSinal)"} {/if}</td>
             </tr>
             <tr>
-              <th style="width:65%">Desvio de rota:{if="($address.desvioRota)!='Sim'"} Não {else} Sim{/if}</th>
-              <td> {if="($address.desvioRota)=='Sim'"}{function="formatDate($address.dtDesvioRota)"} {/if}</td>
+              <th style="font-size:12px">Desvio de rota:{if="($address.desvioRota)!='Sim'"} Não {else} Sim{/if}</th>
+              <td style="font-size:12px"> {if="($address.desvioRota)=='Sim'"}{function="formatDate($address.dtDesvioRota)"} {/if}</td>
+            </tr>
+            <tr>
+              <th style="width:70%; font-size: 12px">Ignição Desligada:{if="($address.ignicaoDesligada)!='Sim'"} Não {else} Sim{/if}</th>
+              <td style="font-size:12px"> {if="($address.ignicaoDesligada)=='Sim'"}{function="formatDate($address.dtIgnicaoDesligada)"} {/if}</td>
             </tr>
 
           </table>
@@ -294,23 +303,27 @@
        
 
         <div class="table-responsive">
-          <table class="table">
+          <table class="table table-striped">
              <tr>
-              <th style="width:70%">Botão de Pânico:{if="($address.btPanico)!='Sim'"} Não {else} Sim{/if}</th>
-              <td> {if="($address.btPanico)=='Sim'"}{function="formatDate($address.dtBtPanico)"} {/if}</td>
+              <th style="font-size: 12px">Botão de Pânico:{if="($address.btPanico)!='Sim'"} Não {else} Sim{/if}</th>
+              <td style="font-size:12px"> {if="($address.btPanico)=='Sim'"} {function="formatDate($address.dtBtPanico)"} {/if}</td>
             </tr>
 
             <tr>
-              <th style="width:65%">Porta Baú Traseira:{if="($address.portaBauTraseira)!='Sim'"} Não {else} Sim{/if}</th>
-              <td> {if="($address.portaBauTraseira)=='Sim'"}{function="formatDate($address.dtPortaBauTraseira)"} {/if}</td>
+              <th style="font-size:12px">Porta Baú Traseira:{if="($address.portaBauTraseira)!='Sim'"} Não {else} Sim{/if}</th>
+              <td style="font-size:12px"> {if="($address.portaBauTraseira)=='Sim'"}{function="formatDate($address.dtPortaBauTraseira)"} {/if}</td>
             </tr>
             <tr>
-               <th style="width:65%">Porta Baú Lateral:{if="($address.portaBauLateral)!='Sim'"} Não {else} Sim{/if}</th>
-              <td> {if="($address.portaBauLateral)=='Sim'"}{function="formatDate($address.dtPortaBauLateral)"} {/if}</td>
+               <th style="font-size:12px">Porta Baú Lateral:{if="($address.portaBauLateral)!='Sim'"} Não {else} Sim{/if}</th>
+              <td style="font-size:12px"> {if="($address.portaBauLateral)=='Sim'"}{function="formatDate($address.dtPortaBauLateral)"} {/if}</td>
             </tr>
             <tr>
-               <th style="width:65%">Arrombamento de baú:{if="($address.arrombamentoBau)!='Sim'"} Não {else} Sim{/if}</th>
-              <td> {if="($address.arrombamentoBau)=='Sim'"}{function="formatDate($address.dtArrombamentoBau)"} {/if}</td>
+               <th style="font-size:12px">Arrombamento de baú:{if="($address.arrombamentoBau)!='Sim'"} Não {else} Sim{/if}</th>
+              <td style="font-size:12px"> {if="($address.arrombamentoBau)=='Sim'"}{function="formatDate($address.dtArrombamentoBau)"} {/if}</td>
+            </tr>
+            <tr>
+              <th style="font-size:12px">Violação de Painel:{if="($address.violacaoPainel)!='Sim'"} Não {else} Sim{/if}</th>
+              <td style="font-size:12px"> {if="($address.violacaoPainel)=='Sim'"}{function="formatDate($address.dtViolacaoPainel)"} {/if}</td>
             </tr>
           </table>
         </div>
@@ -323,22 +336,26 @@
     
 
         <div class="table-responsive">
-          <table class="table">
+          <table class="table table-striped">
             <tr>
-              <th style="width:65%">Desengate de Carreta:{if="($address.desengateCarreta)!='Sim'"} Não {else} Sim{/if}</th>
-              <td> {if="($address.desengateCarreta)=='Sim'"}{function="formatDate($address.dtDesengateCarreta)"} {/if}</td>
+              <th style="font-size:12px">Desengate de Carreta:{if="($address.desengateCarreta)!='Sim'"} Não {else} Sim{/if}</th>
+              <td style="font-size:12px"> {if="($address.desengateCarreta)=='Sim'"}{function="formatDate($address.dtDesengateCarreta)"} {/if}</td>
             </tr>
             <tr>
-              <th style="width:65%">Senha de Pânico:{if="($address.senhaPanico)!='Sim'"} Não {else} Sim{/if}</th>
-              <td> {if="($address.senhaPanico)=='Sim'"}{function="formatDate($address.dtSenhaPanico)"} {/if}</td>
+              <th style="font-size:12px">Senha de Pânico:{if="($address.senhaPanico)!='Sim'"} Não {else} Sim{/if}</th>
+              <td style="font-size:12px"> {if="($address.senhaPanico)=='Sim'"}{function="formatDate($address.dtSenhaPanico)"} {/if}</td>
             </tr>
             <tr>
-             <th style="width:70%">Porta Motorista:{if="($address.portaMotorista)!='Sim'"} Não {else} Sim{/if}</th>
-              <td> {if="($address.portaMotorista)=='Sim'"}{function="formatDate($address.dtPortaMotorista)"} {/if}</td>
+             <th style="font-size: 12px">Porta Motorista:{if="($address.portaMotorista)!='Sim'"} Não {else} Sim{/if}</th>
+              <td style="font-size:12px"> {if="($address.portaMotorista)=='Sim'"}{function="formatDate($address.dtPortaMotorista)"} {/if}</td>
             </tr>
             <tr>
-             <th style="width:70%">Porta Passageiro:{if="($address.portaPassageiro)!='Sim'"} Não {else} Sim{/if}</th>
-              <td> {if="($address.portaPassageiro)=='Sim'"}{function="formatDate($address.dtPortaPassageiro)"} {/if}</td>
+             <th style="font-size: 12px">Porta Passageiro:{if="($address.portaPassageiro)!='Sim'"} Não {else} Sim{/if}</th>
+              <td style="font-size:12px"> {if="($address.portaPassageiro)=='Sim'"}{function="formatDate($address.dtPortaPassageiro)"} {/if}</td>
+            </tr>
+            <tr>
+               <th style="font-size:12px">Violação de Grade:{if="($address.violacaoGrade)!='Sim'"} Não {else} Sim{/if}</th>
+              <td style="font-size:12px"> {if="($address.violacaoGrade)=='Sim'"}{function="formatDate($address.dtViolacaoGrade)"} {/if}</td>
             </tr>
           </table>
         </div>
@@ -349,36 +366,11 @@
     </div>
      <div class="row">
 
-       <div class="col-xs-4">
-       
-
-        <div class="table-responsive">
-          <table class="table">
-             <tr>
-              <th style="width:70%">Ignição Desligada:{if="($address.ignicaoDesligada)!='Sim'"} Não {else} Sim{/if}</th>
-              <td> {if="($address.ignicaoDesligada)=='Sim'"}{function="formatDate($address.dtIgnicaoDesligada)"} {/if}</td>
-            </tr>
-
-            <tr>
-              <th style="width:65%">Violação de Painel:{if="($address.violacaoPainel)!='Sim'"} Não {else} Sim{/if}</th>
-              <td> {if="($address.violacaoPainel)=='Sim'"}{function="formatDate($address.dtViolacaoPainel)"} {/if}</td>
-            </tr>
-            
-            <tr>
-               <th style="width:65%">Violação de Grade:{if="($address.violacaoGrade)!='Sim'"} Não {else} Sim{/if}</th>
-              <td> {if="($address.violacaoGrade)=='Sim'"}{function="formatDate($address.dtViolacaoGrade)"} {/if}</td>
-            </tr>
-          </table>
-        </div>
-
-
-        
-      </div>
       <!-- accepted payments column -->
-      <div class="col-xs-8">
+      <div class="col-xs-12">
         <p class="lead">Descrição:</p>
        
-        <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+        <p class="well well-sm no-shadow" style="margin-top: 10px;">
          {$address.Descritivo}
         </p>
       </div>
