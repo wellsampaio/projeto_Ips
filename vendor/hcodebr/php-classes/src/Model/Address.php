@@ -640,7 +640,7 @@ for($i = 0; $i <$qtd_insert; $i++) {
 
 
 	
- 	public function getAcionamento($idNumSm)
+ 	public static function getAcionamento($idNumSm)
 
 	{
 

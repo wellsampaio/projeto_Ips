@@ -372,9 +372,9 @@ function removerCampo(idCampo){
     <select id="gerente" class="form-control" name="gerenteResponsavel">
     <option value=""></option>
 
-  {loop="$gerentes"}
-    <option value="{$value.nomeGerente}">{$value.nomeGerente}</option>
-  {/loop}
+        {loop="$gerentes"}
+          <option value="{$value.nomeGerente}">{$value.nomeGerente}</option>
+        {/loop}
   </select>
     </div>
     
@@ -840,15 +840,7 @@ function removerCampo(idCampo){
     
   </div>
   
-  
-   <label class="col-md-1 control-label" for="encaminhamento">Desvio de rota</label>
-  <div class="col-md-4">
-    <div class="input-group">
-      <span class="input-group-addon">     
-        <label class="radio-inline" for="radios-0">
-      <input type="radio" name="desvioRota" id="rota" value="Não" onclick="desabilita('drota')" checked>
-      Não
-    </label> 
+      </label> 
     <label class="radio-inline" for="radios-1">
       <input type="radio" name="desvioRota" id="rota" value="Sim" onclick="habilita('drota')">
       Sim
